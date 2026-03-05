@@ -107,3 +107,24 @@ body {
   margin-top: 50px;
   font-size: 0.9rem;
 }
+
+.page-content {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coming-soon {
+  text-align: center;
+}
+
+.coming-soon blockquote {
+  margin-top: 40px;
+}
+
+.coming-soon blockquote cite {
+  margin-top: 10px;
+  display: block;
+
+}
