@@ -1,0 +1,38 @@
+[
+  {
+    "href": "probability/",
+    "thumbnail": "probability/thumbnail.pdf",
+    "title": "Probability Refresher",
+    "description": "For those who want to start off on the right foot"
+  },
+  {
+    "href": "introduction/",
+    "thumbnail": "introduction/thumbnail.pdf",
+    "title": "Introduction to the p-value",
+    "description": "For those who want to understand the fundamentals"
+  },
+  {
+    "href": "examples-in-action/",
+    "thumbnail": "examples-in-action/thumbnail.pdf",
+    "title": "The p-value in action",
+    "description": "For those who prefer concrete examples"
+  },
+  {
+    "href": "statistical-tests/",
+    "thumbnail": "statistical-tests/thumbnail.pdf",
+    "title": "Statistical tests",
+    "description": "For those curious about how experimental science actually works"
+  },
+  {
+    "href": "pvalue-in-the-lab/",
+    "thumbnail": "pvalue-in-the-lab/thumbnail.pdf",
+    "title": "The p-value at the lab bench",
+    "description": "For those who want to see theory meet practice"
+  },
+  {
+    "href": "beyond-pvalue/",
+    "thumbnail": "beyond-pvalue/thumbnail.pdf",
+    "title": "Beyond the p-value",
+    "description": "For those who don’t want to get tripped up"
+  }
+]
