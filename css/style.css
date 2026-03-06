@@ -128,3 +128,12 @@ body {
   display: block;
 
 }
+
+.lang-switcher a {
+  color: white;
+  text-decoration: none;
+}
+
+.lang-switcher a.active span {
+  text-decoration: underline;
+}

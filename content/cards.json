@@ -1,0 +1,74 @@
+[
+  {
+    "href": "probability/",
+    "thumbnail": "probability/thumbnail.pdf",
+    "title": {
+	    "en": "Probability Refresher",
+	    "fr": "Rappels de probabilités"
+    },
+    "description": {
+      "en": "For those who want to start off on the right foot",
+      "fr": "Pour ceux qui veulent partir du bon pied"
+    }
+  },
+  {
+    "href": "introduction/",
+    "thumbnail": "introduction/thumbnail.pdf",
+    "title": {
+	    "en": "Introduction to the p-value",
+	    "fr": "Introduction à la p-value"
+    },
+    "description": {
+      "en": "For those who want to understand the fundamentals",
+      "fr": "Pour ceux qui veulent comprendre les bases"
+    }
+  },
+  {
+    "href": "examples-in-action/",
+    "thumbnail": "examples-in-action/thumbnail.pdf",
+    "title": {
+	    "en": "The p-value in action",
+	    "fr": "La p-value en action"
+    },
+    "description": {
+      "en": "For those who prefer concrete examples",
+      "fr": "Pour ceux qui préfèrent les exemples concrets"
+    }
+  },
+  {
+    "href": "statistical-tests/",
+    "thumbnail": "statistical-tests/thumbnail.pdf",
+    "title": {
+	    "en": "Statistical tests",
+	    "fr": "Tests statistiques"
+    },
+    "description": {
+      "en": "For those curious about how experimental science actually works",
+      "fr": "Pour les curieux qui souhaitent découvrir comment la science expérimentale fonctionne"
+    }
+  },
+  {
+    "href": "pvalue-in-the-lab/",
+    "thumbnail": "pvalue-in-the-lab/thumbnail.pdf",
+     "title": {
+	    "en": "The p-value at the lab bench",
+	    "fr": "La p-value au laboratoire"
+    },
+    "description": {
+      "en": "For those who want to see theory meet practice",
+      "fr": "Pour ceux qui veulent voir la théorie se concrétiser dans la pratique"
+    }
+  },
+  {
+    "href": "beyond-pvalue/",
+    "thumbnail": "beyond-pvalue/thumbnail.pdf",
+    "title": {
+	    "en": "Beyond the p-value",
+	    "fr": "Au delà de la p-value"
+    },
+    "description": {
+      "en": "For those who don’t want to get tripped up",
+      "fr": "Pour ceux qui ne veulent pas tomber dans les pièges"
+    }
+  }
+]

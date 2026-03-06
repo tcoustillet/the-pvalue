@@ -15,11 +15,22 @@ class SiteHeader extends HTMLElement {
     const title = this.getAttribute('title') || '';
     const tagline = this.getAttribute('tagline') || '';
     const showBack = this.hasAttribute('show-back');
+    const lang = this.getAttribute('lang') || 'en';
+    const isSubpage = this.hasAttribute('is-subpage');
+
+    const enHref = isSubpage ? '../en/index.html' : '?lang=en';
+    const frHref = isSubpage ? '../fr/index.html' : '?lang=fr';
 
     this.innerHTML = `
       <header class="header">
         <div class="container">
-          ${showBack ? '<a href="../index.html" class="back-link">← Back</a>' : ''}
+          <div class="header-top">
+            ${showBack ? `<a href="${isSubpage ? '../../index.html' : '#'}" class="back-link">← Back</a>` : '<div></div>'}
+            <div class="lang-switcher">
+              <a href="${enHref}" class="${lang === 'en' ? 'active' : ''}">🇬🇧 <span>EN</span></a>
+              <a href="${frHref}" class="${lang === 'fr' ? 'active' : ''}">🇫🇷 <span>FR</span></a>
+            </div>
+          </div>
           ${title ? `<h1>${title}</h1>` : ''}
           ${tagline ? `<p class="tagline">${tagline}</p>` : ''}
         </div>

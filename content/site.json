@@ -1,0 +1,22 @@
+{
+  "title": {
+    "en": "The p-value",
+    "fr": "La p-value"
+  },
+  "tagline": {
+    "en": "The p-value, interactively demystified",
+    "fr": "La p-value, démystifiée de façon interactive"
+  },
+  "comingSoon": {
+    "en": {
+        "message": "🛠️ Work in progress... Stay tuned, this page is coming soon! 🌱",
+        "quote": "\"I was taught that the way of progress was neither swift nor easy.\"",
+        "author": "— Marie Curie"
+    },
+    "fr": {
+        "message": "🛠️ À l'œuvre... Restez à l'affût, cette page arrive bientôt! 🌱",
+        "quote": "« On m'a appris que le chemin du progrès n'est ni rapide ni facile. »",
+        "author": "— Marie Curie"
+    }
+  }
+}
