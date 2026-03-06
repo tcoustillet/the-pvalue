@@ -25,7 +25,7 @@ class SiteHeader extends HTMLElement {
       <header class="header">
         <div class="container">
           <div class="header-top">
-            ${showBack ? `<a href="${isSubpage ? '../../index.html' : '#'}" class="back-link">← Back</a>` : '<div></div>'}
+            ${showBack ? `<a href="../../index.html" class="back-link">← ${lang === 'fr' ? 'Retour' : 'Back'}</a>` : '<div></div>'}
             <div class="lang-switcher">
               <a href="${enHref}" class="${lang === 'en' ? 'active' : ''}">🇬🇧 <span>EN</span></a>
               <a href="${frHref}" class="${lang === 'fr' ? 'active' : ''}">🇫🇷 <span>FR</span></a>

@@ -100,7 +100,7 @@ body {
 
 /* Footer styling */
 .footer {
-  background-color: #011993;
+  background-color: #1f77b4;
   color: white;
   padding: 20px 0;
   text-align: center;
@@ -136,4 +136,19 @@ body {
 
 .lang-switcher a.active span {
   text-decoration: underline;
+}
+
+.back-link {
+  color: #1f77b4;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 1px 8px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.back-link:hover {
+  opacity: 0.85;
 }
