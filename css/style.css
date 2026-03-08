@@ -38,6 +38,13 @@ body {
   font-weight: 300;
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
 /* ======================== Cards Grid ======================== */
 .cards-container {
     display: grid;
@@ -102,10 +109,14 @@ body {
 .footer {
   background-color: #1f77b4;
   color: white;
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
   margin-top: 50px;
   font-size: 0.9rem;
+}
+
+.footer p {
+  margin: 0;
 }
 
 .page-content {
@@ -113,6 +124,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.page-content .container {
+  padding-top: 40px;
 }
 
 .coming-soon {
@@ -151,4 +166,8 @@ body {
 
 .back-link:hover {
   opacity: 0.85;
+}
+
+p {
+  margin-bottom: 1.5rem;
 }
