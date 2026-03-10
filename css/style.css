@@ -18,6 +18,7 @@ body {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 20px;
+    overflow-x: hidden;
 }
 
 /* Header styling */
@@ -170,4 +171,64 @@ body {
 
 p {
   margin-bottom: 1.5rem;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.center-list {
+  width: fit-content;
+  margin: 20px auto 0 auto;
+  list-style-position: inside;
+  padding: 0;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.center-list li {
+  margin-bottom: 8px;
+}
+
+table {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: bold;
+  text-align: center;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  padding: 2px 20px;
+}
+
+td {
+  text-align: center;
+  padding: 6px 20px;
+}
+
+tbody tr:last-child td {
+  border-bottom: 1px solid #000000;
+}
+
+figure {
+  text-align: center;
+  margin: 20px 0;
+}
+
+figure img {
+  max-width: 100%;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
+}
+
+.katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
