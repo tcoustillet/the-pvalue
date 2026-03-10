@@ -216,6 +216,72 @@
           sépare l'aire totale en deux parties de 50% est par ailleurs appelée <em>médiane</em>.
         </p>
       </section>
+      <section>
+        <h2>Les probabilités conditionnelles</h2>
+        <p>
+          Le calcul des probabilités par le calcul d'aires était le premier gros point de ce chapitre. Avant de parler de p-value, nous devons nous intéresser à 
+          l'autre gros morceau : les probabilités conditionnelles. Lorsque l'on calcule des probabilités, il est possible d'affiner la précision de celles-ci en 
+          ajoutant des informations connues - ou suposées vraies. Au lieu de calculer la probabilité d'un évènement, on dit qu'on calcule la probabilité de 
+          l'évènement en <em>sachant</em> un autre. Par exemple, pour le chercheur qui prend une boisson chaude, si je sais qu'il n'aime pas le thé et qu'il n'a 
+          jamais pris de Chocolat chaud, alors les probabilités vont probablement être modulées (Figure 6). Il est essentiel de garder un univers où la somme
+          des probabilités vaut 1. 
+        </p>
+        <figure>
+        <img src="figures/figure_6.png" alt="Figure 1">
+        <figcaption>Figure 6 — Probabilités de choisir chacune des six boissons sachant que le chercheur n'aime pas le thé et n'a jamais pris de Chocolat chaud</figcaption>
+        </figure>
+        <p>
+          De la même façon, pour les salaires, il est possible de moduler les probabilités en ajoutant de l'information : être un homme ou une femme, travailler 
+          dans le public ou le privé, etc. Ainsi, la probabilité de gagner au moins 3 500€ net mensuel n'est pas la même que l'on soit un homme ou une femme, 
+          que l'on travaille dans le public ou le privé, etc. Si on possède l'information que la personne est une femme et que l'on souhaite calculer la probabilité qu'elle gagne plus que 
+          3 500€ net mensuel, alors on <strong>ne doit pas</strong> utiliser la même densité de probabilité que celle que l'on utilisait sans connaitre cette information. 
+          Il faut utiliser la densité qui prend en compte cette information. Avec les notations habituelles, la probabilité <em>sachant</em> une croyance s'écrit 
+          avec une barre verticale. La probabilité que notre variable aléatoire $S$ soit supérieure à 3 500 sachant que la personne est une femme s'écrit :
+          $$\mathbb{P}(S > 3500 \mid &#x2640;)$$
+        </p>
+        <p>
+          Malheuresement, on sait que : $\mathbb{P}(S > 3500 \mid &#x2640;) < \mathbb{P}(S > 3500 \mid &#x2642;)$ : si une personne est une femme, la probabilité qu'elle 
+          gagne plus que 3 500€ net mensuel est plus faible que si elle était un homme.
+        </p>
+        <p>
+          <h3>Une histoire de taille</h3>
+          Pour fixer définitivement les idées, prenons un exemple concret un peu plus léger : la taille des personnes. La façon de prédire la taille d'une personne 
+          peut varier suivant certaines caractéristiques comme par exemple le sexe et la nationalité : en général les hommes sont plus grands que les femmes et les 
+          suédois sont plus grands que les français. La probabilité de mesurer plus de 172 cm n'est pas la même suivant les informations que l'on dispose au sujet 
+          de la personne : sachant si la personne est une femme française, une femme suédoise, un homme français ou un homme suédois. Cet exemple sera exploré en 
+          détails dans la dernière section de la page.
+          </p>
+          <p>
+          La densité de probabilité de la variable aléatoire qui représente la taille des gens est dite <em>normale</em>, elle suit une loi <em>normale</em> où la 
+          distribution des valeurs est très bien caractérisée (courbe en cloche appelée gaussienne ou normale). Cette densité est entièrement définie par deux 
+          paramètres qui sont la moyenne $\mu$ et l'écart-type $\sigma$. Ces deux paramètres sont nécessaires et suffisants pour caractériser une densité normale.
+        </p>
+      </section>
+      <section>
+        <h2>La loi normale</h2>
+        <p>
+          Une densité de probabilité (fonction représentant la distribution du hasard) est dite <em>normale</em> lorsque la variable aléatoire associée <em>suit</em> 
+          une loi normale. Dans ce type de distribution, les valeurs <strong>proches</strong> de la moyenne sont les plus <strong>probables</strong>. À l'inverse, les valeurs 
+          éloignées deviennent de plus en plus rares à mesure qu’on se rapproche des extrémités. Deux paramètres suffisent pour représenter une densité normale : 
+          la moyenne $\mu$ qui indique l'endroit où la probabilité d'obtenir une valeur est la plus forte et l'écart-type $\sigma$ qui donne une indication 
+          d'à quel point les valeurs sont dispersées autour de la moyenne. Graphiquement, cela forme une courbe en cloche, appelée courbe de Gauss ou Gaussienne. 
+          Cette courbe est symétrique : les écarts vers la gauche et vers la droite de la moyenne ont le même comportement. En résumé, la loi normale décrit 
+          des situations où la plupart des valeurs se concentrent autour d’une moyenne $\mu$, tandis que les valeurs très éloignées restent rares. Étant donné que 
+          la distribution est symétrique, les grandes valeurs sont alors aussi improbables que les petites.
+        </p>
+      </section>
+      <section>
+        <h2>À vous de jouer</h2>
+        <p>
+          Pour explorer toutes les notions discutées jusqu'ici, reprenons l'exemple de la variable aléatoire $T$ qui suit une loi normale : la plupart des gens 
+          ont une taille proche de la moyenne globale et il y a de moins en moins de personnes à mesure que l’on considère des tailles de plus en plus grandes 
+          (ou de plus en plus petites).
+        </p>
+        <p>
+          En considérant différentes hypothèses sur le sexe et la nationalité d'une personne, vous pouvez calculer les probabilités que la variable aléatoire $T$ 
+          appartienne à un certain intervalle <em>sachant</em> les croyances que vous avez choisies.
+        </p>
+      </section>
     </div>
   </main>
 
