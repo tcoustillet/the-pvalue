@@ -232,3 +232,25 @@ figcaption {
   overflow-x: auto;
   overflow-y: hidden;
 }
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 0 30px;
+  align-items: start;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.controls-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.controls-col--middle {
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
