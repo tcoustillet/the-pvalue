@@ -240,6 +240,10 @@ figcaption {
   align-items: start;
   margin-bottom: 20px;
   justify-content: center;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .controls-col {
