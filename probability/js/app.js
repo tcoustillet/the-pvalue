@@ -37,7 +37,7 @@ function updateDescription(state, prob) {
   const { probType, mu, sigma, a, b } = state;
   const probPercent = `${(prob * 100).toFixed(1)}`;
   const preset = Controls.PRESETS.find(p => p.mu === mu && p.sigma === sigma);
-  const emoji = preset ? preset.label.split(' ')[0] : '';
+  const emoji = preset ? preset.label : '';
 
   const probTexts = {
     less: `\\mathbb{P}(T < ${a} \\mid ${emoji}) = ${probPercent}\\%`,
