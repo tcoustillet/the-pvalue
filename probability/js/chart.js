@@ -66,6 +66,12 @@ const GaussianChart = {
     this.svg.append('path').attr('class', 'curve');
     this.svg.append('path').attr('class', 'shaded-area');
     this.svg.append('text').attr('class', 'probability-label');
+    this.svg.append('line').attr('class', 'threshold-line-a');
+    this.svg.append('line').attr('class', 'threshold-line-b');
+    this.svg.append('text').attr('class', 'arrow-a');
+    this.svg.append('text').attr('class', 'arrow-b');
+    this.svg.append('text').attr('class', 'arrow-a2');
+    this.svg.append('text').attr('class', 'arrow-b2');
   },
 
   /**
@@ -82,10 +88,15 @@ const GaussianChart = {
     const { height, margin } = this.dims;
     const innerHeight = height - margin.top - margin.bottom;
     const { x, y } = this.scales;
-    const color = this.COLORS[probType];
+    const color = state.color;
 
     const points = d3.range(this.X_BOUNDS.min, this.X_BOUNDS.max, (this.X_BOUNDS.max - this.X_BOUNDS.min) / 300)
       .map(val => ({ x: val, y: Gaussian.pdf(val, mu, sigma) }));
+
+    // Ensure exact threshold points are included
+    if (a !== null) points.push({ x: a, y: Gaussian.pdf(a, mu, sigma) });
+    if (b !== null) points.push({ x: b, y: Gaussian.pdf(b, mu, sigma) });
+    points.sort((p1, p2) => p1.x - p2.x);
 
     y.domain([0, d3.max(points, d => d.y) * 1.1]);
 
@@ -100,7 +111,7 @@ const GaussianChart = {
       .datum(points)
       .attr('d', line)
       .attr('fill', 'none')
-      .attr('stroke', '#011993')
+      .attr('stroke', color)
       .attr('stroke-width', 2);
 
     // --- Shaded area ---
@@ -129,19 +140,78 @@ const GaussianChart = {
       .attr('fill', color)
       .attr('opacity', 0.3);
 
-    // --- Probability label on chart ---
-    if (prob !== null) {
-      const labelX = probType === 'less' ? x(a) - 40 : x(a) + 8;
-      this.svg.select('.probability-label')
-        .attr('x', labelX)
-        .attr('y', 20)
-        .attr('fill', color)
-        .attr('font-size', '0.9rem')
-        .text(`${(prob * 100).toFixed(1)}%`);
-    } else {
-      this.svg.select('.probability-label').text('');
-    }
+    // --- Probability label and arrows ---
+const arrowY = 16;
+const arrowGap = 8;
+const arrowLowY = y(0.005) + 4;
+
+if (prob !== null) {
+  let labelX;
+  if (probType === 'less') {
+    labelX = x(a) - 8;
+  } else if (probType === 'greater') {
+    labelX = x(a) + 30;
+  } else if (probType === 'between') {
+    labelX = (x(a) + x(b)) / 2;
+  }
+
+  this.svg.select('.probability-label')
+    .attr('x', labelX)
+    .attr('y', 20)
+    .attr('text-anchor', probType === 'less' ? 'end' : 'middle')
+    .attr('fill', color)
+    .attr('font-size', '0.9rem')
+    .text(`${(prob * 100).toFixed(1)}%`);
+
+  if (probType === 'less') {
+    this._drawArrow('.arrow-a',  x(a) + arrowGap, arrowY + 4, 'start', color, '\u2190');
+    this._drawArrow('.arrow-a2', x(a) + arrowGap, arrowLowY, 'start', color, '\u2190');
+    this.svg.select('.arrow-b').text('');
+    this.svg.select('.arrow-b2').text('');
+  } else if (probType === 'greater') {
+    this._drawArrow('.arrow-a',  x(a) - arrowGap, arrowY + 4, 'end', color, '\u2192');
+    this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
+    this.svg.select('.arrow-b').text('');
+    this.svg.select('.arrow-b2').text('');
+  } else if (probType === 'between' && b !== null) {
+    this._drawArrow('.arrow-a',  x(a) - arrowGap, arrowY + 4, 'end', color, '\u2192');
+    this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
+    this._drawArrow('.arrow-b',  x(b) + arrowGap, arrowY + 4, 'start', color, '\u2190');
+    this._drawArrow('.arrow-b2', x(b) + arrowGap, arrowLowY, 'start', color, '\u2190');
+  }
+} else {
+  this.svg.select('.probability-label').text('');
+  this.svg.select('.arrow-a').text('');
+  this.svg.select('.arrow-b').text('');
+}
+
+    this._updateThresholdLine('.threshold-line-a', a, color, innerHeight, x);
+    this._updateThresholdLine('.threshold-line-b', probType === 'between' ? b : null, color, innerHeight, x);
 
     return prob;
-  }
+  },
+
+  _updateThresholdLine(lineClass, value, color, innerHeight, x) {
+    if (value === null) {
+      this.svg.select(lineClass).attr('x1', 0).attr('x2', 0).attr('y1', 0).attr('y2', 0);
+      return;
+    }
+    const xPos = x(value);
+    this.svg.select(lineClass)
+      .attr('x1', xPos).attr('x2', xPos)
+      .attr('y1', 0).attr('y2', innerHeight)
+      .attr('stroke', color)
+      .attr('stroke-width', 1.5)
+      .attr('stroke-dasharray', '2,4');
+  },
+
+  _drawArrow(selector, xPos, yPos, anchor, color, char) {
+    this.svg.select(selector)
+      .attr('x', xPos)
+      .attr('y', yPos)
+      .attr('text-anchor', anchor)
+      .attr('fill', color)
+      .attr('font-size', '1rem')
+      .text(char);
+  },
 };

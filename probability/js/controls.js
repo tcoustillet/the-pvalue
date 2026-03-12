@@ -5,13 +5,13 @@
 const Controls = {
   /** @type {Array} Available distribution presets */
   PRESETS: [
-    { label: '🇫🇷', name: 'qu\'elle est de nationalité française', name_2: 'français', mu: 170, sigma: 6 },
-    { label: '🇫🇷 ♀', name: 'qu\'il s\'agit d\'une femme française', name_2: 'françaises',  mu: 164, sigma: 6 },
-    { label: '🇫🇷 ♂︎', name: 'qu\'il s\'agit d\'un homme français', name_2: 'hommes français', mu: 176, sigma: 6 },
-    { label: '🇸🇪 ', name: 'qu\'elle est de nationalité suédoise', name_2: 'suédois', mu: 174, sigma: 6 },
-    { label: '🇸🇪 ♀', name: 'qu\'il s\'agit d\'une femme suédoise', name_2: 'suédoises', mu: 167, sigma: 6 },
-    { label: '🇸🇪 ♂︎', name: 'qu\'il s\'agit d\'homme suédois', name_2: 'hommes suédois', mu: 181, sigma: 6 },
-    { label: '🇺🇸 ♂︎ 🏀', name: 'qu\'il s\'agit d\'un basketteur américain', name_2: 'basketteurs américains', mu: 199, sigma: 6 }
+    { label: '🇫🇷', name: 'qu\'elle est de nationalité française', name_2: 'français', mu: 170, sigma: 6, "color": "#d62728" },
+    { label: '🇫🇷 ♀', name: 'qu\'il s\'agit d\'une femme française', name_2: 'françaises',  mu: 164, sigma: 6, "color": "#4169E1" },
+    { label: '🇫🇷 ♂︎', name: 'qu\'il s\'agit d\'un homme français', name_2: 'hommes français', mu: 176, sigma: 6, "color": "#e377c2" },
+    { label: '🇸🇪 ', name: 'qu\'elle est de nationalité suédoise', name_2: 'suédois', mu: 174, sigma: 6, "color": "#1f77b4" },
+    { label: '🇸🇪 ♀', name: 'qu\'il s\'agit d\'une femme suédoise', name_2: 'suédoises', mu: 167, sigma: 6, "color": "#2ca02c" },
+    { label: '🇸🇪 ♂︎', name: 'qu\'il s\'agit d\'homme suédois', name_2: 'hommes suédois', mu: 181, sigma: 6, "color": "#9467bd" },
+    { label: '🇺🇸 ♂︎ 🏀', name: 'qu\'il s\'agit d\'un basketteur américain', name_2: 'basketteurs américains', mu: 199, sigma: 6, "color": "#ff7f0e" }
   ],
 
   /** @type {number} Default value for input A */
@@ -131,6 +131,7 @@ const Controls = {
         probType,
         mu: preset.mu,
         sigma: preset.sigma,
+        color: preset.color,
         a: !isNaN(a) && a >= this.INPUT_MIN && a <= this.INPUT_MAX ? a : null,
         b: !isNaN(b) && b >= this.INPUT_MIN && b <= this.INPUT_MAX ? b : null
       };
