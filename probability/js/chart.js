@@ -24,13 +24,6 @@ const GaussianChart = {
   /** @type {Object} Fixed x-axis bounds */
   X_BOUNDS: { min: 140, max: 225 },
 
-  /** @type {Object} Colors per probability type */
-  COLORS: {
-    less: '#e07b39',
-    greater: '#2ca02c',
-    between: '#9467bd'
-  },
-
   /**
    * Initializes the SVG container and scales.
    * @param {string} selector - CSS selector of the container element.
@@ -187,9 +180,10 @@ if (prob !== null) {
     this.svg.select('.arrow-b').text('');
     this.svg.select('.arrow-b2').text('');
   } else if (probType === 'between' && b !== null) {
-    this._drawArrow('.arrow-a',  x(a) - arrowGap, arrowY + 4, 'end', color, '\u2192');
+    const arrowGapO = a === b ? arrowGap * 1.5 : arrowGap;
+    this._drawArrow('.arrow-a',  x(a) - arrowGapO, arrowY + 4, 'end', color, '\u2192');
     this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
-    this._drawArrow('.arrow-b',  x(b) + arrowGap, arrowY + 4, 'start', color, '\u2190');
+    this._drawArrow('.arrow-b',  x(b) + arrowGapO, arrowY + 4, 'start', color, '\u2190');
     this._drawArrow('.arrow-b2', x(b) + arrowGap, arrowLowY, 'start', color, '\u2190');
   }
 } else {
