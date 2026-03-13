@@ -63,9 +63,9 @@ const Controls = {
     leftCol.classList.add('controls-col', 'controls-col--left');
 
     const probTypes = [
-      { value: 'less',    node: this._buildLabel('prob-type', 'less',    [' $\\mathbb{P}(T < \\;$', inputA1, '$\\;)$']) },
-      { value: 'greater', node: this._buildLabel('prob-type', 'greater', [' $\\mathbb{P}(T > \\;$', inputA2, '$\\;)$']) },
-      { value: 'between', node: this._buildLabel('prob-type', 'between', [' $\\mathbb{P}($', inputA3, '$\\; < T < \\;$', inputB3, '$)$']) }
+      { value: 'less',    node: this._buildLabel('prob-type', 'less',    [' $\\mathbb{P}(T \\leq \\;$', inputA1, '$\\;)$']) },
+      { value: 'greater', node: this._buildLabel('prob-type', 'greater', [' $\\mathbb{P}(T \\geq \\;$', inputA2, '$\\;)$']) },
+      { value: 'between', node: this._buildLabel('prob-type', 'between', [' $\\mathbb{P}($', inputA3, '$\\; \\leq T \\leq \\;$', inputB3, '$)$']) }
     ];
 
     probTypes.forEach(({ node }, index) => {
@@ -140,9 +140,19 @@ const Controls = {
     // --- Event listeners ---
     container.addEventListener('change', () => onChange(getState()));
     [inputA1, inputA2, inputA3, inputB3].forEach(input => {
-      input.addEventListener('input', () => onChange(getState()));
+      input.addEventListener('input', () => {
+        const probType = container.querySelector('input[name="prob-type"]:checked').value;
+        if (probType === 'between') {
+          const aVal = parseFloat(inputA3.value);
+          const bVal = parseFloat(inputB3.value);
+          if (!isNaN(aVal) && !isNaN(bVal)) {
+            if (input === inputA3 && aVal > bVal) inputA3.value = bVal - 1;
+            if (input === inputB3 && bVal < aVal) inputB3.value = aVal + 1;
+          }
+        }
+        onChange(getState());
+      });
     });
-
     return getState();
   },
 

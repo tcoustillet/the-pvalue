@@ -40,9 +40,9 @@ function updateDescription(state, prob) {
   const emoji = preset ? preset.label : '';
 
   const probTexts = {
-    less: `\\mathbb{P}(T < ${a} \\mid ${emoji}) = ${probPercent}\\%`,
-    greater: `\\mathbb{P}(T > ${a} \\mid ${emoji}) = ${probPercent}\\%`,
-    between: `\\mathbb{P}(${a} < T < ${b} \\mid ${emoji}) = ${probPercent}\\%`
+    less: `\\mathbb{P}(T \\leq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
+    greater: `\\mathbb{P}(T \\geq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
+    between: `\\mathbb{P}(${a} \\leq T \\leq ${b} \\mid ${emoji}) = ${probPercent}\\%`
   };
 
   const renderedMath = katex.renderToString(probTexts[probType], { throwOnError: false });

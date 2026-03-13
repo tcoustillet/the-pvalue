@@ -130,7 +130,7 @@ const GaussianChart = {
     } else if (probType === 'greater' && a !== null) {
       shadedPoints = points.filter(d => d.x >= a);
       prob = Gaussian.probabilityGreaterThan(a, mu, sigma);
-    } else if (probType === 'between' && a !== null && b !== null && a < b) {
+    } else if (probType === 'between' && a !== null && b !== null && a <= b) {
       shadedPoints = points.filter(d => d.x >= a && d.x <= b);
       prob = Gaussian.cdf(b, mu, sigma) - Gaussian.cdf(a, mu, sigma);
     }
@@ -165,7 +165,7 @@ if (prob !== null) {
     .text(`${(prob * 100).toFixed(1)}%`);
   
   const bbox = this.svg.select('.probability-label').node().getBBox();
-  
+
   this.svg.select('.probability-label-bg')
     .attr('x', bbox.x - 3)
     .attr('y', bbox.y - 2)
