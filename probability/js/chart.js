@@ -65,13 +65,14 @@ const GaussianChart = {
 
     this.svg.append('path').attr('class', 'curve');
     this.svg.append('path').attr('class', 'shaded-area');
-    this.svg.append('text').attr('class', 'probability-label');
     this.svg.append('line').attr('class', 'threshold-line-a');
     this.svg.append('line').attr('class', 'threshold-line-b');
     this.svg.append('text').attr('class', 'arrow-a');
     this.svg.append('text').attr('class', 'arrow-b');
     this.svg.append('text').attr('class', 'arrow-a2');
     this.svg.append('text').attr('class', 'arrow-b2');
+    this.svg.append('rect').attr('class', 'probability-label-bg');
+    this.svg.append('text').attr('class', 'probability-label');
   },
 
   /**
@@ -142,8 +143,8 @@ const GaussianChart = {
 
     // --- Probability label and arrows ---
 const arrowY = 16;
-const arrowGap = 8;
-const arrowLowY = y(0.005) + 4;
+const arrowGap = 14;
+const arrowLowY = y(0.004) + 4;
 
 if (prob !== null) {
   let labelX;
@@ -154,14 +155,26 @@ if (prob !== null) {
   } else if (probType === 'between') {
     labelX = (x(a) + x(b)) / 2;
   }
-
+  
   this.svg.select('.probability-label')
     .attr('x', labelX)
     .attr('y', 20)
     .attr('text-anchor', probType === 'less' ? 'end' : 'middle')
     .attr('fill', color)
-    .attr('font-size', '0.9rem')
+    .attr('font-size', '1rem')
     .text(`${(prob * 100).toFixed(1)}%`);
+  
+  const bbox = this.svg.select('.probability-label').node().getBBox();
+  
+  this.svg.select('.probability-label-bg')
+    .attr('x', bbox.x - 3)
+    .attr('y', bbox.y - 2)
+    .attr('width', bbox.width + 6)
+    .attr('height', bbox.height + 4)
+    .attr('fill', '#fff8e7')
+    .attr('opacity', 1)
+    .attr('rx', 8)
+    .attr('ry', 8);
 
   if (probType === 'less') {
     this._drawArrow('.arrow-a',  x(a) + arrowGap, arrowY + 4, 'start', color, '\u2190');
