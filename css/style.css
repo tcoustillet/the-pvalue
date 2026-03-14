@@ -258,3 +258,8 @@ figcaption {
   flex-direction: column;
   gap: 10px;
 }
+
+#chart-container svg {
+  width: 100%;
+  height: auto;
+}

@@ -31,14 +31,14 @@ const GaussianChart = {
   init(selector) {
     this.selector = selector;
     const { height, margin } = this.dims;
-    const width = document.querySelector(selector).clientWidth;
-    const innerWidth = width - margin.left - margin.right;
+    const fixedWidth = 800;
+    const innerWidth = fixedWidth - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
     this.svg = d3.select(selector)
       .append('svg')
-      .attr('width', width)
-      .attr('height', height)
+      .attr('viewBox', `0 0 ${fixedWidth} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
