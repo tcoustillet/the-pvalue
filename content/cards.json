@@ -1,7 +1,7 @@
 [
   {
     "href": "probability/",
-    "thumbnail": "probability/thumbnail.pdf",
+    "thumbnail": "probability/thumbnail.png",
     "title": {
 	    "en": "Probability Refresher",
 	    "fr": "Rappels de probabilités"
@@ -13,7 +13,7 @@
   },
   {
     "href": "introduction/",
-    "thumbnail": "introduction/thumbnail.pdf",
+    "thumbnail": "introduction/thumbnail.png",
     "title": {
 	    "en": "Introduction to the p-value",
 	    "fr": "Introduction à la p-value"
@@ -25,7 +25,7 @@
   },
   {
     "href": "examples-in-action/",
-    "thumbnail": "examples-in-action/thumbnail.pdf",
+    "thumbnail": "examples-in-action/thumbnail.png",
     "title": {
 	    "en": "The p-value in action",
 	    "fr": "La p-value en action"
@@ -37,7 +37,7 @@
   },
   {
     "href": "statistical-tests/",
-    "thumbnail": "statistical-tests/thumbnail.pdf",
+    "thumbnail": "statistical-tests/thumbnail.png",
     "title": {
 	    "en": "Statistical tests",
 	    "fr": "Tests statistiques"
@@ -49,7 +49,7 @@
   },
   {
     "href": "pvalue-in-the-lab/",
-    "thumbnail": "pvalue-in-the-lab/thumbnail.pdf",
+    "thumbnail": "pvalue-in-the-lab/thumbnail.png",
      "title": {
 	    "en": "The p-value at the lab bench",
 	    "fr": "La p-value au laboratoire"
@@ -61,7 +61,7 @@
   },
   {
     "href": "beyond-pvalue/",
-    "thumbnail": "beyond-pvalue/thumbnail.pdf",
+    "thumbnail": "beyond-pvalue/thumbnail.png",
     "title": {
 	    "en": "Beyond the p-value",
 	    "fr": "Au delà de la p-value"

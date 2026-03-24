@@ -9,12 +9,12 @@
   },
   "comingSoon": {
     "en": {
-        "message": "🛠️ Work in progress... Stay tuned, this page is coming soon! 🌱",
+        "message": "&#x1F6E0;&#xFE0F; Work in progress... Stay tuned, this page is coming soon! &#x1F331;",
         "quote": "\"I was taught that the way of progress was neither swift nor easy.\"",
         "author": "— Marie Curie"
     },
     "fr": {
-        "message": "🛠️ À l'œuvre... Restez à l'affût, cette page arrive bientôt! 🌱",
+        "message": "&#x1F6E0;&#xFE0F; À l'œuvre... Restez à l'affût, cette page arrive bientôt! &#x1F331;",
         "quote": "« On m'a appris que le chemin du progrès n'est ni rapide ni facile. »",
         "author": "— Marie Curie"
     }
