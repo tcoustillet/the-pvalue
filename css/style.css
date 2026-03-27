@@ -263,3 +263,33 @@ figcaption {
   width: 100%;
   height: auto;
 }
+
+#chart-description {
+  display: block;
+  text-align: left;
+}
+
+.mode-radios {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid #000000;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.k-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bloc-latex-like {
+  display: inline-block;
+  text-align: left;
+  padding: 5px 0;
+}
+
+.latex-like {
+  height: 20px;
+  vertical-align: -0.25em;
+}
