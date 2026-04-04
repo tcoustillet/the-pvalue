@@ -1,0 +1,212 @@
+/* --- Section --- */
+
+.eyes {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* --- Groups --- */
+
+.eyes__groups {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.eyes__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 140px;
+}
+
+.eyes__legend {
+  width: auto;
+  text-align: center;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* --- Options --- */
+
+.eyes__options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.eyes__option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.eyes__option input[type='radio'] {
+  accent-color: currentColor;
+  cursor: pointer;
+}
+
+/* --- Parents Box --- */
+
+.eyes__parents {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.eyes__parents-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.eyes__parents-label {
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.eyes__parents-subtitle {
+  display: block;
+  text-align: center;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: #999;
+  margin-top: -0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.eyes__parents-fieldsets {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* --- Result --- */
+
+.eyes__result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.eyes__result::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background-color: #ddd;
+}
+
+#result-probability {
+  margin-top: 0.25rem;
+}
+
+.eyes__option-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.controls__wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.controls__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.controls__sentence,
+.controls__equation {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controls__box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 260px;
+}
+
+.controls__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.controls__value-display {
+  font-weight: 600;
+}
+
+.controls__box-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.controls__prob-display {
+  text-align: center;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.controls__slider-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controls__slider {
+  flex: 1;
+  cursor: pointer;
+}
+
+.threshold-input {
+  width: 60px;
+  font-size: 0.9rem;
+}
+
+#chart-container {
+  margin-bottom: 1.5rem;
+}
+
+.chart-description__formula {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
