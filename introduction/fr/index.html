@@ -453,6 +453,59 @@
         <div id="controls-container"></div>
         <div id="chart-container"></div>
         <p id="chart-description"></p>
+        <h3>Zone de rejet</h3>
+        <p>
+          On appelle <em>zone de rejet</em> de $H_0$ la zone (l'intervalle) qui contient l'ensemble
+          des résultats qui sont considérés comme étant extraordinaires (trop improbables) dans le
+          monde de $H_0$. Si le résultat d'une expérience tombe dans cette région, cela signifie que
+          le niveau de preuve (p < 0.05) pour rejetter $H_0$ est atteint et qu'il est possible de
+          basculer vers $H_1$. Si le résultat tombe en dehors de cette zone, il est considéré comme
+          étant ordinaire et ne permet pas de rejetter $H_0$ et de basculer vers $H_1$. La valeur
+          critique est la valeur de la variable aléatoire qui sépare la région en deux parties
+          asymétriques : d'un côté les résultats ordinaires dans le monde de $H_0$ et de l'autre
+          côté les résultats extraordinaires. C'est cette valeur critique qui définit précisément la
+          frontière entre les deux mondes $H_0$ et $H_1$.
+        </p>
+        <p>
+          Dans cet exemple, la valeur critique (hauteur de l'arbre) est précisément 24,58 m de telle
+          sorte que :
+        </p>
+        <div style="text-align: center">
+          <div class="bloc-latex-like">
+            <p>$\mathbb{P}(H \geq 24,58 \mid \text{l'arbre est un chêne}) = 5\%$</p>
+            <p>$\mathbb{P}(H \lt 24,58 \mid \text{l'arbre est un chêne}) = 95\%$</p>
+          </div>
+        </div>
+        <p>
+          La probabilité de mesurer au moins 24,58 m sachant que l'on est un chêne est précisément
+          égale à 5%. Cette hauteur définit donc la frontière entre les deux mondes $H_0$ et $H_1$
+          (être un chêne ou un hêtre). Lorsque Grace regarde la hauteur d'un arbre, si celle-ci est
+          strictement supérieure à 24,58 m alors elle rejette $H_0$ (l'arbre est un chêne) et
+          conclue que l'arbre est un hêtre puisque le résultat tombe dans la zone de rejet
+          (c'est-à-dire qu'il y avait moins de 5% de chances d'observer un résultat au moins aussi
+          extrême si c'était un chêne). Si la hauteur de l'arbre est plus petite ou égale que 24,58
+          m, Grace ne peut pas rejetter $H_0$ puisque le résultat est en dehors de la zone de rejet
+          (c'est-à-dire qu'il y avait plus de 5% de chances d'observer un résultat au moins aussi
+          extrême en considérant que l'arbre est un chêne). Pour résumer : si l'arbre mesure 24,58 m
+          ou moins, Grace conclue que c'est un chêne, sinon elle conclue que c'est un hêtre.
+        </p>
+        <h4>Le risque de première espèce</h4>
+        <p>
+          $\mathbb{P}(H \geq 24,58 \mid \text{l'arbre est un chêne}) = 5\%$ signifie exactement que
+          la probabilité qu'un arbre mesure au moins 24,58 m sachant que c'est un chêne est égale à
+          5%. Comme on l'a vu dans la précédente vignette, une autre manière d'interpréter ce
+          résultat consiste à dire que 5% des chênes mesurent plus que 24,58 m. Ainsi, si à chaque
+          arbre rencontré, Grace applique son raisonnement basé sur la p-value, elle classifiera
+          tous les arbres mesurant plus de 24,58 m comme étant des hêtres. Mais il y a précisément
+          5% des chênes qui mesurent vraiment plus de 24,58 m ! Elle se trompera donc dans 5% des
+          cas : en appliquant cette méthode sur 1 000 arbres mesurant plus de 24,58 m, les 1 000
+          seront classés comme étant des hêtres alors que 50 sont en fait des grands chênes ! En
+          prenant un seuil de 5% pour différencier l'ordinaire de l'extraordinaire, le risque de
+          rejeter l'hypothèse nulle $H_0$ à tort, c'est-à-dire de la rejetter alors qu'elle est
+          vraie (classer un arbre comme un hêtre alors que c'est un chêne) est appelé risque de
+          première espèce &mdash; ou risque $\alpha$ &mdash; et vaut exactement 5%, mais ça, c'est
+          une autre histoire...
+        </p>
       </div>
     </main>
 

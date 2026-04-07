@@ -25,6 +25,7 @@ const Controls = {
     numberInput.type = 'number';
     numberInput.min = INPUT_MIN;
     numberInput.max = INPUT_MAX;
+    numberInput.step = 0.1;
     numberInput.value = INPUT_DEFAULT;
     numberInput.classList.add('threshold-input');
 
