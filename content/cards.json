@@ -1,10 +1,13 @@
 [
   {
     "href": "probability/",
-    "thumbnail": "probability/thumbnail.png",
+    "thumbnail": {
+      "fr": "probability/thumbnail_fr.png",
+      "en": "probability/thumbnail_en.png"
+    },
     "title": {
-	    "en": "Probability Refresher",
-	    "fr": "Rappels de probabilités"
+      "en": "Probability Refresher",
+      "fr": "Rappels de probabilités"
     },
     "description": {
       "en": "For those who want to start off on the right foot",
@@ -13,10 +16,13 @@
   },
   {
     "href": "introduction/",
-    "thumbnail": "introduction/thumbnail.png",
+    "thumbnail": {
+      "fr": "introduction/thumbnail_fr.png",
+      "en": "introduction/thumbnail_en.png"
+    },
     "title": {
-	    "en": "Introduction to the p-value",
-	    "fr": "Introduction à la p-value"
+      "en": "Introduction to the p-value",
+      "fr": "Introduction à la p-value"
     },
     "description": {
       "en": "For those who want to understand the fundamentals",
@@ -25,10 +31,13 @@
   },
   {
     "href": "examples-in-action/",
-    "thumbnail": "examples-in-action/thumbnail.png",
+    "thumbnail": {
+      "fr": "examples-in-action/thumbnail_fr.png",
+      "en": "examples-in-action/thumbnail_en.png"
+    },
     "title": {
-	    "en": "The p-value in action",
-	    "fr": "La p-value en action"
+      "en": "The p-value in action",
+      "fr": "La p-value en action"
     },
     "description": {
       "en": "For those who prefer concrete examples",
@@ -37,10 +46,13 @@
   },
   {
     "href": "statistical-tests/",
-    "thumbnail": "statistical-tests/thumbnail.png",
+    "thumbnail": {
+      "fr": "statistical-tests/thumbnail_fr.png",
+      "en": "statistical-tests/thumbnail_en.png"
+    },
     "title": {
-	    "en": "Statistical tests",
-	    "fr": "Tests statistiques"
+      "en": "Statistical tests",
+      "fr": "Tests statistiques"
     },
     "description": {
       "en": "For those curious about how experimental science actually works",
@@ -49,10 +61,13 @@
   },
   {
     "href": "pvalue-in-the-lab/",
-    "thumbnail": "pvalue-in-the-lab/thumbnail.png",
-     "title": {
-	    "en": "The p-value at the lab bench",
-	    "fr": "La p-value au laboratoire"
+    "thumbnail": {
+      "fr": "pvalue-in-the-lab/thumbnail_fr.png",
+      "en": "pvalue-in-the-lab/thumbnail_en.png"
+    },
+    "title": {
+      "en": "The p-value at the lab bench",
+      "fr": "La p-value au laboratoire"
     },
     "description": {
       "en": "For those who want to see theory meet practice",
@@ -61,10 +76,13 @@
   },
   {
     "href": "beyond-pvalue/",
-    "thumbnail": "beyond-pvalue/thumbnail.png",
+    "thumbnail": {
+      "fr": "beyond-pvalue/thumbnail_fr.png",
+      "en": "beyond-pvalue/thumbnail_en.png"
+    },
     "title": {
-	    "en": "Beyond the p-value",
-	    "fr": "Au delà de la p-value"
+      "en": "Beyond the p-value",
+      "fr": "Au delà de la p-value"
     },
     "description": {
       "en": "For those who don’t want to get tripped up",

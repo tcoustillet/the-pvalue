@@ -4,7 +4,7 @@ async function loadPage() {
 
   const [siteRes, cardsRes] = await Promise.all([
     fetch('content/site.json'),
-    fetch('content/cards.json')
+    fetch('content/cards.json'),
   ]);
 
   const site = await siteRes.json();
@@ -16,10 +16,10 @@ async function loadPage() {
   header.setAttribute('tagline', site.tagline[lang]);
 
   const container = document.getElementById('cards-container');
-  cards.forEach(card => {
+  cards.forEach((card) => {
     const el = document.createElement('site-card');
     el.setAttribute('href', `${card.href}${lang}/`);
-    el.setAttribute('thumbnail', card.thumbnail);
+    el.setAttribute('thumbnail', card.thumbnail[lang]);
     el.setAttribute('title', card.title[lang]);
     el.setAttribute('description', card.description[lang]);
     container.appendChild(el);
