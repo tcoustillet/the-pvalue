@@ -5,13 +5,62 @@
 const Controls = {
   /** @type {Array} Available distribution presets */
   PRESETS: [
-    { label: '\u{1F1EB}\u{1F1F7}', name: 'qu\'elle est de nationalité française', name_2: 'français', mu: 170, sigma: 7, "color": "#d62728" },
-    { label: '\u{1F1EB}\u{1F1F7} \u{2640}', name: 'qu\'il s\'agit d\'une femme française', name_2: 'françaises',  mu: 164, sigma: 7, "color": "#4169E1" },
-    { label: '\u{1F1EB}\u{1F1F7} \u{2642}', name: 'qu\'il s\'agit d\'un homme français', name_2: 'hommes français', mu: 176, sigma: 7, "color": "#e377c2" },
-    { label: '\u{1F1F8}\u{1F1EA} ', name: 'qu\'elle est de nationalité suédoise', name_2: 'suédois', mu: 174, sigma: 7, "color": "#1f77b4" },
-    { label: '\u{1F1F8}\u{1F1EA} \u{2640}', name: 'qu\'il s\'agit d\'une femme suédoise', name_2: 'suédoises', mu: 167, sigma: 7, "color": "#2ca02c" },
-    { label: '\u{1F1F8}\u{1F1EA} \u{2642}', name: 'qu\'il s\'agit d\'homme suédois', name_2: 'hommes suédois', mu: 181, sigma: 7, "color": "#9467bd" },
-    { label: '\u{1F1FA}\u{1F1F8} \u{2642} \u{1F3C0}', name: 'qu\'il s\'agit d\'un basketteur américain', name_2: 'basketteurs américains', mu: 199, sigma: 7, "color": "#ff7f0e" }
+    {
+      label: '\u{1F1EB}\u{1F1F7}',
+      name: "qu'elle est de nationalité française",
+      name_2: 'français',
+      mu: 170,
+      sigma: 7,
+      color: '#d62728',
+    },
+    {
+      label: '\u{1F1EB}\u{1F1F7} \u{2640}',
+      name: "qu'il s'agit d'une femme française",
+      name_2: 'françaises',
+      mu: 164,
+      sigma: 7,
+      color: '#4169E1',
+    },
+    {
+      label: '\u{1F1EB}\u{1F1F7} \u{2642}',
+      name: "qu'il s'agit d'un homme français",
+      name_2: 'hommes français',
+      mu: 176,
+      sigma: 7,
+      color: '#e377c2',
+    },
+    {
+      label: '\u{1F1F8}\u{1F1EA} ',
+      name: "qu'elle est de nationalité suédoise",
+      name_2: 'suédois',
+      mu: 174,
+      sigma: 7,
+      color: '#1f77b4',
+    },
+    {
+      label: '\u{1F1F8}\u{1F1EA} \u{2640}',
+      name: "qu'il s'agit d'une femme suédoise",
+      name_2: 'suédoises',
+      mu: 167,
+      sigma: 7,
+      color: '#2ca02c',
+    },
+    {
+      label: '\u{1F1F8}\u{1F1EA} \u{2642}',
+      name: "qu'il s'agit d'homme suédois",
+      name_2: 'hommes suédois',
+      mu: 181,
+      sigma: 7,
+      color: '#9467bd',
+    },
+    {
+      label: '\u{1F1FA}\u{1F1F8} \u{2642} \u{1F3C0}',
+      name: "qu'il s'agit d'un basketteur américain",
+      name_2: 'basketteurs américains',
+      mu: 199,
+      sigma: 7,
+      color: '#ff7f0e',
+    },
   ],
 
   /** @type {number} Default value for input A */
@@ -63,9 +112,32 @@ const Controls = {
     leftCol.classList.add('controls-col', 'controls-col--left');
 
     const probTypes = [
-      { value: 'less',    node: this._buildLabel('prob-type', 'less',    [' $\\mathbb{P}(T \\leq \\;$', inputA1, '$\\;)$']) },
-      { value: 'greater', node: this._buildLabel('prob-type', 'greater', [' $\\mathbb{P}(T \\geq \\;$', inputA2, '$\\;)$']) },
-      { value: 'between', node: this._buildLabel('prob-type', 'between', [' $\\mathbb{P}($', inputA3, '$\\; \\leq T \\leq \\;$', inputB3, '$)$']) }
+      {
+        value: 'less',
+        node: this._buildLabel('prob-type', 'less', [
+          ' $\\mathbb{P}(T \\leq \\;$',
+          inputA1,
+          '$\\;)$',
+        ]),
+      },
+      {
+        value: 'greater',
+        node: this._buildLabel('prob-type', 'greater', [
+          ' $\\mathbb{P}(T \\geq \\;$',
+          inputA2,
+          '$\\;)$',
+        ]),
+      },
+      {
+        value: 'between',
+        node: this._buildLabel('prob-type', 'between', [
+          ' $\\mathbb{P}($',
+          inputA3,
+          '$\\; \\leq T \\leq \\;$',
+          inputB3,
+          '$)$',
+        ]),
+      },
     ];
 
     probTypes.forEach(({ node }, index) => {
@@ -77,7 +149,7 @@ const Controls = {
     const middleCol = document.createElement('div');
     middleCol.classList.add('controls-col', 'controls-col--middle');
 
-    ['sachant', 'sachant', 'sachant'].forEach(text => {
+    ['sachant', 'sachant', 'sachant'].forEach((text) => {
       const span = document.createElement('span');
       span.textContent = text;
       span.style.display = 'block';
@@ -133,13 +205,13 @@ const Controls = {
         sigma: preset.sigma,
         color: preset.color,
         a: !isNaN(a) && a >= this.INPUT_MIN && a <= this.INPUT_MAX ? a : null,
-        b: !isNaN(b) && b >= this.INPUT_MIN && b <= this.INPUT_MAX ? b : null
+        b: !isNaN(b) && b >= this.INPUT_MIN && b <= this.INPUT_MAX ? b : null,
       };
     };
 
     // --- Event listeners ---
     container.addEventListener('change', () => onChange(getState()));
-    [inputA1, inputA2, inputA3, inputB3].forEach(input => {
+    [inputA1, inputA2, inputA3, inputB3].forEach((input) => {
       input.addEventListener('input', () => {
         const probType = container.querySelector('input[name="prob-type"]:checked').value;
         if (probType === 'between') {
@@ -170,7 +242,7 @@ const Controls = {
     radio.name = name;
     radio.value = value;
     label.appendChild(radio);
-    children.forEach(child => {
+    children.forEach((child) => {
       if (typeof child === 'string') {
         label.appendChild(document.createTextNode(child));
       } else {
@@ -178,5 +250,5 @@ const Controls = {
       }
     });
     return label;
-  }
+  },
 };

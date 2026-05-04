@@ -36,7 +36,9 @@ const Gaussian = {
    */
   erf(x) {
     const t = 1 / (1 + 0.3275911 * Math.abs(x));
-    const poly = t * (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
+    const poly =
+      t *
+      (0.254829592 + t * (-0.284496736 + t * (1.421413741 + t * (-1.453152027 + t * 1.061405429))));
     const result = 1 - poly * Math.exp(-x * x);
     return x >= 0 ? result : -result;
   },
@@ -53,15 +55,15 @@ const Gaussian = {
   },
 
   /**
- * Computes P(X > x).
- * @param {number} x - The threshold value.
- * @param {number} mu - The mean of the distribution.
- * @param {number} sigma - The standard deviation of the distribution.
- * @returns {number} The probability P(X > x).
- */
-probabilityGreaterThan(x, mu, sigma) {
-  return 1 - Gaussian.cdf(x, mu, sigma);
-},
+   * Computes P(X > x).
+   * @param {number} x - The threshold value.
+   * @param {number} mu - The mean of the distribution.
+   * @param {number} sigma - The standard deviation of the distribution.
+   * @returns {number} The probability P(X > x).
+   */
+  probabilityGreaterThan(x, mu, sigma) {
+    return 1 - Gaussian.cdf(x, mu, sigma);
+  },
 
   /**
    * Computes P(A < X < B).
@@ -73,5 +75,5 @@ probabilityGreaterThan(x, mu, sigma) {
    */
   probabilityBetween(a, b, mu, sigma) {
     return Gaussian.cdf(b, mu, sigma) - Gaussian.cdf(a, mu, sigma);
-  }
+  },
 };

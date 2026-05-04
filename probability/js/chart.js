@@ -12,13 +12,13 @@ const GaussianChart = {
   /** @type {Object} Chart dimensions and margins */
   dims: {
     height: 350,
-    margin: { top: 20, right: 30, bottom: 40, left: 50 }
+    margin: { top: 20, right: 30, bottom: 40, left: 50 },
   },
 
   /** @type {Object} D3 scale functions */
   scales: {
     x: null,
-    y: null
+    y: null,
   },
 
   /** @type {Object} Fixed x-axis bounds */
@@ -35,26 +35,24 @@ const GaussianChart = {
     const innerWidth = fixedWidth - margin.left - margin.right;
     const innerHeight = height - margin.top - margin.bottom;
 
-    this.svg = d3.select(selector)
+    this.svg = d3
+      .select(selector)
       .append('svg')
       .attr('viewBox', `0 0 ${fixedWidth} ${height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .append('g')
       .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    this.scales.x = d3.scaleLinear()
+    this.scales.x = d3
+      .scaleLinear()
       .domain([this.X_BOUNDS.min, this.X_BOUNDS.max])
       .range([0, innerWidth]);
 
-    this.scales.y = d3.scaleLinear()
-      .range([innerHeight, 0]);
+    this.scales.y = d3.scaleLinear().range([innerHeight, 0]);
 
-    this.svg.append('g')
-      .attr('class', 'x-axis')
-      .attr('transform', `translate(0,${innerHeight})`);
+    this.svg.append('g').attr('class', 'x-axis').attr('transform', `translate(0,${innerHeight})`);
 
-    this.svg.append('g')
-      .attr('class', 'y-axis');
+    this.svg.append('g').attr('class', 'y-axis');
 
     this.svg.append('path').attr('class', 'curve');
     this.svg.append('path').attr('class', 'shaded-area');
@@ -84,24 +82,27 @@ const GaussianChart = {
     const { x, y } = this.scales;
     const color = state.color;
 
-    const points = d3.range(this.X_BOUNDS.min, this.X_BOUNDS.max, (this.X_BOUNDS.max - this.X_BOUNDS.min) / 300)
-      .map(val => ({ x: val, y: Gaussian.pdf(val, mu, sigma) }));
+    const points = d3
+      .range(this.X_BOUNDS.min, this.X_BOUNDS.max, (this.X_BOUNDS.max - this.X_BOUNDS.min) / 300)
+      .map((val) => ({ x: val, y: Gaussian.pdf(val, mu, sigma) }));
 
     // Ensure exact threshold points are included
     if (a !== null) points.push({ x: a, y: Gaussian.pdf(a, mu, sigma) });
     if (b !== null) points.push({ x: b, y: Gaussian.pdf(b, mu, sigma) });
     points.sort((p1, p2) => p1.x - p2.x);
 
-    y.domain([0, d3.max(points, d => d.y) * 1.1]);
+    y.domain([0, d3.max(points, (d) => d.y) * 1.1]);
 
     this.svg.select('.x-axis').call(d3.axisBottom(x));
     this.svg.select('.y-axis').call(d3.axisLeft(y));
 
-    const line = d3.line()
-      .x(d => x(d.x))
-      .y(d => y(d.y));
+    const line = d3
+      .line()
+      .x((d) => x(d.x))
+      .y((d) => y(d.y));
 
-    this.svg.select('.curve')
+    this.svg
+      .select('.curve')
       .datum(points)
       .attr('d', line)
       .attr('fill', 'none')
@@ -109,91 +110,101 @@ const GaussianChart = {
       .attr('stroke-width', 2);
 
     // --- Shaded area ---
-    const area = d3.area()
-      .x(d => x(d.x))
+    const area = d3
+      .area()
+      .x((d) => x(d.x))
       .y0(innerHeight)
-      .y1(d => y(d.y));
+      .y1((d) => y(d.y));
 
     let shadedPoints = [];
     let prob = null;
 
     if (probType === 'less' && a !== null) {
-      shadedPoints = points.filter(d => d.x <= a);
+      shadedPoints = points.filter((d) => d.x <= a);
       prob = Gaussian.probabilityLessThan(a, mu, sigma);
     } else if (probType === 'greater' && a !== null) {
-      shadedPoints = points.filter(d => d.x >= a);
+      shadedPoints = points.filter((d) => d.x >= a);
       prob = Gaussian.probabilityGreaterThan(a, mu, sigma);
     } else if (probType === 'between' && a !== null && b !== null && a <= b) {
-      shadedPoints = points.filter(d => d.x >= a && d.x <= b);
+      shadedPoints = points.filter((d) => d.x >= a && d.x <= b);
       prob = Gaussian.cdf(b, mu, sigma) - Gaussian.cdf(a, mu, sigma);
     }
 
-    this.svg.select('.shaded-area')
+    this.svg
+      .select('.shaded-area')
       .datum(shadedPoints)
       .attr('d', area)
       .attr('fill', color)
       .attr('opacity', 0.3);
 
     // --- Probability label and arrows ---
-const arrowY = 16;
-const arrowGap = 14;
-const arrowLowY = y(0.004) + 4;
+    const arrowY = 16;
+    const arrowGap = 14;
+    const arrowLowY = y(0.004) + 4;
 
-if (prob !== null) {
-  let labelX;
-  if (probType === 'less') {
-    labelX = x(a) - 8;
-  } else if (probType === 'greater') {
-    labelX = x(a) + 30;
-  } else if (probType === 'between') {
-    labelX = (x(a) + x(b)) / 2;
-  }
-  
-  this.svg.select('.probability-label')
-    .attr('x', labelX)
-    .attr('y', 20)
-    .attr('text-anchor', probType === 'less' ? 'end' : 'middle')
-    .attr('fill', color)
-    .attr('font-size', '1rem')
-    .text(`${(prob * 100).toFixed(1)}%`);
-  
-  const bbox = this.svg.select('.probability-label').node().getBBox();
+    if (prob !== null) {
+      let labelX;
+      if (probType === 'less') {
+        labelX = x(a) - 8;
+      } else if (probType === 'greater') {
+        labelX = x(a) + 30;
+      } else if (probType === 'between') {
+        labelX = (x(a) + x(b)) / 2;
+      }
 
-  this.svg.select('.probability-label-bg')
-    .attr('x', bbox.x - 3)
-    .attr('y', bbox.y - 2)
-    .attr('width', bbox.width + 6)
-    .attr('height', bbox.height + 4)
-    .attr('fill', '#fff8e7')
-    .attr('opacity', 1)
-    .attr('rx', 8)
-    .attr('ry', 8);
+      this.svg
+        .select('.probability-label')
+        .attr('x', labelX)
+        .attr('y', 20)
+        .attr('text-anchor', probType === 'less' ? 'end' : 'middle')
+        .attr('fill', color)
+        .attr('font-size', '1rem')
+        .text(`${(prob * 100).toFixed(1)}%`);
 
-  if (probType === 'less') {
-    this._drawArrow('.arrow-a',  x(a) + arrowGap, arrowY + 4, 'start', color, '\u2190');
-    this._drawArrow('.arrow-a2', x(a) + arrowGap, arrowLowY, 'start', color, '\u2190');
-    this.svg.select('.arrow-b').text('');
-    this.svg.select('.arrow-b2').text('');
-  } else if (probType === 'greater') {
-    this._drawArrow('.arrow-a',  x(a) - arrowGap, arrowY + 4, 'end', color, '\u2192');
-    this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
-    this.svg.select('.arrow-b').text('');
-    this.svg.select('.arrow-b2').text('');
-  } else if (probType === 'between' && b !== null) {
-    const arrowGapO = a === b ? arrowGap * 1.5 : arrowGap;
-    this._drawArrow('.arrow-a',  x(a) - arrowGapO, arrowY + 4, 'end', color, '\u2192');
-    this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
-    this._drawArrow('.arrow-b',  x(b) + arrowGapO, arrowY + 4, 'start', color, '\u2190');
-    this._drawArrow('.arrow-b2', x(b) + arrowGap, arrowLowY, 'start', color, '\u2190');
-  }
-} else {
-  this.svg.select('.probability-label').text('');
-  this.svg.select('.arrow-a').text('');
-  this.svg.select('.arrow-b').text('');
-}
+      const bbox = this.svg.select('.probability-label').node().getBBox();
+
+      this.svg
+        .select('.probability-label-bg')
+        .attr('x', bbox.x - 3)
+        .attr('y', bbox.y - 2)
+        .attr('width', bbox.width + 6)
+        .attr('height', bbox.height + 4)
+        .attr('fill', '#fff8e7')
+        .attr('opacity', 1)
+        .attr('rx', 8)
+        .attr('ry', 8);
+
+      if (probType === 'less') {
+        this._drawArrow('.arrow-a', x(a) + arrowGap, arrowY + 4, 'start', color, '\u2190');
+        this._drawArrow('.arrow-a2', x(a) + arrowGap, arrowLowY, 'start', color, '\u2190');
+        this.svg.select('.arrow-b').text('');
+        this.svg.select('.arrow-b2').text('');
+      } else if (probType === 'greater') {
+        this._drawArrow('.arrow-a', x(a) - arrowGap, arrowY + 4, 'end', color, '\u2192');
+        this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
+        this.svg.select('.arrow-b').text('');
+        this.svg.select('.arrow-b2').text('');
+      } else if (probType === 'between' && b !== null) {
+        const arrowGapO = a === b ? arrowGap * 1.5 : arrowGap;
+        this._drawArrow('.arrow-a', x(a) - arrowGapO, arrowY + 4, 'end', color, '\u2192');
+        this._drawArrow('.arrow-a2', x(a) - arrowGap, arrowLowY, 'end', color, '\u2192');
+        this._drawArrow('.arrow-b', x(b) + arrowGapO, arrowY + 4, 'start', color, '\u2190');
+        this._drawArrow('.arrow-b2', x(b) + arrowGap, arrowLowY, 'start', color, '\u2190');
+      }
+    } else {
+      this.svg.select('.probability-label').text('');
+      this.svg.select('.arrow-a').text('');
+      this.svg.select('.arrow-b').text('');
+    }
 
     this._updateThresholdLine('.threshold-line-a', a, color, innerHeight, x);
-    this._updateThresholdLine('.threshold-line-b', probType === 'between' ? b : null, color, innerHeight, x);
+    this._updateThresholdLine(
+      '.threshold-line-b',
+      probType === 'between' ? b : null,
+      color,
+      innerHeight,
+      x
+    );
 
     return prob;
   },
@@ -204,16 +215,20 @@ if (prob !== null) {
       return;
     }
     const xPos = x(value);
-    this.svg.select(lineClass)
-      .attr('x1', xPos).attr('x2', xPos)
-      .attr('y1', 0).attr('y2', innerHeight)
+    this.svg
+      .select(lineClass)
+      .attr('x1', xPos)
+      .attr('x2', xPos)
+      .attr('y1', 0)
+      .attr('y2', innerHeight)
       .attr('stroke', color)
       .attr('stroke-width', 1.5)
       .attr('stroke-dasharray', '2,4');
   },
 
   _drawArrow(selector, xPos, yPos, anchor, color, char) {
-    this.svg.select(selector)
+    this.svg
+      .select(selector)
       .attr('x', xPos)
       .attr('y', yPos)
       .attr('text-anchor', anchor)

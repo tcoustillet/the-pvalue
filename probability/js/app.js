@@ -11,9 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   renderMathInElement(document.getElementById('controls-container'), {
-    delimiters: [
-      { left: '$', right: '$', display: false }
-    ]
+    delimiters: [{ left: '$', right: '$', display: false }],
   });
 
   const prob = GaussianChart.update(initialState);
@@ -36,13 +34,13 @@ function updateDescription(state, prob) {
 
   const { probType, mu, sigma, a, b } = state;
   const probPercent = `${(prob * 100).toFixed(1)}`;
-  const preset = Controls.PRESETS.find(p => p.mu === mu && p.sigma === sigma);
+  const preset = Controls.PRESETS.find((p) => p.mu === mu && p.sigma === sigma);
   const emoji = preset ? preset.label : '';
 
   const probTexts = {
     less: `\\mathbb{P}(T \\leq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
     greater: `\\mathbb{P}(T \\geq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
-    between: `\\mathbb{P}(${a} \\leq T \\leq ${b} \\mid ${emoji}) = ${probPercent}\\%`
+    between: `\\mathbb{P}(${a} \\leq T \\leq ${b} \\mid ${emoji}) = ${probPercent}\\%`,
   };
 
   const renderedMath = katex.renderToString(probTexts[probType], { throwOnError: false });
@@ -53,7 +51,7 @@ function updateDescription(state, prob) {
     greater: `La probabilité qu'une personne tirée au hasard mesure plus de ${a} cm, sachant ${preset.name}, est de ${probPercent}%. 
     Autrement dit, ${probPercent}% des ${preset.name_2} mesurent plus de ${a} cm.`,
     between: `La probabilité qu'une personne tirée au hasard mesure entre ${a} cm et ${b} cm, sachant ${preset.name}, est de ${probPercent}%.
-    Autrement dit, ${probPercent}% des ${preset.name_2} mesurent entre ${a} cm et ${b} cm.`
+    Autrement dit, ${probPercent}% des ${preset.name_2} mesurent entre ${a} cm et ${b} cm.`,
   };
 
   description.innerHTML = `
