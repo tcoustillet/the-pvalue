@@ -1,29 +1,302 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <title>Au delà de la p-value</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Au delà de la p-value</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+        })
+      "
+    ></script>
+  </head>
+  <body>
+    <site-header show-back is-subpage lang="fr"></site-header>
 
-  <site-header show-back is-subpage lang="fr"></site-header>
+    <main class="page-content">
+      <div class="container">
+        <p>
+          La p-value est sujette à de nombreuses erreurs, mauvaises interprétations, croyances
+          erronées et biais cognitifs. Cette section vise à démystifier les pièges les plus
+          courants, les fausses idées reçues et à clarifier ce que la p-value est, et ce qu'elle
+          n'est pas.
+        </p>
+        <h2>La p-value <u>n'est pas</u> la probabilité de l'hypothèse nulle $H_0$</h2>
+        <p>
+          Croire que la p-value représente la probabilité que l'hypothèse nulle soit vraie étant
+          donné ce que l'on a observé est sans doute l'erreur la plus fréquente &mdash; et la plus
+          humaine. En fait, c'est naturel, plûtot logique et c'est précisément ce qu'on voudrait
+          savoir et ce que notre cerveau réclame lors d'une expérience. Si l'on a une croyance
+          initiale sur le monde qui nous entoure ($H_0$) et qu'on observe des données (le résultat
+          de l'expérience), la question la plus instinctive est bien de se demander :
+          &laquo;&nbsp;Au vu de ce résultat, quelle est la probabilité que mon hypothèse de départ
+          soit vraie ?&nbsp;&raquo; Mais malheureusement, dans le contexte de la p-value, les maths
+          ne nous permettent pas de répondre à cette question. Elles nous ferment cette porte, mais
+          nous donnent les clés d'une autre : &laquo;&nbsp;Quelle est la probabilité d'observer un
+          résultat au moins aussi extrême que celui observé, en supposant que mon hypothèse de
+          départ est vraie ?&nbsp;&raquo; C'est subtile, mais c'est précisément ça, la p-value
+          &mdash; ni plus, ni moins.
+        </p>
+        <p>
+          C'est frustrant, mais c'est ainsi ! Il existe bien une façon de calculer la probabilité
+          que $H_0$ soit vraie étant donné les données observées &mdash; mais elle nécessite un
+          ingrédient supplémentaire : pouvoir quantifier à quel point on croit en $H_0$
+          <em>avant même</em> de collecter les données. Or, en sciences expérimentales en
+          particulier, cette croyance initiale est bien souvent impossible à évaluer de façon
+          objective &mdash; et sans elle, impossible d'aller plus loin. Cette approche existe
+          pourtant bel et bien (car oui les maths sont décidément bien faites), elle repose sur le
+          magnifique théorème de Bayes, qui se révèle extraordinairement puissant dans certains
+          contextes : c'est lui qui permet de retourner le problème et d'évaluer la probabilité que
+          $H_0$ soit vraie en fonction des données observées, mais ça c'est une autre histoire...
+        </p>
+        <p>
+          Pour résumer : dans un monde idéal, on calculerait $\mathbb{P}(H_0 \mid \text{données})$
+          &mdash; la probabilité que notre hypothèse de départ, que notre croyance initiale soit
+          vraie au vu de ce qu'on a observé. C'est exactement ce que notre cerveau réclame, et ce
+          serait bien plus satisfaisant. Mais les sciences expérimentales nous condamnent à calculer
+          quelque chose de subtilement différent : $\mathbb{P}(\text{données au moins aussi
+          extrêmes} \mid H_0)$ &mdash; la probabilité d'observer des résultats aussi extrêmes que
+          les nôtres, en supposant que $H_0$, notre croyance initiale est vraie. Ce n'est pas la
+          même chose, et comme on l'a vu lors de notre introduction aux probabilités, intervertir
+          ces deux quantités est une erreur fondamentale. La p-value est un outil puissant &mdash; à
+          condition de ne jamais perdre de vue ce qu'elle mesure vraiment, et ce qu'elle ne mesure
+          pas.
+        </p>
+        <h3>Le raisonnement par l'absurde</h3>
+        <p>
+          Calculer une p-value, c'est en quelque sorte faire un raisonnement par l'absurde &mdash;
+          une technique que l'on utilise bien plus souvent qu'on ne le croit dans la vie de tous les
+          jours. Le principe est simple : on suppose quelque chose de vrai, et on regarde si ce que
+          l'on observe est cohérent avec cette supposition. Si les observations s'y accordent plutôt
+          bien, on conserve l'hypothèse de départ &mdash; non pas parce qu'elle est forcément vraie,
+          mais parce qu'on n'a pas de bonnes raisons de la remettre en cause ; si les données la
+          contredisent trop franchement, l'hypothèse de départ ne tient plus : il faut s'en défaire.
+        </p>
+        <p>
+          Imaginez que vous préparez un gâteau pour l'anniversaire de votre enfant et que vous le
+          laissez refroidir sur la table en quittant la pièce quelques minutes. À votre retour, le
+          gâteau n'est plus entier. Vous supposez que c'est votre chienne Laska, un adorable petit
+          berger australien, la coupable &mdash; c'est votre $H_0$. À partir de là, vous regardez si
+          les données collent avec cette hypothèse, et c'est bien la seule chose que vous pouvez
+          faire : la part manquante semble-t-elle avoir été coupée avec un couteau ou déchiquetée
+          par les crocs d'un chien affamé ?
+        </p>
+        <p>
+          Les bords sont irréguliers et déchiquetés, avec des marques de crocs : les données sont
+          donc cohérentes avec $H_0$ &mdash; Laska n'est pas connue pour sa maîtrise de la
+          coutellerie. En revanche, si la découpe avait été nette et bien droite, les données
+          auraient contredit $H_0$ et les soupçons se seraient naturellement portés sur l'enfant.
+          C'est ça, le raisonnement par l'absurde : une contradiction qui permet de réfuter
+          l'hypothèse initiale. Bien sûr, on ne peut jamais en être certain à 100 % &mdash;
+          peut-être que l'enfant a volontairement grignoté les bords ou omis le couteau pour faire
+          accuser le chien. Mais ici les données rendent certaines hypothèses bien plus crédibles
+          que d'autres. Et c'est précisément le raisonnement qu'effectue la p-value en pratique :
+          elle ne répond pas à la question « Quelle est la probabilité que Laska ait mangé la part
+          de gâteau sachant qu'il y a des marques de crocs ? » — ce serait trop beau. Elle répond à
+          la question « Si laska avait mangé la part, quelle est la probabilité d'observer une telle
+          découpe avec des marques de crocs ? » C'est subtil, et c'est là que réside toute la
+          difficulté : on ne calcule jamais la probabilité que $H_0$ soit vraie, seulement la
+          <em>vraisemblance</em> des données sous $H_0$. Deux questions qui se ressemblent, mais qui
+          ne disent pas du tout la même chose.
+        </p>
+        <div style="display: flex; justify-content: center">
+          <div>
+            <span style="margin-top: -20px; display: inline-block; position: relative">
+              $$\text{p-value} := \mathbb{P}(H_0 \mid \text{données})$$
+              <span
+                style="position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid black"
+              ></span>
+            </span>
+            <div style="margin-top: -30px">
+              $$\text{p-value} := \mathbb{P}(\text{données} \mid H_0 \text{ vraie})$$
+            </div>
+          </div>
+        </div>
+        <h2>L'absence de preuve <u>n'est pas</u> la preuve de l'absence</h2>
+        <p>
+          Une autre croyance très répandue consiste à penser que si $H_0$ n'est pas rejetée (p ≥
+          0.05), alors elle est forcément vraie. Dans le contexte des études scientifiques, vous
+          pourrez souvent entendre &mdash; à tord &mdash; qu'il n'y a pas de différence entre deux
+          groupes car p ≥ 0.05. En réalité, lorsque l'hypothèse nulle $H_0$ n'est pas rejetée, il y
+          a bien deux cas de figure : soit elle est effectivement vraie, soit elle est fausse mais
+          nous n'avons pas réuni suffisamment de preuves pour le démontrer.
+        </p>
+        <p>
+          Pour garder cela en tête, rappelons la métaphore de la détection d'extraterrestres
+          introduite dans la vignette &laquo;&nbsp;Introduction à la p-value&nbsp;&raquo;. Si l'on
+          définit $H_0$ comme &laquo;&nbsp;Les extraterrestres n'existent pas&nbsp;&raquo; et que
+          l'on n'observe effectivement aucun extraterrestre lors d'une expérience, il serait alors
+          hasardeux et faux d'affirmer avec certitude qu'ils n'existent pas. Deux possibilités
+          demeurent : soit ils n'existent vraiment pas, soit ils existent mais nous n'en avons pas
+          encore la preuve. La bonne façon de conclure est de dire &laquo;&nbsp;L'expérience n'a pas
+          permis de rejetter $H_0$&nbsp;&raquo; ou &laquo;&nbsp;Les données ne fournissent pas de
+          preuves suffisantes pour rejetter $H_0$&nbsp;&raquo;. Ainsi, on se doit de rester dans le
+          monde de $H_0$, celui où les extraterrestres n'existent pas, mais cela ne garantie pas
+          pour autant que cette conclusion est juste, ni que le monde de $H_1$ n'existe pas.
+        </p>
+        <p>
+          Cela dit, il existe des situations où l'on dispose de très bonnes raisons &mdash;
+          théoriques ou expérimentales &mdash; de croire que $H_0$ est vraiment vraie lorsque p ≥
+          0.05. Une telle p-value vient donc confirmer l'hypothèse nulle, notre croyance initiale.
+          Dans ce cas, il devient raisonnable et légitime de conclure qu'il n'y a pas de différence
+          entre deux groupes, par exemple, ou que les extraterrestres n'existent pas. Mais attention
+          : ce n'est pas la p-value qui permet cette conclusion &mdash; c'est l'ensemble du contexte
+          scientifique qui l'autorise.
+        </p>
+        <p>
+          Lorsqu'on ne rejette pas $H_0$, il est donc indispensable de replacer ce résultat dans son
+          contexte scientifique : est-ce parce que $H_0$ est effectivement vraie, ou simplement
+          parce que les données ne sont pas suffisantes pour la contredire ? Un échantillon trop
+          petit, une variabilité trop grande, un test inadapté &mdash; autant de raisons qui peuvent
+          conduire à ne pas rejeter $H_0$, non pas parce qu'elle est vraie, mais parce que les
+          preuves font défaut. À ce moment là, c'est l'état des connaissances, des vérités établies,
+          qui permet de trancher.
+        </p>
+        <h3>La présomption d'innocence</h3>
+        <p>
+          Le raisonnement par p-value est comparable à la présomption d'innocence : on suppose
+          toujours que $H_0$ est initialement vraie (la personne est innocente) jusqu'à preuve du
+          contraire. Lorsqu'une personne est accusée, elle est <em>a priori</em> innocente ; et il
+          faut accumuler suffisamment de preuves pour pouvoir la déclarer coupable (basculement de
+          $H_0$ vers $H_1$). Dans de nombreux cas, certaines affaires sont classées
+          &laquo;&nbsp;sans suite&nbsp;&raquo; : cela ne veut <strong>absolument pas</strong> dire
+          que la personne est innocente, mais simplement que les preuves ne sont pas suffisantes
+          pour établir sa culpabilité. Lorsqu'une plainte est classée sans suite, soit la personne
+          est innocente, soit elle est coupable mais les preuves manquent.
+        </p>
+        <p>
+          Pour résumer : une plainte classée sans suite n'est donc pas équivalente à une déclaration
+          d'innocence, ou autrement dit : l'absence de preuve n'est pas la preuve de l'absence.
+        </p>
+        <h2>p = 0.049 <u>n'est pas</u> radicalement différent de p = 0.051</h2>
+        <figure>
+          <img src="../figures/meme_0049vs0051.png" alt="0.049 vs 0.051" />
+        </figure>
+        <p>
+          On pourrait croire que p = 0.051 et p = 0.049 sont aux antipodes. C'est effectivement le
+          cas dans une certaine mesure, puisque la première valeur nous conduit à rester dans le
+          monde de $H_0$ tandis que la seconde nous permet de basculer vers celui de $H_1$ : à la
+          fin de l'expérience, nous sommes bien dans deux mondes que tout oppose. Pourtant, il faut
+          bien avoir conscience que ces deux nombres restent des probabilités et s'inscrivent donc
+          dans un <strong>continuum</strong> : une probabilité (dont la p-value) en tant que telle
+          n'est pas un interrupteur qui permet la bascule entre les mondes $H_0$ et $H_1$ &mdash;
+          c'est simplement une mesure de la vraisemblance d'un résultat dans un monde donné. Il est
+          par conséquent difficile de soutenir qu'un évènement ayant 4,9% de chances de se produire
+          est fondamentalement différent d'un autre qui en aurait 5,1%. Je pense que nous sommes
+          tous assez d'accord pour dire que de tels évènements <em>sont</em> équiprobables.
+        </p>
+        <p>
+          C'est nous, les êtres humains &mdash; enfin ni moi ni vous &mdash;, qui avons décidé de
+          tracer une frontière entre deux probabilités. Nous avons transformé une mesure objective
+          (une probabilité) en une conclusion subjective binaire : dans quel monde se situe-t-on ?
+          Or cette frontière est par définition subjective car elle est fixée arbitrairement et ne
+          repose sur aucune loi de la nature. Tout au long de notre voyage, nous avons utilisé un
+          seuil de 0,05 pour passer de $H_0$ vers $H_1$, mais ce choix était bien une convention
+          arbitraire : n'importe quelle autre valeur pourrait faire office de frontière entre
+          l'ordinaire et l'extraordianire. Dans les disciplines qui s'appuient sur l'utilisation de
+          la p-value pour tirer des conclusions, 0,05 est la convention la plus répandue &mdash;
+          mais il n'est pas rare de rencontrer des études qui retiennent un seuil plus strict, comme
+          0,01, lorsque les enjeux l'exigent.
+        </p>
+        <p>
+          Le choix du point de bascule entre les deux mondes $H_0$ et $H_1$ n'est pas anodin :
+          toutes les conclusions que nous avons tirées jusqu'ici reposent sur la convention 0,05.
+          Changer ce point de bascule, c'est changer les règles du jeu &mdash; et donc
+          potentiellement changer les conclusions. Un résultat avec p = 0,03 est extraordianire avec
+          un point de bascule à 0,05 mais ne l'est plus si on le déplace à 0,01. À l'inverse, un
+          résultat avec p = 0,08 est ordinaire à 0,05 mais deviendrait extraordinaire si l'on
+          choisissait 0,10 comme point de bascule. C'est pourquoi il est indispensable de toujours
+          préciser le point de bascule retenu avant de conduire une analyse &mdash; et surtout de ne
+          pas le choisir <em>après</em> avoir regardé les données, ce qui reviendrait à déplacer la
+          ligne d'arrivée une fois la course terminée. Pour illustrer cela avec les exemples
+          rencontrés au fil de notre voyage : avec une frontière à 0,01, nos conclusions
+          s'effondrent. La pièce que nous avions déclarée truquée ne l'est plus &mdash; du moins,
+          nous n'en avons plus la preuve. Et l'arbre que nous avions identifié comme un hêtre ne
+          peut plus être considéré comme tel. Tout cela, sans que les données aient changé d'un iota
+          !
+        </p>
+        <p>
+          Lorsque l'on cherche à basculer vers le monde de $H_1$ et que l'on obtient une p-value de
+          0,051, la situation peut être frustrante si nous avions choisi 0,05 comme point de bascule
+          : nous étions à seulement 0,002 de pouvoir y basculer, et pourtant nous sommes contraints
+          de rester dans $H_0$. Face à cette situation, la tentation est grande de conclure que le
+          monde de $H_1$ est &laquo;&nbsp;presque&nbsp;&raquo; vrai. Dans le cas des tests
+          statistiques, on peut entendre des formulations comme &laquo;&nbsp;il y a une
+          tendance&nbsp;&raquo;. Dans les deux cas, ces expressions traduisent toutes la même
+          réalité : nous n'étions vraiment pas loin de basculer vers $H_1$ &mdash; mais nous n'avons
+          pas basculé. Et en statistiques, <em>presque</em> ne compte pas : la frontière n'a pas été
+          franchie et nous devons rester dans $H_0$, qu'on le veuille ou non.
+        </p>
+        <p>
+          En fait, dire que nous n'étions pas loin de basculer vers $H_1$ est factuellement vrai
+          mais ne change pas grand-chose. Le seuil de 0,05 a justement été défini pour rendre les
+          choses binaires : soit on est dans $H_0$, soit on est dans $H_1$. Il n'y a malheuresement
+          pas d'entre-deux, pas de &laquo;&nbsp;presque $H_1$&nbsp;&raquo;. C'est d'ailleurs l'un
+          des reproches fondamentaux que l'on peut adresser à la p-value : cette binarité est
+          brutale, et elle n'a pas de solution vraiment satisfaisante à ce jour.
+        </p>
+        <h3>Le biais de la nuit soudaine</h3>
+        <p>
+          Le biais de la nuit soudaine est le biais qui nous fait percevoir comme une rupture
+          brutale ce qui est en réalité une transition continue. En pratique, la nuit ne tombe
+          jamais d’un coup : la lumière décroît progressivement, le crépuscule s’installe, puis
+          l’obscurité gagne peu à peu, sans véritable bascule instantanée. Pourtant, à un moment
+          donné, on est bien obligé de fixer un seuil et de dire &laquo;&nbsp;il fait
+          nuit&nbsp;&raquo;. Or, la luminosité quelques instants avant et quelques instants après ce
+          seuil est en réalité quasiment la même.
+        </p>
+        <p>
+          Ce problème est bien plus universel qu'il n'y paraît et surgit dès que l'humain impose un
+          seuil arbitraire sur une mesure objective continue. Prenons l'exemple de la majorité : en
+          France, elle est fixée à 18 ans. Ainsi, une personne de 17 ans et 11 mois est mineure mais
+          une personne de 18 ans et 1 mois est majeure. Pire encore : une personne de 17 ans, 11
+          mois et 364 jours est mineure mais une personne de 18 ans, 0 mois et 1 jour est majeure.
+          L'écart entre les deux ? 48 heures. Pourtant, l'une peut voter, se faire tatouer,
+          conduire, signer un contrat &mdash; l'autre non. Ainsi, dire qu'une personne de 17 ans, 11
+          mois et 364 jours est &laquo;&nbsp;presque majeure&nbsp;&raquo; est factuellement vrai,
+          mais ne lui ouvre aucune porte : en matière réglementaire, comme avec la p-value, presque
+          ne compte pas.
+        </p>
+        <p>
+          La vie de tous les jours regorge d'exemples reposant sur cet effet. Avoir 9,99/20 ou
+          10,01/20 au baccalauréat : factuellement les deux élèves ont le meme niveau scolaire
+          &mdash; pourtant l'un repart avec le diplôme, l'autre non. Les bagages en avion : une
+          valise à 22,9 kg ne coûte théoriquement rien de plus, une valise à 23,1 kg peut entraîner
+          des frais supplémentaires. Pourtant, ces 200 grammes supplémentaires ne changent quasiment
+          rien au vol : ni la consommation de carburant, ni la sécurité, ni le confort des autres
+          passagers n'en sont affectés de façon perceptible. Dans tous ces cas, la frontière est une
+          nécessité pratique parce qu'une décision doit être prise, un choix être fait. Mais la
+          réalité, elle, ne se soucie pas de nos compromis : elle est continue, infiniment plus
+          nuancée que les catégories que nous lui imposons, et se moque éperdument de nos seuils
+          arbitraires qui ne sont que des conventions, pas des vérités. Il ne faut jamais oublier
+          qu'ils sont
+          <em>notre</em> invention, pas celle de la nature. C'est le prix à payer pour transformer
+          un monde complexe en décisions simples.
+        </p>
+      </div>
+    </main>
 
-  <main class="page-content">
-    <div class="container">
-    </div>
-  </main>
+    <site-footer></site-footer>
 
-  <site-footer></site-footer>
-
-  <script src="../../js/site-header.js"></script>
-  <script src="../../js/site-footer.js"></script>
-  <script src="../../js/page-loader.js"></script>
-
-</body>
+    <script src="../../js/site-header.js"></script>
+    <script src="../../js/site-footer.js"></script>
+    <script src="../../js/page-loader.js"></script>
+  </body>
 </html>
