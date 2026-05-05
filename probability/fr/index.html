@@ -33,11 +33,11 @@
     <main class="page-content">
       <div class="container">
         <p>
-          Bienvenue, vous êtes au bon endroit ! Comprendre ce qu'est une probabilité et comment on
-          la calcule est essentiel pour bien saisir la notion de p-value. D'ailleurs, le
-          <strong>p</strong> de <em>p-value</em> signifie tout simplement <em>probabilité</em>. Avec
-          les notions fondamentales en main, la p-value n'aura plus rien de mystérieux pour vous,
-          promis !
+          Bienvenue, vous êtes au bon endroit ! Bien saisir la notion de p-value passe d'abord par
+          une bonne compréhension de ce qu'est une probabilité et de la façon dont elle se calcule.
+          D'ailleurs, le <strong>p</strong> de <em>p-value</em> signifie tout simplement
+          <em>probabilité</em>. Avec les notions fondamentales en main, la p-value n'aura plus rien
+          de mystérieux pour vous, promis !
         </p>
         <section>
           <h2>Probabilités élémentaires</h2>
@@ -117,8 +117,6 @@
             ou un 2, ou un 3, ou un 4, ou un 5, ou un 6. De la même façon, il y a 100% de chances
             que Bob choisisse soit un Espresso, soit un Cappuccino, soit un Latte, soit un Thé ou
             soit un Chocolat chaud. Ce résultat semble trivial, mais est essentiel pour la suite.
-          </p>
-          <p>
             N'ayez pas trop la tête dans les étoiles, d'autres notions importantes vont suivre !
           </p>
           <h2>Les variables aléatoires</h2>
@@ -217,7 +215,7 @@
           <h3>Un nombre entre 0 et 4</h3>
           <p>
             Charlie choisit au hasard un nombre dans l'intervalle [0, 4] et on s'intéresse à la
-            variable aléatoire $N$ qui représente ce nombre. Déjà, $N$ est clairement une variable
+            variable aléatoire $X$ qui représente ce nombre. Déjà, $X$ est clairement une variable
             aléatoire continue puisque Charlie peut choisir n'importe quel réel entre 0 et 4, aussi
             bien 2 que 1,41421 ou 2,718281828 ou 3,14. La densité de probabilité associée à une
             telle expérience est représentée sur la Figure 2.
@@ -225,20 +223,20 @@
           <figure>
             <img src="figures/figure_2.png" alt="Un nombre entre 0 et 4" />
             <figcaption>
-              Figure 2 — (a) Densité de probabilité liée à la variable aléatoire $N$. (b)
+              Figure 2 — (a) Densité de probabilité liée à la variable aléatoire $X$. (b)
               L'&laquo;&nbsp;univers&nbsp;&raquo est l'ensemble des nombres entre 0 et 4.
             </figcaption>
           </figure>
           <p>
             Dans cette expérience, la densité de probabilité (Figure 2a) est la ligne bleue à
             hauteur de 0.25 : les probabilités sont uniformes sur tout l'univers qui est simplement
-            l'ensemble des nombres compris entre 0 et 4. Ainsi : $\mathbb{P}(0 \leq N \leq 4) = 1$.
-            Lorsque Charlie choisit un nombre entre 0 et 4, elle a 100% de chance que ce nombre
-            tombe entre 0 et 4... Toutes ces définitions pour en arriver à cette conclusion, voici
-            la vraie beauté des maths et de son formalisme. En fait, nous aurions été incapables
-            d'écrire cette égalité sans les notions de variable aléatoire continue, d'univers et de
-            densité de probabilité. Maintenant, pour évaluer la probabilité que le nombre tiré tombe
-            dans un intervalle donné, il nous suffit de calculer l'<strong
+            l'ensemble des nombres qui sont compris entre 0 et 4. Ainsi : $\mathbb{P}(0 \leq X \leq
+            4) = 1$. Lorsque Charlie choisit un nombre entre 0 et 4, elle a 100% de chance que ce
+            nombre tombe entre 0 et 4... Toutes ces définitions pour en arriver à cette conclusion,
+            voici la vraie beauté des maths et de son formalisme. En fait, nous aurions été
+            incapables d'écrire cette égalité sans les notions de variable aléatoire continue,
+            d'univers et de densité de probabilité. Maintenant, pour évaluer la probabilité que le
+            nombre tiré tombe dans un certain intervalle donné, il nous suffit de calculer l'<strong
               >aire sous la densité de probabilité</strong
             >
             entre les deux bornes de l'intervalle considéré (Figure 3).
@@ -247,37 +245,37 @@
             <img src="figures/figure_3.png" alt="Probabilités de tomber dans un intervalle" />
             <figcaption>
               Figure 3 — Représentation des probabilités comme étant le simple calcul d'aires. (a)
-              Représentation visuelle de $\mathbb{P}(1 \leq N \leq 2)$. (b) Représentation visuelle
-              de $\mathbb{P}(0.5 \leq N \leq 3)$. (c) Représentation visuelle de $\mathbb{P}(3 \leq
-              N \leq 4)$.
+              Représentation visuelle de $\mathbb{P}(1 \leq X \leq 2)$. (b) Représentation visuelle
+              de $\mathbb{P}(0.5 \leq X \leq 3)$. (c) Représentation visuelle de $\mathbb{P}(3 \leq
+              X \leq 4)$.
             </figcaption>
           </figure>
           <p>
-            Sur la Figure 3, on voit que $\mathbb{P}(1 \leq N \leq 2) = 0.25$ et $\mathbb{P}(0.5
-            \leq N \leq 3) = 0.62$. Il y a deux façons équivalentes d'appréhender ces résultats : si
-            Charlie tire un nombre au hasard entre 0 et 4, il y a 62% de chances que le nombre tiré
-            soit entre 0,5 et 3. On peut également dire que 62% des nombres compris entre 0 et 4
-            sont compris entre 0,5 et 3. Intuitivement, vous trouverez sans doute logique que la
-            probabilité de tirer un nombre entre 1 et 2 soit la même que celle d’en tirer un entre 3
-            et 4. Les maths viennent de le prouver : les aires sont identiques (Figure 2a et 2c) !
-            En fait, la densité de probabilité ici est dite unifome (c'est une droite), c'est-à-dire
-            que la probabilité de tomber dans un intervalle donné ne dépend seulement que de la
-            longueur de celui-ci et non de ses bornes. Pour les plus matheux d'entre-vous, on a la
-            formule :
+            Sur la Figure 3, on voit que $\mathbb{P}(1 \leq X \leq 2) = 0.25$ et $\mathbb{P}(0.5
+            \leq X \leq 3) = 0.62$. Il y a encore une fois deux façons équivalentes d'appréhender
+            ces résultats : si Charlie tire un nombre au hasard entre 0 et 4, il y a 62% de chances
+            que le nombre tiré soit entre 0,5 et 3. On peut également dire que 62% des nombres
+            compris entre 0 et 4 sont compris entre 0,5 et 3. Intuitivement, vous trouverez sans
+            doute logique que la probabilité de tirer un nombre entre 1 et 2 soit la même que celle
+            d’en tirer un entre 3 et 4. Les maths viennent de le prouver : les aires sont identiques
+            (Figure 2a et 2c) ! En fait, la densité de probabilité ici est dite unifome (c'est une
+            droite), c'est-à-dire que la probabilité de tomber dans un intervalle donné ne dépend
+            seulement que de la longueur de celui-ci et non de ses bornes. Pour les plus matheux
+            d'entre-vous, on a la formule :
           </p>
           <div>
-            $$\forall \; a, b \in [0, 4] \text{ avec } a < b, \quad \mathbb{P}(a \leq N \leq b) =
-            \frac{b-a}{4}$$
+            $$\forall \; a, b \in [0, 4] \text{ avec } a < b, \quad \mathbb{P}(a \leq X \leq b) =
+            \frac{b-a}{4-0}$$
           </div>
           <h3>Une histoire de salaire</h3>
           <p>
-            Pour fixer les idées prenons un autre exemple : la répartition des salaires en France.
+            Pour fixer les idées, prenons un autre exemple : la répartition des salaires en France.
             Le principe est exactement le même : une variable aléatoire continue, une densité de
             probabilité associée et des calculs d'aires. On suppose que les français et françaises
-            gagnent un salaire compris entre 950€ et 10 000€ net par mois. La densité de probabilité
-            permet de modéliser la façon dont les salaires sont répartis dans la population (Figure
-            4). On tire au hasard une personne dans la population. Soit $S$ la variable aléatoire
-            continue qui représente son salaire (en € mensuel).
+            gagnent un salaire compris entre 950€ et 10 000€ nets par mois. La densité de
+            probabilité permet de modéliser la façon dont les salaires sont répartis dans la
+            population (Figure 4). On tire au hasard une personne dans la population. Soit $S$ la
+            variable aléatoire continue qui représente son salaire (en € net mensuel).
           </p>
           <figure>
             <img src="figures/figure_4.png" alt="Répartition des salaires" />
@@ -288,13 +286,13 @@
             </figcaption>
           </figure>
           <p>
-            Dans ce modèle, on considère que 100% des gens gagnent entre 950€ et 10 000€ net mensuel
-            (c'est notre univers). Les données réelles de l'INSEE prennent en compte les salaires >
-            à 10 000€, nous les avons omis par soucis de simplicité. Avec les notations usuelles, on
-            peut déjà établir : $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$ Ensuite, pour évaluer la
-            probabilité que $S$ &mdash; le salaire d'une personne tirée au hasard &mdash; soit dans
-            un certain intervalle, il suffit de calculer l'aire sous la densité de probabilité entre
-            les deux bornes considérées (Figure 5).
+            Dans ce modèle, on considère que 100 % des gens gagnent entre 950€ et 10 000€ nets
+            mensuel (c'est notre univers). Les données réelles de l'INSEE prennent en compte les
+            salaires supérieurs à 10 000€, nous les avons omis par soucis de simplicité. Avec les
+            notations usuelles, on peut déjà établir : $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$
+            Ensuite, pour évaluer la probabilité que $S$ &mdash; le salaire d'une personne tirée au
+            hasard &mdash; soit dans un certain intervalle, il suffit de calculer l'aire sous la
+            densité de probabilité entre les deux bornes considérées (Figure 5).
           </p>
           <figure>
             <img src="figures/figure_5.png" alt="Probabilités des salaires en France" />
@@ -310,35 +308,34 @@
             S \leq 10\,000) = 0.19$$
           </p>
           <p>
-            Autrement dit, si on tire une personne dans la population française, il y a 50% de
-            chances que son salaire soit inférieur à 2 190€ net par mois car l'aire sous la densité
-            entre 950 et 2 190 représente 50% de l'aire totale. De la même façon, si on tire une
-            personne au hasard dans la population française, il y a 19% de chances que son salaire
-            soit supérieur à 3 500€ net mensuel car l'aire entre 3 500 et 10 000 représente 19% de
-            l'aire totale (19% de l'univers). Encore une fois ces probabilités peuvent également
-            être vues d'une manière différente : 50% des français gagnent moins que 2 190€ net
-            mensuel (c'est-à-dire que 50% gagnent plus) et 19% des français gagnent plus que 3 500€
-            net mensuel (81% gagnent moins). La valeur qui sépare l'aire totale en deux parties de
-            50% est par ailleurs appelée
+            Autrement dit, si on tire une personne dans la population française, il y a 50&nbsp;% de
+            chances que son salaire soit inférieur à 2 190€ nets par mois car l'aire sous la densité
+            entre 950 et 2 190 représente 50&nbsp;% de l'aire totale. De la même façon, si on tire
+            une personne au hasard dans la population française, il y a 19&nbsp;% de chances que son
+            salaire soit supérieur à 3 500€ nets mensuel car l'aire entre 3 500 et 10 000 représente
+            19&nbsp;% de l'aire totale (19&nbsp;% de l'univers). Encore une fois ces probabilités
+            peuvent également être vues d'une manière différente : 50&nbsp;% des français gagnent
+            moins que 2 190€ nets mensuel (c'est-à-dire que 50&nbsp;% gagnent plus) et 19 % des
+            français gagnent plus que 3 500€ nets mensuel (81&nbsp;% gagnent moins). La valeur qui
+            sépare l'aire totale (l'univers) en deux parties de 50&nbsp;% est par ailleurs appelée
             <em>médiane</em>.
           </p>
         </section>
         <section>
           <h2>Les probabilités conditionnelles</h2>
           <p>
-            Le calcul des probabilités par le calcul d'aires était le premier gros point de ce
-            chapitre. Avant de parler de p-value, nous devons nous intéresser à l'autre gros morceau
-            : les probabilités conditionnelles. Lorsque l'on calcule des probabilités, il est
-            possible d'affiner la précision de celles-ci en ajoutant des informations connues
-            &mdash; ou suposées vraies. Au lieu de calculer la probabilité d'un évènement seul, on
-            dit qu'on calcule la probabilité de cet évènement en <em>sachant</em> qu'un autre
-            évènement s'est produit. L'évènement qui s'est produit peut vraiment avoir été observé
-            ou simplement être une croyance que l'on suppose vraie. Par exemple, pour Bob qui prend
-            une boisson chaude au distributeur, si je sais qu'il n'aime pas le thé et qu'il n'a
-            jamais pris de Chocolat chaud en 4 ans de carrière, alors les probabilités qu'il prenne
-            telle ou telle boisson vont probablement être modulées (Figure 6). Même si la
-            répartition du hasard change, il est essentiel de garder un univers où la somme des
-            probabilités vaut 1.
+            Le calcul des probabilités par les aires était le premier gros point de ce chapitre.
+            Avant de parler de p-value, nous devons nous intéresser à l'autre gros morceau : les
+            probabilités conditionnelles. Lorsque l'on calcule des probabilités, il est possible
+            d'affiner la précision de celles-ci en ajoutant des informations connues &mdash; ou
+            suposées vraies. Au lieu de calculer la probabilité d'un évènement seul, on dit qu'on
+            calcule la probabilité de cet évènement en <em>sachant</em> qu'un autre évènement s'est
+            réalisé. L'évènement qui s'est produit peut vraiment avoir été observé ou simplement
+            être une croyance que l'on suppose vraie. Par exemple, pour Bob qui prend une boisson
+            chaude au distributeur, si je sais qu'il n'aime pas le thé et qu'il n'a jamais pris de
+            Chocolat chaud en 4 ans de carrière, alors les probabilités qu'il prenne telle ou telle
+            boisson vont probablement être modulées (Figure 6). Même si la répartition du hasard
+            change, il est essentiel de garder un univers où la somme des probabilités vaut 1.
           </p>
           <figure>
             <img src="figures/figure_6.png" alt="Probabilités conditionnelles" />
@@ -350,31 +347,31 @@
           <p>
             De la même façon, pour les salaires, il est possible de moduler les probabilités à
             travers nos croyances ou les informations dont on dispose : être un homme ou une femme,
-            travailler dans le public ou le privé, être doctorant ou ingénieur de recherche, etc.
-            Ainsi, la probabilité de gagner au moins 3 500€ net mensuel (ou moins de 2 190€) n'est
-            pas la même <em>sachant</em> que l'on est un homme ou une femme, que l'on travaille dans
-            le public ou le privé, que l'on est doctorant ou ingénieur de recherche, etc.
+            travailler dans le public ou le privé, etc. Ainsi, la probabilité de gagner au moins 3
+            500€ nets mensuel (ou moins de 2 190€) n'est pas la même <em>sachant</em> que l'on est
+            un homme ou une femme, que l'on travaille dans le public ou le privé, etc.
           </p>
           <p>
             Si notre <em>croyance</em> &mdash; véritablement observée ou supposée vraie &mdash; est
             que la personne est une femme, et que l'on souhaite calculer la probabilité qu'elle
-            gagne plus que 3 500€ net mensuel, alors étant donné que notre croyance influence la
-            probabilité, on <strong>ne doit pas</strong> utiliser la même densité de probabilité que
-            celle que l'on aurait utilisée sans cette information. Il faut se baser sur la densité
-            qui prend en compte cette croyance, c'est-à-dire celle qui donne la répartition des
-            salaires des femmes uniquement.
+            gagne plus de 3 500€ nets mensuel, alors cette nouvelle information change tout étant
+            donné que les croyances influencent la probabilités. On
+            <strong>ne doit pas</strong> utiliser la même densité de probabilité que celle que l'on
+            aurait utilisée si l'on ne savait rien de cette personne. Il faut se baser sur la
+            densité qui prend en compte cette croyance et reflète cette réalité &mdash; c'est-à-dire
+            celle qui décrit uniquement la répartition des salaires des femmes.
           </p>
           <p>
             Avec les notations habituelles, la probabilité <em>sachant</em> une croyance s'écrit
-            avec une barre verticale. En notant $&#x2640;$ l'évènement : &laquo;&nbsp;la personne
-            est une femme&nbsp;&raquo;, la probabilité que notre variable aléatoire $S$ soit
-            supérieure à 3 500 sachant que la personne est une femme s'écrit : $$\mathbb{P}(S > 3500
-            \mid &#x2640;)$$
+            avec une barre verticale. En notant $&#x2640;$ l'évènement&nbsp;: &laquo;&nbsp;la
+            personne est une femme&nbsp;&raquo;, la probabilité que notre variable aléatoire $S$
+            soit supérieure à 3 500 sachant que la personne est une femme s'écrit : $$\mathbb{P}(S >
+            3500 \mid &#x2640;)$$
           </p>
           <p>
             Malheuresement, on sait que : $\mathbb{P}(S > 3500 \mid &#x2640;) < \mathbb{P}(S > 3500
             \mid &#x2642;)$ : si une personne est une femme, la probabilité qu'elle gagne plus de 3
-            500€ net mensuel est plus faible que si c'était un homme.
+            500€ nets mensuel est plus faible que si c'était un homme.
           </p>
           <p>
             Dans tous ces cas, les probabilités dépendent de ce que l’on
@@ -384,56 +381,66 @@
           <p>
             Il est courant de confondre la probabilité d'un évènement $A$ sachant un autre évènement
             $B$ avec la probabilité de $B$ sachant $A$. On pourrait croire que les deux probabilités
-            $P(A \mid B)$ et $P(B \mid A)$ sont identiques et équivalentes, mais il n'en est rien.
-            Même si $A$ et $B$ sont liés, les probabilités sont en général différentes. Confondre
-            ces deux probabilités peut conduire à de graves erreurs d'interprétation, car connaître
-            la conséquence d'un évènement ne donne pas directement la probabilité de sa cause.
+            $\mathbb{P}(A \mid B)$ et $\mathbb{P}(B \mid A)$ sont identiques et équivalentes, mais
+            il n'en est rien. Même si $A$ et $B$ sont liés, les probabilités sont en général
+            différentes. Confondre ces deux probabilités peut conduire à de graves erreurs
+            d'interprétation, car connaître la conséquence d'un évènement ne donne pas directement
+            la probabilité de sa cause.
           </p>
           <p>
             Un exemple classique de confusion concerne le lien entre être malade et obtenir un test
-            positif à cette maladie. À titre d'exemple, prenons l'évènement $C$ : &laquo;&nbsp;David
+            positif à cette maladie. À titre indicatif, prenons l'évènement $C$ : &laquo;&nbsp;David
             est atteint du Covid-19&nbsp;&raquo; et l'évènement $P$ : &laquo;&nbsp;Le test PCR est
-            positif&nbsp;&raquo;. On confond souvent la probabilité d’être malade sachant que le
-            test est positif avec la probabilité que le test soit positif sachant que l’on est
-            malade. Même si ce n'est pas évident au premier abord, ces deux probabilités sont bien
-            différentes : $$\mathbb{P}(M \mid P) \neq \mathbb{P}(P \mid M)$$
+            positif&nbsp;&raquo;. On confond souvent la probabilité d’être vraiment malade sachant
+            que le test est positif avec la probabilité que le test soit positif sachant que l’on
+            est malade. Même si ce n'est pas évident au premier abord, ces deux probabilités sont
+            bien différentes : $$\mathbb{P}(C \mid P) \neq \mathbb{P}(P \mid C)$$
           </p>
           <p>
-            Prenons un exemple concret pour bien saisir toute la différence. Soit $V$ l'évènement
+            Même si elles semblent proches, elles ne disent pas du tout la même chose. La seconde,
+            $\mathbb{P}(P \mid C)$, correspond à ce qu'on appelle la
+            <strong>sensibilité</strong> du test : sa capacité à détecter correctement les personnes
+            malades. Mais c'est la première, $\mathbb{P}(C \mid P)$, qui nous intéresse vraiment au
+            quotidien : si mon test est positif, à quel point puis-je croire que j'ai réellement le
+            Covid ?
+          </p>
+          <p>
+            Prenons un exemple concret pour bien saisir toute la nuance. Soit $V$ l'évènement
             &laquo;&nbsp;La personne est un agresseur sexuel&nbsp;&raquo; et $&#x2642;$ l'évènement
             &laquo;&nbsp;la personne est un homme&nbsp;&raquo;. Alors en France, d'après l'INSEE on
-            obtient : $P(&#x2642; \mid V) = 0.97$ : la probabilité qu'une personne soit un homme
-            sachant qu'elle est un agresseur sexuel est de 97%. Autrement dit, parmi les personnes
-            identifiées comme agresseurs sexuels, 97% sont des hommes. Fort heuresement, la
-            réciproque n'est pas vraie : si une personne est un homme, la probabilité qu'elle soit
-            un agresseur sexuel reste plus faible que 97%, il serait alors faux de dire que parmis
-            tous les hommes, 97% sont des agresseurs sexuels. On peut néanmoins établir la relation
-            : $$P(V \mid &#x2640;) \lt P(V \mid &#x2642;) \lt P(&#x2642; \mid V)$$
+            obtient : $\mathbb{P}(&#x2642; \mid V) = 0.97$ : la probabilité qu'une personne soit un
+            homme sachant qu'elle est un agresseur sexuel est de 97%. Autrement dit, parmi les
+            personnes identifiées comme agresseurs sexuels, 97% sont des hommes. Fort heuresement,
+            la réciproque n'est pas vraie : si une personne est un homme, la probabilité qu'elle
+            soit un agresseur sexuel reste largement inférieure à 97%, il serait alors faux
+            d'affirmer que, parmis tous les hommes, 97% sont des agresseurs sexuels. On peut
+            néanmoins établir la relation : $$\mathbb{P}(V \mid &#x2640;) \lt \mathbb{P}(V \mid
+            &#x2642;) \lt \mathbb{P}(&#x2642; \mid V)$$
           </p>
           <p>
             Dans la vie de tous les jours, beaucoup de personnes confondent ces deux probabilités et
-            pensent à tort que si $P(A \mid B)$ est élévée, alors $P(B \mid A)$ l'est nécessairement
-            aussi. La prochaine fois que vous verrez ou entendrez ce type de raisonnement, prenez un
-            instant pour vous demander si une maladresse aurait pû conduire à cette conclusion,
-            qu'elle soit intentionnelle ou non.
+            pensent à tort que si $\mathbb{P}(A \mid B)$ est élevée, alors $\mathbb{P}(B \mid A)$
+            l'est nécessairement aussi. La prochaine fois que vous verrez ou entendrez ce type
+            d'argument, prenez un instant pour vous demander si une maladresse aurait pû conduire à
+            cette conclusion, qu'elle soit intentionnelle ou non.
           </p>
           <p></p>
           <h3>Une histoire de taille</h3>
           <p>
-            Pour fixer définitivement les idées, prenons un exemple concret mais un peu plus léger :
-            la taille des personnes. La façon de prédire la taille d'une personne peut varier
-            suivant certaines caractéristiques comme par exemple le sexe et la nationalité : en
-            général les hommes sont plus grands que les femmes et les suédois sont plus grands que
-            les français. La probabilité de mesurer plus de 172 cm n'est pas la même suivant les
+            Pour ancrer définitivement les idées, prenons un exemple toujours concret mais un peu
+            plus léger : la taille des personnes. La façon de prédire la taille d'une personne peut
+            varier suivant certaines caractéristiques comme par exemple le sexe et la nationalité :
+            en général les hommes sont plus grands que les femmes et les suédois sont plus grands
+            que les français. La probabilité de mesurer plus de 172 cm n'est pas la même suivant les
             informations &mdash; ou les croyances &mdash; que l'on dispose au sujet de la personne :
             sachant si la personne est une femme française, une femme suédoise, un homme français ou
             un homme suédois. Cet exemple sera exploré en détails dans la dernière section de la
             page et vous pourrez expérimenter par vous même.
           </p>
           <p>
-            Et attention à ne pas confondre : la probabilité qu'Eve mesure plus que 172 cm sachant
+            Et attention à ne pas confondre : la probabilité qu'Eve mesure plus de 172 cm sachant
             qu'elle est suédoise n'est pas la même que la probabilité qu'Eve soit suédoise sachant
-            qu'elle mesure plus que 172 cm.
+            qu'elle mesure plus de 172 cm.
           </p>
           <p>
             La densité de probabilité (façon dont le hasard est réparti) de la variable aléatoire
@@ -448,14 +455,14 @@
         <section>
           <h2>La loi normale</h2>
           <p>
-            Une densité de probabilité (fonction représentant la distribution du hasard) est dite
-            <em>normale</em> lorsque la variable aléatoire associée <em>suit</em> une loi normale.
-            Dans ce type de distribution, les valeurs <strong>proches</strong> de la moyenne sont
-            les plus <strong>probables</strong>. À l'inverse, les valeurs éloignées deviennent de
-            plus en plus rares à mesure qu’on se rapproche des extrémités. Deux paramètres suffisent
-            pour représenter une densité normale : la moyenne $\mu$ qui indique l'endroit où la
-            probabilité d'obtenir une valeur est la plus forte et l'écart-type $\sigma$ qui donne
-            une indication d'à quel point les valeurs sont dispersées autour de la moyenne.
+            Une densité de probabilité est dite <em>normale</em> lorsque la variable aléatoire
+            associée <em>suit</em> une loi normale. Dans ce type de distribution, les valeurs
+            <strong>proches</strong> de la moyenne sont les plus <strong>probables</strong>. À
+            l'inverse, les valeurs éloignées deviennent de plus en plus rares à mesure qu’on se
+            rapproche des extrémités. Deux paramètres suffisent pour représenter une densité normale
+            : la moyenne $\mu$ qui indique l'endroit où la probabilité d'obtenir une valeur est la
+            plus forte et l'écart-type $\sigma$ qui donne une indication d'à quel point les valeurs
+            sont dispersées autour de la moyenne.
           </p>
           <p>
             Graphiquement, une densité normale forme une courbe en cloche, appelée courbe de Gauss
@@ -464,10 +471,11 @@
             où la plupart des valeurs se concentrent autour d’une moyenne $\mu$, tandis que les
             valeurs très éloignées restent rares. Étant donné que la distribution est symétrique,
             les grandes valeurs sont alors aussi improbables que les petites. La taille des gens,
-            les notes des élèves à un devoir, la quantité de sommeil en une nuit, le temps passé
-            dans une file à la caisse sont autant d'exemples dont les densités sont normales : la
-            plupart des valeurs se concentrent autour d'une moyenne, et plus on s'éloigne de cette
-            moyenne, plus les cas deviennent rares.
+            les notes des élèves d'une classe à un devoir, la quantité de sommeil en une nuit, le
+            temps passé dans une file à la caisse sont autant d'exemples dont les densités sont
+            normales : la plupart des valeurs se concentrent autour d'une moyenne, et plus on
+            s'éloigne de cette moyenne, plus les cas deviennent rares. La répartition des nombres
+            entre 0 et 4 et le salaire des français et françaises ne suivent pas une loi normale.
           </p>
         </section>
         <section>
