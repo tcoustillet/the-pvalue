@@ -33,9 +33,9 @@ function buildConclusion(child, h0, h1, pct) {
   const h1_f = `l${h1.slice(9, -1)}`;
   const decision =
     pct >= 5
-      ? `Ainsi, comme p ≥ 5% alors le résultat n'est pas extraordianire dans le monde où $H_0$ est vraie. Il n'y a pas de raisons de rejetter $H_0$ et basculer vers $H_1$. On pourra conclure : ${h0_f}.`
-      : `Ainsi, comme p < 5% alors le résultat est extraordianire dans le monde où $H_0$ est vraie. Nous avons suffisamment de preuves pour basculer vers $H_1$. On rejette $H_0$ (${h0_f}) et on concluera : ${h1_f}.`;
-  return `La probabilité que l'enfant ait les yeux ${label}, sachant que ${h0_f} est de $${pct}\\%$. Cette probabilité est exactement ce qu'on a appelé p-value. ${decision}`;
+      ? `Ainsi, comme p ≥ 5%, alors le résultat n'est pas extraordianire dans le monde où $H_0$ est vraie. Il n'y a pas de raisons de rejetter $H_0$ et basculer vers $H_1$. On pourra conclure : ${h0_f}.`
+      : `Ainsi, comme p < 5%, alors le résultat est extraordianire dans le monde où $H_0$ est vraie. Nous avons suffisamment de preuves pour basculer vers $H_1$. On rejette $H_0$ (${h0_f}) et on concluera : ${h1_f}.`;
+  return `La probabilité que l'enfant ait les yeux ${label}, sachant que ${h0_f} est de $${pct}\\%$ (Figure 1). Cette probabilité est exactement ce qu'on a appelé p-value dans le cadre de cet exercice. ${decision}`;
 }
 
 // Simplified dominant/recessive probability table
