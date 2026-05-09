@@ -201,10 +201,6 @@
   font-size: 0.9rem;
 }
 
-#chart-container {
-  margin-bottom: 1.5rem;
-}
-
 .chart-description__formula {
   display: block;
   text-align: center;
