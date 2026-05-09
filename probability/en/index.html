@@ -1,29 +1,542 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <title>Probabilities</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Probabilities</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+        })
+      "
+    ></script>
+  </head>
+  <body>
+    <site-header show-back is-subpage lang="en"></site-header>
 
-  <site-header show-back is-subpage lang="en"></site-header>
+    <main class="page-content">
+      <div class="container">
+        <p>
+          Welcome, you're in the right place! Getting to grips with the notion of p-value starts
+          with a solid understanding of what probability is and how it's calculated. In fact, the
+          <strong>p</strong> in <em>p-value</em> simply stands for <em>probability</em>. Once you've
+          got the fundamentals down, the p-value won't hold any mystery for you, promise!
+        </p>
+        <section>
+          <h2>Elementary probabilities</h2>
+          <p>
+            Probability is used to <strong>measure chance</strong> and understand how it is
+            distributed. In other words, it tells us how likely an <em>event</em> is to occur. As
+            such, the <em>probability</em> of an <em>event</em> is a real number between
+            <strong>0</strong> and <strong>1</strong> (or between 0% and 100%) :
+          </p>
+          <ul class="center-list">
+            <li>0 means the event is <em>impossible</em>,</li>
+            <li>1 means the event is <em>certain</em>,</li>
+            <li>
+              all other values form a gradient, ranging from unlikely events to highly probable
+              ones.
+            </li>
+          </ul>
+          <p>
+            Mathematicians use $\mathbb{P}$ to denote the measure that associates an event with its
+            probability. In some simple cases, calculating probabilities is straightforward and only
+            requires a few basic manipulations.
+          </p>
+          <section>
+            <h3>A tale of a die</h3>
+            <p>
+              Alice rolls a fair 6-sided die. Let $S$ denote the event &ldquo;&nbsp;rolling a
+              6&nbsp;&rdquo;. Calculating its probability is then straightforward: $$\mathbb{P}(S) =
+              1/6 \approx 0.17 \approx 17\%$$
+            </p>
+            <h3>A tale of coffee</h3>
+            <p>
+              Bob the researcher heads to the laboratory's coffee machine (vending machine) to grab
+              a hot drink before heading back to his experiments. The machine offers 5 different
+              beverages: Espresso, Cappuccino, Latte, Tea, and Hot Chocolate. We assume that Bob has
+              no favourite drink and chooses at random. Let $HC$ denote the event &ldquo;&nbsp;Hot
+              Chocolate is chosen&nbsp;&rdquo;. Calculating $HC$ is likewise straightforward:
+              $$\mathbb{P}(HC) = 1/5 = 0.2 = 20\%$$
+            </p>
+          </section>
+          <p>
+            Assuming the die is perfectly fair and that Alice is not cheating, and assuming that Bob
+            randomly chooses his drink with no preference whatsoever, the probabilities of all
+            possible events are said to be equally likely, <em>i.e.</em>, they are identical for
+            each event (Figure 1).
+          </p>
+          <figure>
+            <img src="figures/figure_1.png" alt="Equiprobability" />
+            <figcaption>
+              Figure 1 — (a) Probabilities of rolling each of the six faces of a die. (b)
+              Probabilities of choosing each of the five beverages.
+            </figcaption>
+          </figure>
+        </section>
+        <section>
+          <h2>The sample space</h2>
+          <p>
+            A particularly important notion in probability is that of the <em>sample space</em>. The
+            sample space represents the set of all possible outcomes of an experiment (all
+            possibilities). For instance, for a roll of a 6-sided die, the sample space is simply
+            the set of events: rolling a 1, rolling a 2, rolling a 3, rolling a 4, rolling a 5,
+            rolling a 6. For the choice of hot drink, the sample space is the set of events:
+            choosing an Espresso, choosing a Cappuccino, choosing a Latte, choosing a Tea, choosing
+            a Hot Chocolate.
+          </p>
+          <p>
+            The <strong>sample space</strong> is in a way a &ldquo;&nbsp;<strong>super event</strong
+            >&nbsp;&rdquo;: one could define it as the event $U$ = &ldquo;&nbsp;Espresso is chosen
+            <strong>or</strong> Cappuccino <strong>or</strong> Latte <strong>or</strong> Tea
+            <strong>or</strong> Hot Chocolate&nbsp;&rdquo;. Since it contains all possible outcomes
+            of the experiment, and since the experiment itself necessarily produces one of these
+            outcomes, the probability of the sample space is always equal to 1 (100%) &mdash; that
+            is, when Alice rolls her 6-sided die, there is a 100% chance that the &ldquo;&nbsp;super
+            event&nbsp;&rdquo; occurs: she will inevitably land on a 1, or a 2, or a 3, or a 4, or a
+            5, or a 6. In the same way, there is a 100% chance that Bob chooses either an Espresso,
+            a Cappuccino, a Latte, a Tea, or a Hot Chocolate. This result may seem obvious, but it
+            is essential for what follows. Don't get lost in (outer) space &mdash; more important
+            notions are on their way!
+          </p>
+          <h2>Random variables</h2>
+          <p>
+            We need to take a brief detour through some terminology before carrying on: a
+            <em>random variable</em> is any variable that takes a value at random. For instance, if
+            $F$ is the random variable representing the face of the die that Alice landed on after
+            her roll, then $F$ can take the values {1, 2, 3, 4, 5, 6}. In fact, the event
+            &ldquo;&nbsp;rolling a 6&nbsp;&rdquo; is equivalent to the event &ldquo;&nbsp;$F =
+            6$&nbsp;&rdquo;. In the same way, if $D$ is the random variable representing the drink
+            chosen by Bob, $D$ can take the values {"Espresso", "Cappuccino", "Latte", "Tea", "Hot
+            Chocolate"}. The event &ldquo;&nbsp;Hot Chocolate is chosen&nbsp;&rdquo; is then
+            equivalent to &ldquo;&nbsp;$D = $ "Hot Chocolate"&nbsp;&rdquo;.
+          </p>
+          <p>
+            We can thus list all the possible values that a random variable can take and calculate
+            the probabilities associated with each of them. However, it is
+            <strong>impossible</strong> to predict with certainty the exact value that will appear
+            during a particular experiment. Using the random variables $F$ and $D$, we can rewrite:
+          </p>
+          <div style="text-align: center">
+            <div class="bloc-latex-like">
+              <p>$\mathbb{P}(F = 6) = 1/6$</p>
+              <p>$\mathbb{P}(D = \text{"Hot Chocolate"}) = 1/5$</p>
+            </div>
+          </div>
+          <p>
+            In both of these examples, the random variables $F$ and $D$ are said to be
+            <strong>discrete</strong>, <em>i.e.</em>, they can only take a well-defined set of
+            distinct values for each situation (6 for the die roll and 5 for the choice of drink).
+            In other words, a random variable is said to be discrete when one can count the number
+            of values it can take (even if one has to count all the way to infinity).
+          </p>
+        </section>
+        <section>
+          <h2>When random variables become continuous</h2>
+          <p>
+            As the title of this chapter suggests, <strong>continuous</strong> random variables do
+            exist: this is the case for experiments with an infinite number of possible outcomes
+            that form a <strong><u>continuum</u></strong
+            >. A classic example of this type of random variable concerns people's height: let us
+            take $H$ as the random variable representing the height of a person chosen at random
+            from the French population (adults only). There are not just a few possible heights, but
+            rather an infinity (a continuum) of them, such that $H$ can theoretically take any value
+            between, say, 140 and 222 cm. In reality, a person's exact height simply depends on the
+            precision of the measurement. The more precise the instrument, the more refined the
+            obtained value. For instance, with a sufficiently precise ruler, one might be able to
+            say that a given person measures 184.123456 cm, which would differ from another
+            measuring 184.123455 cm.
+          </p>
+          <p>
+            When dealing with continuous random variables, one will <strong>never</strong> seek the
+            probability that the random variable takes a single precise value &mdash; <em>e.g.</em>,
+            $\mathbb{P}(H=184)$ or $\mathbb{P}(H=184.123456)$ &mdash; but will always seek the
+            <strong><u>probability that it falls within a certain range of values</u></strong>
+            &mdash; <em>e.g.</em>, $\mathbb{P}(172 \leq H \leq 184)$ or $\mathbb{P}(172.123 \leq H
+            \leq 184.456)$. This is an absolutely fundamental point: there is no real meaning in
+            looking at the exact value taken by a continuous random variable, given that there are
+            an infinite number of possible outcomes.
+          </p>
+          <p>
+            To draw a link between the sample space and continuous random variables, in the example
+            of $H$, one can loosely say that its sample space is the set of all heights between 140
+            and 222 cm. We thus have $\mathbb{P}(140 \leq H \leq 222) = 1\;(100\%)$. There are
+            always two equivalent ways of interpreting a result such as this one: either one says
+            that when a person is chosen at random from the French population, there is a 100%
+            chance that this person measures between 140 and 222 cm (assuming that this is our
+            sample space), or one says that 100% of the French population measures between 140 and
+            222 cm.
+          </p>
+          <h3>Probability density</h3>
+          <p>
+            Still with us? Brilliant... but the most exciting part is yet to come. Here is yet
+            another fundamental notion: <strong>probability density</strong>. In the case of
+            continuous random variables, probability density simply defines how chance is
+            distributed across the entire sample space: it is precisely this density that gives an
+            indication that, if a person is chosen at random from the French population, there is a
+            greater chance that this person measures between 172 and 184 cm rather than between 190
+            and 202 cm. Even more remarkably: thanks to probability density, it becomes possible to
+            know all the probabilities among the infinite number of possibilities, for any interval
+            you choose! Every corner of the sample space can be explored.
+          </p>
+          <p>
+            The probability density of a random variable is a mathematical function defined across
+            the entire sample space. To calculate the probability that a random variable falls
+            within a given interval, one <em>simply</em> needs to calculate the
+            <strong>area under the curve</strong> of the probability density between the two bounds
+            of the interval. The notion of area under the curve is arguably the most important
+            concept in this journey through the land of probability, and quite possibly the key to
+            understanding continuous random variables. In fact, calculating a p-value comes down to
+            calculating an area under a certain probability density over a certain interval... But
+            patience — we will <em>demystify</em> this in detail in the next section. Let us first
+            explore a few concrete examples.
+          </p>
+          <h3>A number between 0 and 4</h3>
+          <p>
+            Charlie picks a number at random from the interval [0, 4] and we are interested in the
+            random variable $X$ representing this number. Already, $X$ is clearly a continuous
+            random variable since Charlie can pick any real number between 0 and 4, be it 2,
+            1.41421, 2.718281828, or 3.14. The probability density associated with such an
+            experiment is shown in Figure 2.
+          </p>
+          <figure>
+            <img src="figures/figure_2.png" alt="A number between 0 and 4" />
+            <figcaption>
+              Figure 2 — (a) Probability density associated with the random variable $X$. (b) The
+              &ldquo;&nbsp;sample space&nbsp;&rdquo; is the set of numbers between 0 and 4.
+            </figcaption>
+          </figure>
+          <p>
+            In this experiment, the probability density (Figure 2a) is the blue line at a height of
+            0.25: the probabilities are uniform across the entire sample space, which is simply the
+            set of numbers between 0 and 4. Thus: $\mathbb{P}(0 \leq X \leq 4) = 1$. When Charlie
+            picks a number between 0 and 4, there is a 100% chance that this number falls between 0
+            and 4... All these definitions to arrive at this conclusion &mdash; such is the true
+            beauty of mathematics and its formalism. In fact, we would have been unable to write
+            this equality without the notions of continuous random variables, sample space, and
+            probability density. Now, to evaluate the probability that the drawn number falls within
+            a given interval, one simply needs to calculate the
+            <strong>area under the probability density</strong> between the two bounds of the
+            interval in question (Figure 3).
+          </p>
+          <figure>
+            <img
+              src="figures/figure_3.png"
+              alt="Probabilities of falling within an interval
+"
+            />
+            <figcaption>
+              Figure 3 — Representation of probabilities as simple area calculations. (a) Visual
+              representation of $\mathbb{P}(1 \leq X \leq 2)$. (b) Visual representation of
+              $\mathbb{P}(0.5 \leq X \leq 3)$. (c) Visual representation of $\mathbb{P}(3 \leq X
+              \leq 4)$.
+            </figcaption>
+          </figure>
+          <p>
+            In Figure 3, we can see that $\mathbb{P}(1 \leq X \leq 2) = 0.25$ and $\mathbb{P}(0.5
+            \leq X \leq 3) = 0.62$. Once again, there are two equivalent ways of interpreting these
+            results: if Charlie draws a number at random between 0 and 4, there is a 62% chance that
+            the drawn number falls between 0.5 and 3. One can also say that 62% of the numbers
+            between 0 and 4 lie between 0.5 and 3. Intuitively, you will no doubt find it logical
+            that the probability of drawing a number between 1 and 2 is the same as that of drawing
+            one between 3 and 4. Mathematics has just proved it: the areas are identical (Figures 2a
+            and 2c)! In fact, the probability density here is said to be uniform (it is a straight
+            line), meaning that the probability of falling within a given interval depends only on
+            its length and not on its bounds. For the more mathematically minded among you, the
+            formula is:
+          </p>
+          <div>
+            $$\forall \; a, b \in [0, 4] \text{ with } a < b, \quad \mathbb{P}(a \leq X \leq b) =
+            \frac{b-a}{4-0}$$
+          </div>
+          <h3>A tale of salaries</h3>
+          <p>
+            To make things more concrete, let us take another example: the distribution of salaries
+            in France. The principle is exactly the same: a continuous random variable, an
+            associated probability density, and area calculations. We assume that French people earn
+            a net monthly salary of between €950 and €10,000. The probability density allows us to
+            model the way salaries are distributed across the population (Figure 4). A person is
+            drawn at random from the population. Let $S$ be the continuous random variable
+            representing their salary (in net monthly €).
+          </p>
+          <figure>
+            <img src="figures/figure_4.png" alt="Distribution of salaries in France" />
+            <figcaption>
+              Figure 4 — Distribution of salaries in France (in net € per month). (a) Probability
+              density of the random variable $S$ representing salary. (b) Representation of the
+              &ldquo;&nbsp;sample space&nbsp;&rdquo; of the experiment. Here, the distribution is
+              clearly not uniform. Data sourced from INSEE.
+            </figcaption>
+          </figure>
+          <p>
+            In this model, we consider that 100% of people earn between €950 and €10,000 net per
+            month (this is our sample space). The actual INSEE data accounts for salaries above
+            €10,000; we have omitted these for the sake of simplicity. Using standard notation, we
+            can already establish: $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$ Then, to evaluate the
+            probability that $S$ &mdash; the salary of a randomly drawn person &mdash; falls within
+            a certain interval, one simply needs to calculate the area under the probability density
+            between the two bounds in question (Figure 5).
+          </p>
+          <figure>
+            <img src="figures/figure_5.png" alt="Distribution of salaries in France" />
+            <figcaption>
+              Figure 5 — Probabilities that the net monthly salary (€) of a person drawn at random
+              from the French population falls within a certain interval. (a) Visual representation
+              of $\mathbb{P}(950 \leq S \leq 2190)$. (b) Visual representation of $\mathbb{P}(3500
+              \leq S \leq 10 000)$.
+            </figcaption>
+          </figure>
+          <p>According to this model:</p>
+          <div style="text-align: center">
+            <div class="bloc-latex-like">
+              <p>$\mathbb{P}(950 \leq S \leq 2190) = 0.5$</p>
+              <p>$\mathbb{P}(3\,500 \leq S \leq 10\,000) = 0.19$</p>
+            </div>
+          </div>
+          <p>
+            In other words, if a person is drawn from the French population, there is a 50&nbsp;%
+            chance that their salary is below €2,190 net per month, as the
+            <strong>area</strong> under the density between 950 and 2,190 represents 50&nbsp;% of
+            the <strong>total area</strong>. In the same way, if a person is drawn at random from
+            the French population, there is a 19&nbsp;% chance that their salary is above €3,500 net
+            per month, as the area between 3,500 and 10,000 represents 19&nbsp;% of the total area
+            (19&nbsp;% of the sample space). Once again, these probabilities can also be viewed
+            differently: 50&nbsp;% of people in France earn less than €2,190 net per month (meaning
+            50&nbsp;% earn more) and 19&nbsp;% of people in France earn more than €3,500 net per
+            month (81&nbsp;% earn less). The value that splits the total area (the sample space)
+            into two equal halves of 50&nbsp;% is furthermore called the <em>median</em>.
+          </p>
+        </section>
+        <section>
+          <h2>Conditional probabilities</h2>
+          <p>
+            Calculating probabilities <em>via</em> areas was the first major point of this chapter.
+            Before discussing p-values, we must turn our attention to the other big piece of the
+            puzzle: conditional probabilities. When calculating probabilities, it is possible to
+            refine their precision by adding known &mdash; or assumed true &mdash; information.
+            Instead of calculating the probability of an event on its own, we say that we are
+            calculating the probability of this event <em>given</em> that another event has
+            occurred. The event that has occurred may have been truly observed or simply be a belief
+            assumed to be true. For instance, for Bob picking a hot drink from the vending machine,
+            if we know that he dislikes tea and has never once had a Hot Chocolate in 4 years of
+            working there, then the probabilities of him choosing one drink or another will likely
+            be adjusted (Figure 6). Even though the distribution of chance changes, it is essential
+            to maintain a sample space where the sum of all probabilities equals 1.
+          </p>
+          <figure>
+            <img src="figures/figure_6.png" alt="Conditional probabilities" />
+            <figcaption>
+              Figure 6 — Probabilities of Bob choosing each of the six beverages given that he
+              dislikes tea and has never had a Hot Chocolate.
+            </figcaption>
+          </figure>
+          <p>
+            In the same way, for salaries, it is possible to adjust probabilities through our
+            beliefs or the information available to us: being a man or a woman, working in the
+            public or private sector, and so on. Thus, the probability of earning at least €3,500
+            net per month (or less than €2,190) is not the same <em>given</em> that one is a man or
+            a woman, that one works in the public or private sector, and so on.
+          </p>
+          <p>
+            If our <em>belief</em> &mdash; truly observed or assumed to be true &mdash; is that the
+            person is a woman, and we wish to calculate the probability that she earns more than
+            €3,500 net per month, then this new piece of information changes everything, given that
+            beliefs influence probabilities. One <strong>must not</strong> use the same probability
+            density as the one that would have been used had we known nothing about this person. One
+            must instead rely on the density that accounts for this belief and reflects this reality
+            &mdash; that is, the one that describes solely the distribution of women's salaries.
+          </p>
+          <p>
+            Using standard notation, the probability <em>given</em> a belief is written with a
+            vertical bar (pipe). Denoting by $&#x2640;$ the event: &ldquo;&nbsp;the person is a
+            woman&nbsp;&rdquo;, the probability that our random variable $S$ is greater than 3,500
+            given that the person is a woman is written as: $$\mathbb{P}(S \geq 3500 \mid
+            &#x2640;)$$
+          </p>
+          <p>
+            Unfortunately, in France, we know that: $\mathbb{P}(S \geq 3500 \mid &#x2640;) <
+            \mathbb{P}(S \geq 3500 \mid &#x2642;)$ : if a person is a woman, the probability that
+            she earns more than €3,500 net per month is lower than if she were a man.
+          </p>
+          <p>
+            In all of these cases, probabilities depend on what one
+            <u>knows</u> or what one <u>believes to know</u>.
+          </p>
+          <h3>A common pitfall</h3>
+          <p>
+            It is common to confuse the probability of an event $A$ given another event $B$ with the
+            probability of $B$ given $A$. One might think that the two probabilities $\mathbb{P}(A
+            \mid B)$ and $\mathbb{P}(B \mid A)$ are identical and equivalent, but this is not the
+            case at all. Even if $A$ and $B$ are related, the probabilities are generally different.
+            Confusing these two probabilities can lead to serious errors of interpretation, as
+            knowing the consequence of an event does not directly give the probability of its cause.
+          </p>
+          <p>
+            A classic example of such confusion concerns the link between being ill and testing
+            positive for the disease in question. As an illustration, let us take the event $C$:
+            &ldquo;&nbsp;David has Covid-19&nbsp;&rdquo; and the event $P$: &ldquo;&nbsp;The PCR
+            test is positive&nbsp;&rdquo;. One often confuses the probability of truly being ill
+            given that the test is positive with the probability that the test is positive given
+            that one is ill. Even if this is not immediately obvious, these two probabilities are
+            indeed different: $$\mathbb{P}(C \mid P) \neq \mathbb{P}(P \mid C)$$
+          </p>
+          <p>
+            Even though they may seem similar, they do not mean the same thing at all. The second,
+            $\mathbb{P}(P \mid C)$, corresponds to what is known as the <strong>sensitivity</strong>
+            of the test: its ability to correctly detect ill individuals. But it is the first,
+            $\mathbb{P}(C \mid P)$, that truly matters in everyday life: if my test is positive, to
+            what extent can I believe that I actually have Covid? You can replace the event of
+            &ldquo;&nbsp;having Covid&nbsp;&rdquo; with any outcome of a medical test, such as being
+            pregnant. Of course, being pregnant is not an illness! But what we are really interested
+            in is also the probability of truly being pregnant when the test comes back positive.
+          </p>
+          <p>
+            Let us take a concrete example to fully grasp the nuance. Let $R$ be the event
+            &ldquo;&nbsp;The person is a sexual offender&nbsp;&rdquo; and $&#x2642;$ the event
+            &ldquo;&nbsp;the person is a man&nbsp;&rdquo;. In France, according to INSEE, we obtain:
+            $\mathbb{P}(&#x2642; \mid R) = 0.97$: the probability that a person is a man given that
+            they are a sexual offender is 97%. In other words, among individuals identified as
+            sexual offenders, 97% are men. Fortunately, the converse is not true: if a person is a
+            man, the probability that they are a sexual offender remains far below 97% &mdash; it
+            would therefore be wrong to claim that, among all men, 97% are sexual offenders. We can
+            nonetheless establish the relation: $$\mathbb{P}(R \mid &#x2640;) \lt \mathbb{P}(R \mid
+            &#x2642;) \lt \mathbb{P}(&#x2642; \mid R)$$
+          </p>
+          <p>
+            In everyday life, many people confuse these two probabilities and wrongly assume that if
+            $\mathbb{P}(A \mid B)$ is high (or low), then $\mathbb{P}(B \mid A)$ must necessarily be
+            high (or low) as well. The next time you come across this type of argument, take a
+            moment to ask yourself whether a misunderstanding could have led to this conclusion,
+            whether intentional or not.
+          </p>
+          <p></p>
+          <h3>A tale of height</h3>
+          <p>
+            To cement these ideas once and for all, let us take another concrete yet somewhat
+            lighter example: people's height. The way of predicting a person's height can vary
+            according to certain characteristics such as sex and nationality: in general, men are
+            taller than women and Swedes are taller than the French. The probability of being taller
+            than 172 cm is not the same depending on the information &mdash; or beliefs &mdash;
+            available about the person: whether they are a French woman, a Swedish woman, a French
+            man, or a Swedish man. This example will be explored in detail in the last section of
+            the page, where you will be able to experiment for yourself.
+          </p>
+          <p>
+            And be careful not to confuse: the probability that a person is taller than 172 cm given
+            that they are Swedish is not the same as the probability that they are Swedish given
+            that they are taller than 172 cm.
+          </p>
+          <p>
+            The probability density (the way chance is distributed) of the random variable
+            representing people's height is said to be <em>normal</em>.
+          </p>
+        </section>
+        <section>
+          <h2>The normal distribution</h2>
+          <p>
+            A probability density is said to be <em>normal</em> when the associated random variable
+            <em>follows</em> a normal distribution. In this type of distribution, values
+            <strong>close</strong> to the mean are the most <strong>probable</strong>. Conversely,
+            values further away become increasingly rare as one approaches the extremes. Two
+            parameters are necessary and sufficient to describe a normal density: the mean $\mu$,
+            which indicates where the probability of obtaining a value is highest, and the standard
+            deviation $\sigma$, which gives an indication of how spread out the values are around
+            the mean.
+          </p>
+          <p>
+            Graphically, a normal density forms a bell-shaped curve, known as a Gaussian curve or
+            Gaussian. This curve is symmetrical: deviations to the left and to the right of the mean
+            behave in the same way. In summary, the normal distribution describes situations where
+            most values cluster around a mean $\mu$, whilst values far from it remain rare. Since
+            the distribution is symmetrical, large values are just as unlikely as small ones.
+            People's height, pupils' marks on a class test, the amount of sleep in a single night,
+            and the time spent queuing at a checkout are all examples of normal densities: most
+            values cluster around a mean, and the further one moves away from this mean, the rarer
+            the cases become. The distribution of numbers between 0 and 4 and the salaries of people
+            in France do not follow a normal distribution.
+          </p>
+        </section>
+        <section>
+          <h2>Over to you</h2>
+          <p>
+            To explore the notions discussed so far, let us revisit the example of the random
+            variable $H$ whose density is normal: most people have a height close to the overall
+            mean, and there are fewer and fewer individuals as one considers increasingly tall (or
+            increasingly short) heights.
+          </p>
+          <p>
+            By considering different assumptions about a person's sex and nationality, you can
+            calculate the probabilities that the random variable $H$ (height) falls within a certain
+            interval <em>given</em> the beliefs you have chosen.
+          </p>
+        </section>
+        <div id="controls-container"></div>
+        <div id="chart-container"></div>
+        <p id="chart-description"></p>
+      </div>
+    </main>
 
-  <main class="page-content">
-    <div class="container">
-    </div>
-  </main>
+    <site-footer></site-footer>
 
-  <site-footer></site-footer>
+    <script src="../../js/site-header.js"></script>
+    <script src="../../js/site-footer.js"></script>
+    <script src="../../js/page-loader.js"></script>
 
-  <script src="../../js/site-header.js"></script>
-  <script src="../../js/site-footer.js"></script>
-  <script src="../../js/page-loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="../js/gaussian.js"></script>
+    <script src="../js/controls.js"></script>
+    <script src="../js/chart.js"></script>
 
-</body>
+    <script>
+      const config = {
+        sachant: 'given',
+        randomVarLabel: 'H',
+        conditions: [
+          'that they are French',
+          'that they are a French woman',
+          'that they are a French man',
+          'that they are Swedish',
+          'that they are a Swedish woman',
+          'that they are a Swedish man',
+          'that they are an American basketball player',
+        ],
+        groupLabels: [
+          'French people',
+          'French women',
+          'French men',
+          'Swedish people',
+          'Swedish women',
+          'Swedish men',
+          'American basketball players',
+        ],
+        textLess: (a, condition, groupLabel, probPercent) =>
+          `The probability that a randomly selected person is shorter than ${a} cm, given ${condition}, is ${probPercent}%. ` +
+          `In other words, ${probPercent}% of ${groupLabel} are shorter than ${a} cm.`,
+        textGreater: (a, condition, groupLabel, probPercent) =>
+          `The probability that a randomly selected person is taller than ${a} cm, given ${condition}, is ${probPercent}%. ` +
+          `In other words, ${probPercent}% of ${groupLabel} are taller than ${a} cm.`,
+        textBetween: (a, b, condition, groupLabel, probPercent) =>
+          `The probability that a randomly selected person is between ${a} cm and ${b} cm tall, given ${condition}, is ${probPercent}%. ` +
+          `In other words, ${probPercent}% of ${groupLabel} are between ${a} cm and ${b} cm tall.`,
+      };
+    </script>
+
+    <script src="../js/app.js"></script>
+  </body>
 </html>
