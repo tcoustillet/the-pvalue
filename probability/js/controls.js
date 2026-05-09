@@ -107,11 +107,13 @@ const Controls = {
     const leftCol = document.createElement('div');
     leftCol.classList.add('controls-col', 'controls-col--left');
 
+    const randomVar = config.randomVarLabel;
+
     const probTypes = [
       {
         value: 'less',
         node: this._buildLabel('prob-type', 'less', [
-          ' $\\mathbb{P}(T \\leq \\;$',
+          ` $\\mathbb{P}(${randomVar} \\leq \\;$`,
           inputA1,
           '$\\;)$',
         ]),
@@ -119,7 +121,7 @@ const Controls = {
       {
         value: 'greater',
         node: this._buildLabel('prob-type', 'greater', [
-          ' $\\mathbb{P}(T \\geq \\;$',
+          ` $\\mathbb{P}(${randomVar} \\geq \\;$`,
           inputA2,
           '$\\;)$',
         ]),
@@ -129,7 +131,7 @@ const Controls = {
         node: this._buildLabel('prob-type', 'between', [
           ' $\\mathbb{P}($',
           inputA3,
-          '$\\; \\leq T \\leq \\;$',
+          `$\\; \\leq ${randomVar} \\leq \\;$`,
           inputB3,
           '$)$',
         ]),

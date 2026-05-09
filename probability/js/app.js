@@ -41,14 +41,15 @@ function updateDescription(state, prob, config) {
   }
 
   const { probType, mu, sigma, a, b, condition, groupLabel } = state;
+  const randomVar = config.randomVarLabel;
   const probPercent = `${(prob * 100).toFixed(1)}`;
   const preset = Controls.PRESETS.find((p) => p.mu === mu && p.sigma === sigma);
   const emoji = preset ? preset.label : '';
 
   const probTexts = {
-    less: `\\mathbb{P}(T \\leq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
-    greater: `\\mathbb{P}(T \\geq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
-    between: `\\mathbb{P}(${a} \\leq T \\leq ${b} \\mid ${emoji}) = ${probPercent}\\%`,
+    less: `\\mathbb{P}(${randomVar} \\leq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
+    greater: `\\mathbb{P}(${randomVar} \\geq ${a} \\mid ${emoji}) = ${probPercent}\\%`,
+    between: `\\mathbb{P}(${a} \\leq ${randomVar} \\leq ${b} \\mid ${emoji}) = ${probPercent}\\%`,
   };
 
   const renderedMath = katex.renderToString(probTexts[probType], { throwOnError: false });
