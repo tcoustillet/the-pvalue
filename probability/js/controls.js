@@ -7,56 +7,42 @@ const Controls = {
   PRESETS: [
     {
       label: '\u{1F1EB}\u{1F1F7}',
-      name: "qu'elle est de nationalité française",
-      name_2: 'français',
       mu: 170,
       sigma: 7,
       color: '#d62728',
     },
     {
       label: '\u{1F1EB}\u{1F1F7} \u{2640}',
-      name: "qu'il s'agit d'une femme française",
-      name_2: 'françaises',
       mu: 164,
       sigma: 7,
       color: '#4169E1',
     },
     {
       label: '\u{1F1EB}\u{1F1F7} \u{2642}',
-      name: "qu'il s'agit d'un homme français",
-      name_2: 'hommes français',
       mu: 176,
       sigma: 7,
       color: '#e377c2',
     },
     {
       label: '\u{1F1F8}\u{1F1EA} ',
-      name: "qu'elle est de nationalité suédoise",
-      name_2: 'suédois',
       mu: 174,
       sigma: 7,
       color: '#1f77b4',
     },
     {
       label: '\u{1F1F8}\u{1F1EA} \u{2640}',
-      name: "qu'il s'agit d'une femme suédoise",
-      name_2: 'suédoises',
       mu: 167,
       sigma: 7,
       color: '#2ca02c',
     },
     {
       label: '\u{1F1F8}\u{1F1EA} \u{2642}',
-      name: "qu'il s'agit d'homme suédois",
-      name_2: 'hommes suédois',
       mu: 181,
       sigma: 7,
       color: '#9467bd',
     },
     {
       label: '\u{1F1FA}\u{1F1F8} \u{2642} \u{1F3C0}',
-      name: "qu'il s'agit d'un basketteur américain",
-      name_2: 'basketteurs américains',
       mu: 199,
       sigma: 7,
       color: '#ff7f0e',
@@ -96,9 +82,19 @@ const Controls = {
    * Initializes the controls and binds event listeners.
    * @param {string} selector - CSS selector of the controls container.
    * @param {Function} onChange - Callback called with state on any change.
+   * @param {Object} config
+   * @param {string} config.sachant
+   * @param {string} config.conditions
+   * @param {string} config.groupLabels
    * @returns {Object} Initial state.
+   *
    */
-  init(selector, onChange) {
+  init(selector, onChange, config) {
+    this.PRESETS.forEach((preset, i) => {
+      preset.condition = config.conditions[i];
+      preset.groupLabel = config.groupLabels[i];
+    });
+
     const container = document.querySelector(selector);
     container.classList.add('controls-grid');
 
@@ -149,7 +145,7 @@ const Controls = {
     const middleCol = document.createElement('div');
     middleCol.classList.add('controls-col', 'controls-col--middle');
 
-    ['sachant', 'sachant', 'sachant'].forEach((text) => {
+    [config.sachant, config.sachant, config.sachant].forEach((text) => {
       const span = document.createElement('span');
       span.textContent = text;
       span.style.display = 'block';
@@ -204,6 +200,8 @@ const Controls = {
         mu: preset.mu,
         sigma: preset.sigma,
         color: preset.color,
+        condition: preset.condition,
+        groupLabel: preset.groupLabel,
         a: !isNaN(a) && a >= this.INPUT_MIN && a <= this.INPUT_MAX ? a : null,
         b: !isNaN(b) && b >= this.INPUT_MIN && b <= this.INPUT_MAX ? b : null,
       };

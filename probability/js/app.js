@@ -5,25 +5,33 @@
 document.addEventListener('DOMContentLoaded', () => {
   GaussianChart.init('#chart-container');
 
-  const initialState = Controls.init('#controls-container', (state) => {
-    const prob = GaussianChart.update(state);
-    updateDescription(state, prob);
-  });
+  const initialState = Controls.init(
+    '#controls-container',
+    (state) => {
+      const prob = GaussianChart.update(state);
+      updateDescription(state, prob, config);
+    },
+    config
+  );
 
   renderMathInElement(document.getElementById('controls-container'), {
     delimiters: [{ left: '$', right: '$', display: false }],
   });
 
   const prob = GaussianChart.update(initialState);
-  updateDescription(initialState, prob);
+  updateDescription(initialState, prob, config);
 });
 
 /**
  * Updates the dynamic description paragraph below the chart.
  * @param {Object} state - Current controls state.
  * @param {number|null} prob - Computed probability.
+ * @param {Object} config
+ * @param {Function} config.textLess
+ * @param {Function} config.textGreater
+ * @param {Function} config.textBetween
  */
-function updateDescription(state, prob) {
+function updateDescription(state, prob, config) {
   const description = document.querySelector('#chart-description');
   if (!description) return;
 
@@ -32,7 +40,7 @@ function updateDescription(state, prob) {
     return;
   }
 
-  const { probType, mu, sigma, a, b } = state;
+  const { probType, mu, sigma, a, b, condition, groupLabel } = state;
   const probPercent = `${(prob * 100).toFixed(1)}`;
   const preset = Controls.PRESETS.find((p) => p.mu === mu && p.sigma === sigma);
   const emoji = preset ? preset.label : '';
@@ -46,12 +54,9 @@ function updateDescription(state, prob) {
   const renderedMath = katex.renderToString(probTexts[probType], { throwOnError: false });
 
   const naturalTexts = {
-    less: `La probabilité qu'une personne tirée au hasard mesure moins de ${a} cm, sachant ${preset.name}, est de ${probPercent}%. 
-    Autrement dit, ${probPercent}% des ${preset.name_2} mesurent moins de ${a} cm.`,
-    greater: `La probabilité qu'une personne tirée au hasard mesure plus de ${a} cm, sachant ${preset.name}, est de ${probPercent}%. 
-    Autrement dit, ${probPercent}% des ${preset.name_2} mesurent plus de ${a} cm.`,
-    between: `La probabilité qu'une personne tirée au hasard mesure entre ${a} cm et ${b} cm, sachant ${preset.name}, est de ${probPercent}%.
-    Autrement dit, ${probPercent}% des ${preset.name_2} mesurent entre ${a} cm et ${b} cm.`,
+    less: config.textLess(a, condition, groupLabel, probPercent),
+    greater: config.textGreater(a, condition, groupLabel, probPercent),
+    between: config.textBetween(a, b, condition, groupLabel, probPercent),
   };
 
   description.innerHTML = `
@@ -59,5 +64,3 @@ function updateDescription(state, prob) {
     <p>${naturalTexts[probType]}</p>
   `;
 }
-
-init();
