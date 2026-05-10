@@ -1,43 +1,3 @@
-// --- Data ---
-
-const EYE_COLORS = {
-  brun: 'bruns',
-  vert: 'verts',
-  bleu: 'bleus',
-};
-
-const GROUPS = [
-  { name: 'child', label: "Couleur des yeux de l'enfant", parent: false },
-  { name: 'parent1', label: 'Parent 1', parent: true },
-  { name: 'parent2', label: 'Parent 2', parent: true },
-];
-
-function buildHypothesis(key) {
-  const [p1, p2] = key.split('-');
-  if (p1 === p2) {
-    return {
-      h0: `$H_0$ : Les deux parents ont les yeux ${EYE_COLORS[p1]}.`,
-      h1: `$H_1$ : L'un des deux parents au moins n'a pas les yeux ${EYE_COLORS[p1]}.`,
-    };
-  }
-  const other = Object.keys(EYE_COLORS).find((c) => c !== p1 && c !== p2);
-  return {
-    h0: `$H_0$ : Le couple est composé d'un parent aux yeux ${EYE_COLORS[p1]} et d'un parent aux yeux ${EYE_COLORS[p2]}.`,
-    h1: `$H_1$ : Les deux parents ont les yeux de la même couleur, ou bien au moins l'un des deux a les yeux ${EYE_COLORS[other]}.`,
-  };
-}
-
-function buildConclusion(child, h0, h1, pct) {
-  const label = EYE_COLORS[child];
-  const h0_f = `l${h0.slice(9, -1)}`;
-  const h1_f = `l${h1.slice(9, -1)}`;
-  const decision =
-    pct >= 5
-      ? `Ainsi, comme p ≥ 5%, alors le résultat n'est pas extraordianire dans le monde où $H_0$ est vraie. Il n'y a pas de raisons de rejetter $H_0$ et basculer vers $H_1$. On pourra conclure : ${h0_f}.`
-      : `Ainsi, comme p < 5%, alors le résultat est extraordianire dans le monde où $H_0$ est vraie. Nous avons suffisamment de preuves pour basculer vers $H_1$. On rejette $H_0$ (${h0_f}) et on concluera : ${h1_f}.`;
-  return `La probabilité que l'enfant ait les yeux ${label}, sachant que ${h0_f} est de $${pct}\\%$ (Figure 1). Cette probabilité est exactement ce qu'on a appelé p-value dans le cadre de cet exercice. ${decision}`;
-}
-
 // Simplified dominant/recessive probability table
 // Key: "parent1EyeColor-parent2EyeColor"
 // Value: { brun, vert, bleu } probabilities (must sum to 1)
@@ -56,7 +16,7 @@ const PROBABILITY_DATA = {
 const PROBABILITY_TABLE = Object.fromEntries(
   Object.entries(PROBABILITY_DATA).map(([key, probs]) => [
     key,
-    { ...probs, ...buildHypothesis(key) },
+    { ...probs, ...LANG.buildHypothesis(key) },
   ])
 );
 
@@ -75,7 +35,7 @@ function buildRadioGroup({ name, label }) {
   optionsWrapper.classList.add('eyes__options');
   fieldset.appendChild(optionsWrapper);
 
-  Object.keys(EYE_COLORS).forEach((color) => {
+  Object.keys(LANG.eyeColors).forEach((color) => {
     const labelEl = document.createElement('label');
     labelEl.classList.add('eyes__option');
 
@@ -86,11 +46,11 @@ function buildRadioGroup({ name, label }) {
     input.addEventListener('change', onSelectionChange);
 
     const img = document.createElement('img');
-    img.src = `../fr/figures/oeil_${color}.png`;
-    img.alt = `${capitalize(color)} eye`;
+    img.src = `${LANG.figuresPath}/oeil_${color}.png`;
+    img.alt = `${LANG.eyeColorLabels[color]} eye`;
     img.classList.add('eyes__option-img');
 
-    labelEl.append(` ${capitalize(color)}`);
+    labelEl.append(` ${LANG.eyeColorLabels[color]}`);
     labelEl.appendChild(img);
     labelEl.appendChild(input);
     optionsWrapper.appendChild(labelEl);
@@ -99,9 +59,6 @@ function buildRadioGroup({ name, label }) {
   return fieldset;
 }
 
-const PARENTS_LABEL_LATEX = 'Hypothèse nulle $H_0$';
-const PARENTS_SUBTITLE = 'Couleur des yeux des parents';
-
 function buildUI() {
   const container = document.getElementById('eyes-groups');
   const parentsBox = document.getElementById('eyes-parents');
@@ -109,19 +66,19 @@ function buildUI() {
   // Convert parentsBox to fieldset behavior via legend
   const parentsLegend = document.createElement('legend');
   parentsLegend.classList.add('eyes__legend');
-  parentsLegend.innerHTML = PARENTS_LABEL_LATEX;
+  parentsLegend.innerHTML = LANG.parentsLabelLatex;
   parentsBox.insertBefore(parentsLegend, parentsBox.firstChild);
 
   const parentsSubtitle = document.createElement('span');
   parentsSubtitle.classList.add('eyes__parents-subtitle');
-  parentsSubtitle.textContent = PARENTS_SUBTITLE;
+  parentsSubtitle.textContent = LANG.parentsSubtitle;
   parentsBox.appendChild(parentsSubtitle);
 
   // Fieldsets
   const parentsFieldsets = document.createElement('div');
   parentsFieldsets.classList.add('eyes__parents-fieldsets');
 
-  GROUPS.forEach(({ name, label, parent }) => {
+  LANG.groups.forEach(({ name, label, parent }) => {
     const fieldset = buildRadioGroup({ name, label });
     if (parent) {
       parentsFieldsets.appendChild(fieldset);
@@ -141,7 +98,7 @@ function buildUI() {
 // --- State Reader ---
 
 function getSelection() {
-  return GROUPS.reduce((acc, { name }) => {
+  return LANG.groups.reduce((acc, { name }) => {
     const checked = document.querySelector(`input[name="${name}"]:checked`);
     acc[name] = checked ? checked.value : null;
     return acc;
@@ -173,7 +130,7 @@ function updateResult({ child, parent1, parent2 }) {
 
   h0.innerHTML = probs.h0;
   h1.innerHTML = probs.h1;
-  probability.innerHTML = buildConclusion(child, probs.h0, probs.h1, pct);
+  probability.innerHTML = LANG.buildConclusion(child, probs.h0, probs.h1, pct);
 
   resultContainer.style.display = 'flex';
   els.forEach((el) => (el.style.display = 'block'));
