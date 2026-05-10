@@ -430,9 +430,15 @@
         <p>
           Par définition de la p-value, il nous <em>suffit</em> de calculer la probabilité de
           mesurer au moins 25 m sachant que l'on est un chêne (probabilité d'observer une valeur au
-          moins aussi extrême que celle observée sachant que $H_0$ est vraie). Mathématiquement, Eve
-          doit calculer $\mathbb{P}(H \ge 25 \mid \text{l'arbre est un chêne})$. Deux cas s'offrent
-          alors à elle :
+          moins aussi extrême que celle observée sachant que $H_0$ est vraie). Et, comme on l'a vu
+          dans la vignette précédente, calculer une telle probabilité revient à mesurer l'aire sous
+          la courbe de densité associée à la variable aléatoire représentant la hauteur des chênes.
+          Ici, cette aire est donc délimitée entre 25 et + &infin;. Pas d'inquiétude pour cette
+          borne supérieure infinie : puisque la hauteur suit une loi normale, les valeurs très
+          élevées sont extrêmement rares, et la courbe s'aplatit si rapidement vers l'axe horizontal
+          que l'aire au-delà d'un certain point devient totalement négligeable. Mathématiquement,
+          Eve doit calculer $\mathbb{P}(H \ge 25 \mid \text{l'arbre est un chêne})$. Deux cas
+          s'offrent alors à elle :
         </p>
         <ul class="center-list">
           <li>

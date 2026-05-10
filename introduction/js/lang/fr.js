@@ -59,5 +59,5 @@ LANG.treeConclusion = {
   formula: (threshold, pct) =>
     `$\\text{p-value} \\coloneqq P(H \\geq ${threshold} \\mid \\text{l'arbre est un chêne}) = {\\color{green}\\boldsymbol{${pct}\\%}}$`,
   descriptionText: (threshold, pct, raw, conclusion) =>
-    `La probabilité qu'un arbre mesure plus de ${threshold} m, sachant (en croyant) que c'est un chêne, est de ${pct}%. Cette probabilité est précisément la définition de la p-value : ici donc p = ${raw}. ${conclusion}`,
+    `La probabilité qu'un arbre mesure plus de ${threshold} m, sachant (en croyant) que c'est un chêne, est de ${pct}%. Cette probabilité est précisément la définition de la p-value : ici donc p = ${raw}. Cela signifie que l'aire sous la courbe entre ${threshold} et + &infin; représente ${pct}% de l'aire totale qui, elle, regroupe toutes les hauteurs possibles (univers). ${conclusion}`,
 };
