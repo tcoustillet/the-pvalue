@@ -403,7 +403,7 @@
         <p>
           Prenons un exemple qui reprend cette fois-ci la vraie définition de la p-value :
           $\text{p-value} \coloneqq \mathbb{P}(X \geq X_{\text{observé}} \mid H_0 \text{ vraie})$.
-          Grace se promène dans une forêt composée exclusivement de chênes et de hêtres, elle se
+          Eve se promène dans une forêt composée exclusivement de chênes et de hêtres, elle se
           trouve actuellement dans une zone riche en chênes mais elle observe un arbre qui a l'air
           d'être plus grand que les autres et se demande si ce n'est pas un hêtre, les hêtres étant
           en moyenne plus hauts que les chênes. La question qu'elle se pose est : comment puis-je
@@ -419,20 +419,20 @@
         $$\begin{align*} & H_0 : \text{L'arbre est un chêne} \\ & H_1 : \text{L'arbre est un hêtre}
         \end{align*} $$
         <p>
-          En premier lieu, Grace a besoin de définir son hypothèse nulle $H_0$, c'est-à-dire de
+          En premier lieu, Eve a besoin de définir son hypothèse nulle $H_0$, c'est-à-dire de
           connaitre la hauteur normale que devrait avoir un chêne. D'après son papa garde-forestier,
           la distribution de la hauteur des chênes de cette forêt (en m.)
           <em>suit</em> une loi normale de moyenne $\mu = 18$ et d'écart-type $\sigma = 4$. Soit
           alors $H$ la variable aléatoire qui décrit la hauteur d'un arbre de cette forêt. Supposons
-          que l'arbre de Grace mesure 25 m, et essayons de deviner l'espèce en utilisant la méthode
-          de la p-value.
+          que l'arbre de Eve mesure 25 m, et essayons de deviner l'espèce en utilisant la méthode de
+          la p-value.
         </p>
         <p>
           Par définition de la p-value, il nous <em>suffit</em> de calculer la probabilité de
           mesurer au moins 25 m sachant que l'on est un chêne (probabilité d'observer une valeur au
-          moins aussi extrême que celle observée sachant que $H_0$ est vraie). Mathématiquement,
-          Grace doit calculer $\mathbb{P}(H \ge 25 \mid \text{l'arbre est un chêne})$. Deux cas
-          s'offrent alors à elle :
+          moins aussi extrême que celle observée sachant que $H_0$ est vraie). Mathématiquement, Eve
+          doit calculer $\mathbb{P}(H \ge 25 \mid \text{l'arbre est un chêne})$. Deux cas s'offrent
+          alors à elle :
         </p>
         <ul class="center-list">
           <li>
@@ -448,14 +448,14 @@
             de mesurer au moins 25 m si c'est un chêne : si c'était vraiment un chêne, ce résultat
             était probable,
             <strong>ordinaire</strong>. Il n'y a pas assez de preuves pour rejetter $H_0$ et
-            basculer vers $H_1$. Grace va donc conclure que l'arbre est un chêne.
+            basculer vers $H_1$. Eve va donc conclure que l'arbre est un chêne.
           </li>
         </ul>
         <p>
           Je vous propose de réaliser vous même le test : regardez quelle est la probabilité de
           mesurer plus que 25 m sachant que l'on est un chêne. Vous pouvez aussi tester d'autres
-          valeurs et définir le seuil critique : à partir de quelle hauteur Grace doit considérer
-          que les arbres sont des hêtres ?
+          valeurs et définir le seuil critique : à partir de quelle hauteur Eve doit considérer que
+          les arbres sont des hêtres ?
         </p>
         <div id="controls-container"></div>
         <div id="chart-container"></div>
@@ -486,15 +486,15 @@
         <p>
           La probabilité de mesurer au moins 24,58 m sachant que l'on est un chêne est précisément
           égale à 5%. Cette hauteur définit donc la frontière entre les deux mondes $H_0$ et $H_1$
-          (être un chêne ou un hêtre). Lorsque Grace regarde la hauteur d'un arbre, si celle-ci est
+          (être un chêne ou un hêtre). Lorsque Eve regarde la hauteur d'un arbre, si celle-ci est
           strictement supérieure à 24,58 m alors elle rejette $H_0$ (l'arbre est un chêne) et
           conclue que l'arbre est un hêtre puisque le résultat tombe dans la zone de rejet
           (c'est-à-dire qu'il y avait moins de 5% de chances d'observer un résultat au moins aussi
           extrême si c'était un chêne). Si la hauteur de l'arbre est plus petite ou égale que 24,58
-          m, Grace ne peut pas rejetter $H_0$ puisque le résultat est en dehors de la zone de rejet
+          m, Eve ne peut pas rejetter $H_0$ puisque le résultat est en dehors de la zone de rejet
           (c'est-à-dire qu'il y avait plus de 5% de chances d'observer un résultat au moins aussi
           extrême en considérant que l'arbre est un chêne). Pour résumer : si l'arbre mesure 24,58 m
-          ou moins, Grace conclue que c'est un chêne, sinon elle conclue que c'est un hêtre.
+          ou moins, Eve conclue que c'est un chêne, sinon elle conclue que c'est un hêtre.
         </p>
         <h4>Le risque de première espèce</h4>
         <p>
@@ -502,16 +502,16 @@
           la probabilité qu'un arbre mesure au moins 24,58 m sachant que c'est un chêne est égale à
           5%. Comme on l'a vu dans la précédente vignette, une autre manière d'interpréter ce
           résultat consiste à dire que 5% des chênes mesurent plus que 24,58 m. Ainsi, si à chaque
-          arbre rencontré, Grace applique son raisonnement basé sur la p-value, elle classifiera
-          tous les arbres mesurant plus de 24,58 m comme étant des hêtres. Mais il y a précisément
-          5% des chênes qui mesurent vraiment plus de 24,58 m ! Elle se trompera donc dans 5% des
-          cas : en appliquant cette méthode sur 1 000 arbres mesurant plus de 24,58 m, les 1 000
-          seront classés comme étant des hêtres alors que 50 sont en fait des grands chênes ! En
-          prenant un seuil de 5% pour différencier l'ordinaire de l'extraordinaire, le risque de
-          rejeter l'hypothèse nulle $H_0$ à tort, c'est-à-dire de la rejetter alors qu'elle est
-          vraie (classer un arbre comme un hêtre alors que c'est un chêne) est appelé risque de
-          première espèce &mdash; ou risque $\alpha$ &mdash; et vaut exactement 5%, mais ça, c'est
-          une autre histoire...
+          arbre rencontré, Eve applique son raisonnement basé sur la p-value, elle classifiera tous
+          les arbres mesurant plus de 24,58 m comme étant des hêtres. Mais il y a précisément 5% des
+          chênes qui mesurent vraiment plus de 24,58 m ! Elle se trompera donc dans 5% des cas : en
+          appliquant cette méthode sur 1 000 arbres mesurant plus de 24,58 m, les 1 000 seront
+          classés comme étant des hêtres alors que 50 sont en fait des grands chênes ! En prenant un
+          seuil de 5% pour différencier l'ordinaire de l'extraordinaire, le risque de rejeter
+          l'hypothèse nulle $H_0$ à tort, c'est-à-dire de la rejetter alors qu'elle est vraie
+          (classer un arbre comme un hêtre alors que c'est un chêne) est appelé risque de première
+          espèce &mdash; ou risque $\alpha$ &mdash; et vaut exactement 5%, mais ça, c'est une autre
+          histoire...
         </p>
       </div>
     </main>

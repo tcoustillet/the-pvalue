@@ -48,7 +48,7 @@ const Controls = {
 
     const sentenceEl = document.createElement('span');
     sentenceEl.classList.add('controls__sentence');
-    sentenceEl.innerHTML = `$\\text{Hauteur } H \\text{ de l'arbre (m)}:$`;
+    sentenceEl.innerHTML = LANG.controlTreeSentence;
 
     renderMathInElement(sentenceEl, {
       delimiters: [

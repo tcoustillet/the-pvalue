@@ -54,7 +54,7 @@ const GaussianChart = {
       .attr('text-anchor', 'middle')
       .attr('x', innerWidth / 2)
       .attr('y', innerHeight + margin.bottom - 20)
-      .text("Taille de l'arbre (m)");
+      .text(LANG.chart.xLabel);
 
     // Y axis label
     this.svg
@@ -64,7 +64,7 @@ const GaussianChart = {
       .attr('transform', `rotate(-90)`)
       .attr('x', -innerHeight / 2)
       .attr('y', -margin.left + 10)
-      .text('Densité');
+      .text(LANG.chart.yLabel);
 
     this.svg.append('line').attr('class', 'critical-line');
     this.svg.append('rect').attr('class', 'critical-area');
@@ -91,7 +91,7 @@ const GaussianChart = {
       .attr('type', 'checkbox')
       .attr('id', 'toggle-critical');
 
-    checkboxWrapper.append('xhtml:span').text('Afficher la zone de rejet de H\u2080');
+    checkboxWrapper.append('xhtml:span').text(LANG.chart.checkboxLabel);
 
     checkbox.on('change', () => this._lastUpdate && this.update(...this._lastUpdate));
   },
@@ -274,7 +274,7 @@ const GaussianChart = {
       .attr('fill', '#d62728')
       .attr('font-size', '0.75rem')
       .attr('font-weight', '600')
-      .text(`Zone de rejet de H\u2080`);
+      .text(LANG.chart.criticalZoneLabel);
 
     g.append('text')
       .attr('x', boxX)
@@ -307,7 +307,7 @@ const GaussianChart = {
       .attr('fill', '#d62728')
       .attr('font-size', '0.75rem')
       .attr('font-weight', '600')
-      .text('Résultat extraordinaire');
+      .text(LANG.chart.extraordinaryLabel);
 
     const line2 = g2
       .append('text')
@@ -317,8 +317,9 @@ const GaussianChart = {
       .attr('fill', '#d62728')
       .attr('font-size', '0.75rem');
 
-    line2.append('tspan').text('Hauteur ');
-    line2.append('tspan').attr('font-weight', '600').text('H');
-    line2.append('tspan').text(` critique : ${x0.toFixed(2)} m`);
+    const ch = LANG.chart.criticalHeight;
+    line2.append('tspan').text(ch.before);
+    line2.append('tspan').attr('font-weight', '600').text(ch.variable);
+    line2.append('tspan').text(ch.after(x0));
   },
 };
