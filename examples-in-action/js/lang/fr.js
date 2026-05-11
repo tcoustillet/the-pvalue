@@ -23,4 +23,4 @@ LANG.pvalueHigh = (H0, H1, pGte) =>
   `Étant donné que ${pGte} : le résultat obtenu n'est pas extraordinaire dans le monde de ${H0}. Nous n'avons pas amassé suffisament de preuves pour basculer vers ${H1} et conclure que la pièce est truquée en faveur du côté face : nous devons rester dans ${H0}. Soit notre pièce n'est pas truquée en faveur du côté face, soit elle l'est mais nous n'en avons pas la preuve.`;
 
 LANG.pvalueLow = (H0, H1, pLt) =>
-  `Étant donné que ${pLt} : le résultat obtenu est extraordinaire dans le monde de ${H0}. Si la pièce était vraiment équilibrée, observer ce résultat aurait été trop peu probable. Avec un niveau de preuve suffisant, on bascule vers ${H1} : on peut raisonnablement croire que notre est pièce est truquée en faveur du côté face.`;
+  `Étant donné que ${pLt} : le résultat obtenu est extraordinaire dans le monde de ${H0}. Si la pièce était vraiment équilibrée, observer ce résultat aurait été trop peu probable. Avec un niveau de preuve suffisant, on bascule vers ${H1} : on peut raisonnablement croire que notre pièce est truquée en faveur du côté face.`;

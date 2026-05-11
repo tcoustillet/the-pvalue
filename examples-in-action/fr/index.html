@@ -141,9 +141,13 @@
           peu moins probable et arrive dans 16% des cas, comme obtenir 9 faces et 11 piles. Ainsi,
           lorsqu'on lance une pièce équilibrée 20 fois, nous avons presque deux fois plus de chances
           de faire 11 piles et 9 faces (16%) ou 9 piles et 11 faces (16%) que 10 piles et 10 faces
-          (17,6%). La distribution de probabilité de la variable aléatoire $F$ comptabilisant le
-          nombre de faces que l'on peut espérer obtenir lorsqu'on lance 20 fois une pièce équilibrée
-          est représentée sur la Figure 1.
+          (17,6%). 32% de chances contre 17,6%. Mais alors, comment décider qu'un résultat sort de
+          la norme ? La réponse est maintenant évidente : en utilisant la p-value.
+        </p>
+        <p>
+          La distribution de probabilité de la variable aléatoire $F$ comptabilisant le nombre de
+          faces que l'on peut espérer obtenir lorsqu'on lance 20 fois une pièce équilibrée est
+          représentée sur la Figure 1.
         </p>
         <figure>
           <img src="figures/figure_1.png" alt="Pièce équilibrée" />
@@ -177,7 +181,15 @@
           Juste pour la beauté des maths, cette formule peut s'écrire : $$ \text{p-value} \coloneqq
           \sum_{i=15}^{20} \mathbb{P}(F = i \mid \text{pièce équilibrée}) $$
         </p>
-        <p>La Figure 2 représente cette quantité et ce qu'est visuellement la p-value.</p>
+        <p>
+          La Figure 2 représente cette quantité et ce qu'est visuellement la p-value. Ici, puisque
+          la variable aléatoire $F$ est <strong>discrète</strong> (on peut compter les valeurs
+          qu'elle peut prendre), la p-value ne correspond pas à une aire entre deux bornes sous une
+          courbe continue &mdash; la densité de probabilité &mdash; mais à la somme de la hauteur
+          des barres de l'histogramme pour toutes les valeurs de 15 à 20. L'<strong>univers</strong>
+          des valeurs possibles étant {0, 1, …, 20}, la somme de <strong>toutes</strong> les
+          hauteurs des barres vaut bien 100%.
+        </p>
         <figure>
           <img src="figures/figure_2.png" alt="p-value 15 faces" />
           <figcaption>
@@ -206,7 +218,8 @@
           monde où $H_0$ est vraie, dans le monde où ma pièce est équilibrée, il ne serait pas
           raisonnable de l'attribuer au hasard. Le monde où $H_0$ est vraie, celui où ma pièce est
           équilibrée, ne colle tout simplement pas avec ce que j'observe. Je dois rejetter mon
-          hypothèse nulle et basculer vers $H_1$ : ma pièce est truquée.&nbsp;&raquo;
+          hypothèse nulle et basculer vers $H_1$ : ma pièce est truquée vers le côté
+          face.&nbsp;&raquo;
         </p>
         <p>
           Si la pièce est vraiment truquée, Franck a pris la bonne décision. Par contre, dans un
@@ -227,6 +240,41 @@
         <div id="controls-container"></div>
         <div id="chart-container"></div>
         <p id="chart-description"></p>
+
+        <h4>Point d'attention</h4>
+        <p>
+          Lorsque le nombre de faces obtenu est très faible et tend vers 0, la p-value est grande et
+          tend vers 1 : l'hypothèse nulle ne peut alors pas être rejetée (p ≥ 0.05). Mais attention,
+          cela ne signifie pas que la pièce est forcément équilibrée. Puisque $H_0$ et $H_1$ sont
+          strictement opposées, la bonne conclusion est bien :
+          <strong>la pièce n'est pas truquée vers le côté face</strong> &mdash; elle peut donc être
+          soit équilibrée, soit truquée vers le côté pile.
+        </p>
+        <p>
+          Par exemple, obtenir seulement 19 faces sur 60 lancers donne $p = 0.999 \gg 0.05$, ce qui
+          confirme que la pièce ne penche pas vers les faces et qu'elle n'est donc pas truquée en
+          faveur de ce côté. Au contraire, la pièce a même l'air de pencher vers le côté pile : 19
+          faces sur 60 lancers, c'est donc 41 piles. Or, si l'on avait observé 41 <em>faces</em> sur
+          60 lancers d'une pièce supposée équilibrée, on aurait obtenu $p = 0.002 &lt; 0.05$ &mdash;
+          un résultat qui nous aurait amené à conclure que la pièce est truquée en faveur du côté
+          face. Par symétrie, on peut donc conclure ici que
+          <strong>la pièce est vraisemblablement truquée vers le côté pile</strong>.
+        </p>
+        <p>
+          C'est précisément pour éviter ce type de raisonnement indirect que l'on distingue en
+          pratique deux grandes familles de tests. Dans un <strong>test unilatéral</strong>, on
+          cherche un effet dans une direction précise : par exemple, la pièce est-elle truquée
+          <em>en faveur du côté face</em> ? Dans un <strong>test bilatéral</strong>, on ne
+          privilégie aucune direction et l'on cherche simplement à savoir si la pièce est truquée,
+          <em>dans un sens ou dans l'autre</em>. Dans notre exemple, nous avons choisi un test
+          unilatéral avec une hypothèse alternative allant dans une seule direction &mdash; en nous
+          demandant uniquement si la pièce était truquée vers les faces &mdash; par souci de
+          simplicité. Notre raisonnement est <strong>tout à fait</strong> correct, mais ne permet
+          juste pas de détecter si une pièce est truquée en faveur du côté pile. En fait, un test
+          bilatéral est souvent plus adapté lorsque l'on veut tester l'équilibre d'une pièce, car il
+          prend en compte les deux types de biais possibles sans avoir à raisonner par symétrie,
+          mais ça, c'est une autre histoire...
+        </p>
       </div>
     </main>
 
