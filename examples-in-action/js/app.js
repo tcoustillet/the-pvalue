@@ -40,8 +40,8 @@ function updateDescription(state, prob) {
 
   const formula =
     mode === 'eq'
-      ? `\\mathbb{P}(F = ${k} \\mid \\text{${LANG.fairCoin}}) = ${probPercent}\\%`
-      : `\\mathbb{P}(F \\geq ${k} \\mid \\text{${LANG.fairCoin}}) = ${probPercent}\\%`;
+      ? `\\mathbb{P}(${LANG.randomVar} = ${k} \\mid \\text{${LANG.fairCoin}}) = ${probPercent}\\%`
+      : `\\mathbb{P}(${LANG.randomVar} \\geq ${k} \\mid \\text{${LANG.fairCoin}}) = ${probPercent}\\%`;
 
   const renderedMath = katex.renderToString(formula, { throwOnError: false });
 

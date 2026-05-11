@@ -3,6 +3,7 @@ const LANG = {
   xAxisLabel: 'Nombre de faces',
   yAxisLabel: 'Probabilité',
   fairCoin: 'pièce équilibrée',
+  randomVar: 'F',
 };
 
 LANG.faces = (k) => (k > 1 ? 'faces' : 'face');

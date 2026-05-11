@@ -84,11 +84,11 @@ const Controls = {
           <div class="mode-radios">
             <label>
               <input type="radio" class="mode-radio" name="mode" value="${this.MODE_EQ}" checked>
-              ${katex.renderToString('\\mathbb{P}(F = k)', { throwOnError: false })}
+              ${katex.renderToString(`\\mathbb{P}(${LANG.randomVar} = k)`, { throwOnError: false })}
             </label>
             <label>
               <input type="radio" class="mode-radio" name="mode" value="${this.MODE_GTE}">
-              ${katex.renderToString('\\mathbb{P}(F \\geq k)', { throwOnError: false })}
+              ${katex.renderToString(`\\mathbb{P}(${LANG.randomVar} \\geq k)`, { throwOnError: false })}
             </label>
           </div>
           <div class="k-input-row">
