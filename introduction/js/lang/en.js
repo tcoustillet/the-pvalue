@@ -55,7 +55,7 @@ LANG.treeConclusion = {
   conclusionOrdinary: (threshold) =>
     `Since p-value ≥ 0.0500, this result is ordinary in a world where $H_0$ is true: the fact that an oak tree measures ${threshold} m is not extraordinary, observing this result or a more extreme one is not unlikely. There is not enough evidence to switch to $H_1$: Eve cannot reject $H_0$ and conclude the tree is a beech; she must conclude it is an oak.`,
   conclusionExtraordinary: (threshold) =>
-    `Since p-value < 0.0500, this result is extraordinary in a world where $H_0$ is true: if the tree was truly an oak, observing this result (measuring ${threshold} m) or something as extreme would have been too unlikely. We consider that sufficient evidence has been reached to reject $H_0$ and switch to $H_1$: Eve can conclude the tree is a beech.`,
+    `Since p-value < 0.0500, this result is extraordinary in a world where $H_0$ is true: if the tree were truly an oak, observing this result (measuring ${threshold} m) or something as extreme would have been too unlikely. We consider that sufficient evidence has been reached to reject $H_0$ and switch to $H_1$: Eve can conclude the tree is a beech.`,
   formula: (threshold, pct) =>
     `$\\text{p-value} \\coloneqq P(H \\geq ${threshold} \\mid \\text{the tree is an oak}) = {\\color{green}\\boldsymbol{${pct}\\%}}$`,
   descriptionText: (threshold, pct, raw, conclusion) =>
