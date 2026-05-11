@@ -59,5 +59,5 @@ LANG.treeConclusion = {
   formula: (threshold, pct) =>
     `$\\text{p-value} \\coloneqq P(H \\geq ${threshold} \\mid \\text{the tree is an oak}) = {\\color{green}\\boldsymbol{${pct}\\%}}$`,
   descriptionText: (threshold, pct, raw, conclusion) =>
-    `The probability that a tree measures more than ${threshold} m, assuming it is an oak, is ${pct}%. This probability is precisely the definition of the p-value: here p = ${raw}. ${conclusion}`,
+    `The probability that a tree measures more than ${threshold} m, assuming it is an oak, is ${pct}%. This probability is precisely the definition of the p-value: here p = ${raw}. This means that the area under the curve between ${threshold} and + &infin; represents ${pct}% of the total area, which encompasses all possible heights (the sample space). ${conclusion}`,
 };
