@@ -25,16 +25,16 @@ const Controls = {
     const container = document.querySelector(selector);
     container.innerHTML = this._template();
 
-    const sliderN    = container.querySelector('.n-slider');
+    const sliderN = container.querySelector('.n-slider');
     const sliderNVal = container.querySelector('.n-value');
-    const sliderK    = container.querySelector('.k-slider');
-    const inputK     = container.querySelector('.k-input');
-    const radios     = container.querySelectorAll('.mode-radio');
+    const sliderK = container.querySelector('.k-slider');
+    const inputK = container.querySelector('.k-input');
+    const radios = container.querySelectorAll('.mode-radio');
 
     const getState = () => {
-      const n    = parseInt(sliderN.value);
-      const raw  = parseInt(inputK.value);
-      const k    = !isNaN(raw) && raw >= 0 && raw <= n ? raw : null;
+      const n = parseInt(sliderN.value);
+      const raw = parseInt(inputK.value);
+      const k = !isNaN(raw) && raw >= 0 && raw <= n ? raw : null;
       const mode = container.querySelector('.mode-radio:checked').value;
       return { n, p: this.P_DEFAULT, k, mode };
     };
@@ -43,9 +43,9 @@ const Controls = {
       const n = parseInt(sliderN.value);
       sliderNVal.textContent = n;
       sliderK.max = n;
-      inputK.max  = n;
+      inputK.max = n;
       if (parseInt(inputK.value) > n) {
-        inputK.value  = n;
+        inputK.value = n;
         sliderK.value = n;
       }
       onChange(getState());
@@ -58,12 +58,12 @@ const Controls = {
 
     inputK.addEventListener('input', () => {
       const raw = parseInt(inputK.value);
-      const n   = parseInt(sliderN.value);
+      const n = parseInt(sliderN.value);
       if (!isNaN(raw) && raw >= 0 && raw <= n) sliderK.value = raw;
       onChange(getState());
     });
 
-    radios.forEach(r => r.addEventListener('change', () => onChange(getState())));
+    radios.forEach((r) => r.addEventListener('change', () => onChange(getState())));
 
     return getState();
   },
@@ -77,7 +77,7 @@ const Controls = {
     return `
       <div class="controls-grid">
         <div class="controls-col">
-          <label>Nombre de lancers : <span class="n-value">${this.N_DEFAULT}</span></label>
+          <label>${LANG.nSliderLabel}<span class="n-value">${this.N_DEFAULT}</span></label>
           <input type="range" class="n-slider" min="${this.N_MIN}" max="${this.N_MAX}" value="${this.N_DEFAULT}">
         </div>
         <div class="controls-col">
@@ -99,5 +99,5 @@ const Controls = {
         </div>
       </div>
     `;
-  }
+  },
 };

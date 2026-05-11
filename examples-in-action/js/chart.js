@@ -45,7 +45,7 @@ const BinomialChart = {
       .attr('text-anchor', 'middle')
       .attr('x', innerWidth / 2)
       .attr('y', innerHeight + margin.bottom - 5)
-      .text('Nombre de faces');
+      .text(LANG.xAxisLabel);
 
     // Y axis label
     this.svg
@@ -55,7 +55,7 @@ const BinomialChart = {
       .attr('transform', `rotate(-90)`)
       .attr('x', -innerHeight / 2)
       .attr('y', -margin.left + 10)
-      .text('Probabilité');
+      .text(LANG.yAxisLabel);
   },
 
   /**
