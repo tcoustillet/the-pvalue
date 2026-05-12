@@ -1,29 +1,285 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <title>Beyond p-value</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Beyond p-value</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+        })
+      "
+    ></script>
+  </head>
+  <body>
+    <site-header show-back is-subpage lang="en"></site-header>
 
-  <site-header show-back is-subpage lang="en"></site-header>
+    <main class="page-content">
+      <div class="container">
+        <p>
+          The p-value is subject to numerous errors, misinterpretations, mistaken beliefs, and
+          cognitive biases. This section aims to demystify the most common pitfalls, dispel
+          misconceptions, and clarify what the p-value is and what it is not.
+        </p>
+        <h2>The p-value <u>is not</u> the probability of the null hypothesis $H_0$</h2>
+        <p>
+          Believing that the p-value represents the probability that the null hypothesis is true
+          given what has been observed is arguably the most common error &mdash; and the most human
+          one. In fact, it is natural, rather logical, and is precisely what one would want to know
+          and what our brain demands during an experiment. If one has an initial belief about the
+          world around us ($H_0$) and observes data (the result of the experiment), the most
+          instinctive question is indeed: &ldquo;&nbsp;In light of this result, what is the
+          probability that my initial hypothesis is true?&nbsp;&rdquo; But unfortunately, in the
+          context of the p-value, mathematics does not allow us to answer this question. It closes
+          this door on us, but hands us the keys to another: &ldquo;&nbsp;What is the probability of
+          observing a result at least as extreme as the one observed, assuming that my initial
+          hypothesis is true?&nbsp;&rdquo; It is subtle, but that is precisely what the p-value is
+          &mdash; nothing more, nothing less.
+        </p>
+        <p>
+          Frustrating, but that is how it is! There is indeed a way of calculating the probability
+          that $H_0$ is true given the observed data &mdash; but it requires an additional
+          ingredient: being able to quantify how strongly one believes in $H_0$
+          <em>before even</em> collecting the data. Yet in experimental sciences in particular, this
+          initial belief is very often impossible to evaluate objectively &mdash; and without it,
+          there is no way of going further. This approach does nonetheless exist (because yes,
+          mathematics is remarkably well-designed), and it rests on the magnificent Bayes' theorem,
+          which proves extraordinarily powerful in certain contexts: it is this theorem that allows
+          one to turn the problem on its head and evaluate the probability that $H_0$ is true given
+          the observed data &mdash; but that is a story for another time...
+        </p>
+        <p>
+          To summarise: in an ideal world, one would calculate $\mathbb{P}(H_0 \mid \text{data})$
+          &mdash; the probability that our initial hypothesis, our initial belief, is true in light
+          of what has been observed. This is exactly what our brain demands, and it would be far
+          more satisfying. But experimental sciences condemn us to calculating something subtly
+          different: $\mathbb{P}(\text{data at least as extreme} \mid H_0)$ &mdash; the probability
+          of observing results as extreme as our own, assuming that $H_0$, our initial belief, is
+          true. These are not the same thing, and as we saw in our introduction to probabilities,
+          swapping these two quantities is a fundamental error. The p-value is a powerful tool
+          &mdash; provided one never loses sight of what it truly measures, and what it does not.
+        </p>
+        <h3>Proof by contradiction</h3>
+        <p>
+          Calculating a p-value is in a sense a proof by contradiction &mdash; a technique that is
+          used far more often than one might think in everyday life. The principle is simple: one
+          assumes something to be true, and checks whether what is observed is consistent with this
+          assumption. If the observations fit rather well, one retains the initial hypothesis
+          &mdash; not because it is necessarily true, but because there is no good reason to call it
+          into question; if the data contradict it too plainly, the initial hypothesis no longer
+          holds: one must let it go.
+        </p>
+        <p>
+          Imagine you are baking a cake for your child's birthday and you leave it to cool on the
+          table whilst stepping out of the room for a few minutes. When you return, the cake is no
+          longer whole. You assume that your dog Laska, an adorable little Australian shepherd, is
+          the culprit &mdash; this is your $H_0$. From there, you check whether the data fit this
+          hypothesis, and that is the only thing you can do: does the missing portion appear to have
+          been cut with a knife, or torn apart by the teeth of a hungry dog?
+        </p>
+        <p>
+          The edges are irregular and jagged, with teeth marks: the data are therefore consistent
+          with $H_0$ &mdash; Laska is not known for her mastery of cutlery. On the other hand, if
+          the cut had been clean and straight, the data would have contradicted $H_0$ and suspicion
+          would have naturally fallen on the child. That is proof by contradiction: a contradiction
+          that allows one to refute the initial hypothesis. Of course, one can never be 100% certain
+          &mdash; perhaps the child deliberately nibbled at the edges or avoided using a knife to
+          frame the dog. But here the data make certain hypotheses far more credible than others.
+          And that is precisely the reasoning the p-value carries out in practice: it does not
+          answer the question "What is the probability that Laska ate the slice of cake given that
+          there are teeth marks?" &mdash; that would be too good to be true. It answers the question
+          "If Laska had eaten the slice, what is the probability of observing such a cut with teeth
+          marks?" It is subtle, and that is where the whole difficulty lies: one never calculates
+          the probability that $H_0$ is true, only the <em>likelihood</em> of the data under $H_0$.
+          Two questions that look alike, but do not mean the same thing at all.
+        </p>
+        <div style="display: flex; justify-content: center">
+          <div>
+            <span style="margin-top: -20px; display: inline-block; position: relative">
+              $$\text{p-value} := \mathbb{P}(H_0 \mid \text{data})$$
+              <span
+                style="position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid black"
+              ></span>
+            </span>
+            <div style="margin-top: -30px">
+              $$\text{p-value} := \mathbb{P}(\text{data} \mid H_0 \text{ true})$$
+            </div>
+          </div>
+        </div>
+        <h2>Absence of evidence <u>is not</u> evidence of absence</h2>
+        <p>
+          Another very widespread belief is that if $H_0$ is not rejected (p ≥ 0.05), then it must
+          necessarily be true. In the context of scientific studies, one will often hear &mdash;
+          wrongly &mdash; that there is no difference between two groups because p ≥ 0.05. In
+          reality, when the null hypothesis $H_0$ is not rejected, there are indeed two possible
+          scenarios: either it is genuinely true, or it is false but we have not gathered sufficient
+          evidence to demonstrate it.
+        </p>
+        <p>
+          To bear this in mind, let us revisit the metaphor of extraterrestrial detection introduced
+          in the section &ldquo;&nbsp;Introduction to the p-value&nbsp;&rdquo;. If one defines $H_0$
+          as &ldquo;&nbsp;Extraterrestrials do not exist&nbsp;&rdquo; and one indeed observes no
+          extraterrestrials during an experiment, it would be rash and wrong to claim with certainty
+          that they do not exist. Two possibilities remain: either they truly do not exist, or they
+          do exist but we do not yet have proof of it. The correct way to conclude is to say
+          &ldquo;&nbsp;The experiment did not allow us to reject $H_0$&nbsp;&rdquo; or
+          &ldquo;&nbsp;The data do not provide sufficient evidence to reject $H_0$&nbsp;&rdquo;.
+          Thus, one must remain in the world of $H_0$, the one where extraterrestrials do not exist,
+          but this does not guarantee that this conclusion is correct, nor that the world of $H_1$
+          does not exist.
+        </p>
+        <p>
+          That said, there are situations where one has very good reasons &mdash; theoretical or
+          experimental &mdash; to believe that $H_0$ is genuinely true when p ≥ 0.05. Such a p-value
+          therefore confirms the null hypothesis, our initial belief. In this case, it becomes
+          reasonable and legitimate to conclude that there is no difference between two groups, for
+          instance, or that extraterrestrials do not exist. But bear in mind: it is not the p-value
+          that allows this conclusion &mdash; it is the broader scientific context that permits it.
+        </p>
+        <p>
+          When $H_0$ is not rejected, it is therefore essential to place this result in its
+          scientific context: is it because $H_0$ is genuinely true, or simply because the data are
+          not sufficient to contradict it? A sample that is too small, variability that is too
+          great, an ill-suited test &mdash; all reasons that can lead to failing to reject $H_0$,
+          not because it is true, but because the evidence is lacking. At that point, it is the
+          state of established knowledge that allows one to settle the matter.
+        </p>
+        <h3>The presumption of innocence</h3>
+        <p>
+          The p-value reasoning is comparable to the presumption of innocence: one always assumes
+          that $H_0$ is initially true (the person is innocent) until proven otherwise. When a
+          person is accused, they are <em>a priori</em> innocent; and sufficient evidence must be
+          accumulated in order to declare them guilty (shifting from $H_0$ to $H_1$). In many cases,
+          certain matters are &ldquo;&nbsp;dropped&nbsp;&rdquo;: this does
+          <strong>absolutely not</strong> mean that the person is innocent, but simply that the
+          evidence is not sufficient to establish their guilt. When a case is dropped, either the
+          person is innocent, or they are guilty but the evidence is lacking.
+        </p>
+        <p>
+          To summarise: a dropped case is therefore not equivalent to a declaration of innocence, or
+          in other words: absence of evidence is not evidence of absence
+        </p>
+        <h2>p = 0.049 <u>is not</u> radically different from p = 0.051</h2>
+        <figure>
+          <img src="../figures/meme_0049vs0051.png" alt="0.049 vs 0.051" />
+        </figure>
+        <p>
+          One might think that p = 0.051 and p = 0.049 are worlds apart. This is indeed the case to
+          a certain extent, since the former leads us to remain in the world of $H_0$ whilst the
+          latter allows us to shift towards that of $H_1$: at the end of the experiment, we are
+          indeed in two diametrically opposed worlds. Yet one must be fully aware that these two
+          numbers remain probabilities and therefore exist on a
+          <strong>continuum</strong>: a probability (including the p-value) as such is not a switch
+          that allows one to toggle between the worlds $H_0$ and $H_1$ &mdash; it is simply a
+          measure of the likelihood of a result in a given world. It is therefore difficult to argue
+          that an event with a 4.9% chance of occurring is fundamentally different from one with a
+          5.1% chance. I think we can all agree that such events <em>are</em> equally likely.
+        </p>
+        <p>
+          It is us, human beings &mdash; well, neither you nor I &mdash;, who decided to draw a
+          boundary between two probabilities. We have transformed an objective measure (a
+          probability) into a subjective binary conclusion: which world are we in? Yet this boundary
+          is by definition subjective, as it is set arbitrarily and rests on no law of nature.
+          Throughout our journey, we have used a threshold of 0.05 to move from $H_0$ to $H_1$, but
+          this choice was indeed an arbitrary convention: any other value could serve as the
+          boundary between the ordinary and the extraordinary. In disciplines that rely on the
+          p-value to draw conclusions, 0.05 is the most widespread convention &mdash; but it is not
+          uncommon to encounter studies that adopt a stricter threshold, such as 0.01, when the
+          stakes demand it.
+        </p>
+        <p>
+          The choice of the tipping point between the two worlds $H_0$ and $H_1$ is not trivial: all
+          the conclusions we have drawn so far rest on the convention of 0.05. Changing this tipping
+          point means changing the rules of the game &mdash; and therefore potentially changing the
+          conclusions. A result with p = 0.03 is extraordinary with a tipping point of 0.05, but no
+          longer is if it is moved to 0.01. Conversely, a result with p = 0.08 is ordinary at 0.05
+          but would become extraordinary if 0.10 were chosen as the tipping point. This is why it is
+          essential to always specify the chosen tipping point before conducting an analysis &mdash;
+          and above all not to choose it <em>after</em> having looked at the data, which would
+          amount to moving the finish line once the race is over. To illustrate this with the
+          examples encountered along our journey: with a boundary of 0.01, our conclusions collapse.
+          The coin we had declared biased no longer is &mdash; at least, we no longer have proof of
+          it. And the tree we had identified as a beech can no longer be considered as such. All of
+          this, without the data having changed one iota!
+        </p>
+        <p>
+          When one seeks to shift towards the world of $H_1$ and obtains a p-value of 0.051, the
+          situation can be frustrating if 0.05 had been chosen as the tipping point: we were only
+          0.002 away from being able to shift, and yet we are compelled to remain in $H_0$. Faced
+          with this situation, the temptation is great to conclude that the world of $H_1$ is
+          &ldquo;&nbsp;almost&nbsp;&rdquo; true. In the context of statistical tests, one may hear
+          expressions such as &ldquo;&nbsp;there is a trend&nbsp;&rdquo;. In both cases, these
+          expressions all convey the same reality: we were truly not far from shifting towards $H_1$
+          &mdash; but we did not shift. And in statistics, <em>almost</em> does not count: the
+          boundary has not been crossed and we must remain in $H_0$, whether we like it or not.
+        </p>
+        <p>
+          Actually, saying that we were not far from shifting towards $H_1$ is factually true but
+          does not change much. The threshold of 0.05 was defined precisely to make things binary:
+          either one is in $H_0$, or one is in $H_1$. There is unfortunately no in-between, no
+          &ldquo;&nbsp;almost $H_1$&nbsp;&rdquo;. This is moreover one of the fundamental criticisms
+          that can be levelled at the p-value: this binary nature is brutal, and it has no truly
+          satisfactory solution to this day.
+        </p>
+        <h3>The sudden darkness bias</h3>
+        <p>
+          The sudden darkness bias is the bias that leads us to perceive as a sharp break what is in
+          reality a continuous transition. In practice, night never falls all at once: the light
+          fades gradually, dusk sets in, then darkness gains ground little by little, without any
+          truly instantaneous shift. Yet at some point, one is compelled to set a threshold and say
+          &ldquo;&nbsp;it is dark&nbsp;&rdquo;. And yet, the brightness a few moments before and a
+          few moments after this threshold is in reality almost the same.
+        </p>
+        <p>
+          This problem is far more universal than it might seem and arises whenever humans impose an
+          arbitrary threshold on a continuous objective measure. Let us take the example of the age
+          of majority: in France, it is set at 18. Thus, a person aged 17 years and 11 months is a
+          minor, but a person aged 18 years and 1 month is an adult. Worse still: a person aged 17
+          years, 11 months, and 364 days is a minor, but a person aged 18 years, 0 months, and 1 day
+          is an adult. The gap between the two? 48 hours. Yet one can vote, get a tattoo, drive,
+          sign a contract &mdash; the other cannot. Thus, saying that a person aged 17 years, 11
+          months, and 364 days is &ldquo;&nbsp;almost an adult&nbsp;&rdquo; is factually true, but
+          opens no doors for them: in regulatory matters, as with the p-value, almost does not
+          count.
+        </p>
+        <p>
+          Everyday life is full of examples built on this effect. Scoring 9.99/20 or 10.01/20 in the
+          baccalauréat: factually, both pupils are at the same academic level &mdash; yet one leaves
+          with the diploma, the other does not. Luggage on a plane: a suitcase weighing 22.9 kg
+          theoretically costs nothing extra, whilst one weighing 23.1 kg may incur additional
+          charges. Yet these extra 200 grams change virtually nothing about the flight: neither fuel
+          consumption, nor safety, nor the comfort of the other passengers are perceptibly affected.
+          In all these cases, the boundary is a practical necessity because a decision must be made,
+          a choice taken. But reality itself cares nothing for our compromises: it is continuous,
+          infinitely more nuanced than the categories we impose upon it, and is utterly indifferent
+          to our arbitrary thresholds, which are nothing but conventions, not truths. One must never
+          forget that they are
+          <em>our</em> invention, not nature's. That is the price to pay for turning a complex world
+          into simple decisions.
+        </p>
+      </div>
+    </main>
 
-  <main class="page-content">
-    <div class="container">
-    </div>
-  </main>
+    <site-footer></site-footer>
 
-  <site-footer></site-footer>
-
-  <script src="../../js/site-header.js"></script>
-  <script src="../../js/site-footer.js"></script>
-  <script src="../../js/page-loader.js"></script>
-
-</body>
+    <script src="../../js/site-header.js"></script>
+    <script src="../../js/site-footer.js"></script>
+    <script src="../../js/page-loader.js"></script>
+  </body>
 </html>
