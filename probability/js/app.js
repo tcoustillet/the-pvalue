@@ -2,24 +2,27 @@
  * Entry point for the interactive Gaussian figure on test2.
  * Wires together the chart and the controls.
  */
+
 document.addEventListener('DOMContentLoaded', () => {
-  GaussianChart.init('#chart-container');
+  window.katexReady.then(() => {
+    GaussianChart.init('#chart-container');
 
-  const initialState = Controls.init(
-    '#controls-container',
-    (state) => {
-      const prob = GaussianChart.update(state);
-      updateDescription(state, prob, config);
-    },
-    config
-  );
+    const initialState = Controls.init(
+      '#controls-container',
+      (state) => {
+        const prob = GaussianChart.update(state);
+        updateDescription(state, prob, config);
+      },
+      config
+    );
 
-  renderMathInElement(document.getElementById('controls-container'), {
-    delimiters: [{ left: '$', right: '$', display: false }],
+    renderMathInElement(document.getElementById('controls-container'), {
+      delimiters: [{ left: '$', right: '$', display: false }],
+    });
+
+    const prob = GaussianChart.update(initialState);
+    updateDescription(initialState, prob, config);
   });
-
-  const prob = GaussianChart.update(initialState);
-  updateDescription(initialState, prob, config);
 });
 
 /**

@@ -165,5 +165,7 @@ function renderLatex(el) {
 // --- Init ---
 
 document.addEventListener('DOMContentLoaded', () => {
-  buildUI();
+  window.katexReady.then(() => {
+    buildUI();
+  });
 });

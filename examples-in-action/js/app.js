@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-  BinomialChart.init('#chart-container');
+  window.katexReady.then(() => {
+    BinomialChart.init('#chart-container');
 
-  const initialState = Controls.init('#controls-container', (state) => {
-    const prob = BinomialChart.update(state);
-    updateDescription(state, prob);
+    const initialState = Controls.init('#controls-container', (state) => {
+      const prob = BinomialChart.update(state);
+      updateDescription(state, prob);
+    });
+
+    const prob = BinomialChart.update(initialState);
+    updateDescription(initialState, prob);
   });
-
-  const prob = BinomialChart.update(initialState);
-  updateDescription(initialState, prob);
 });
 
 function updateDescription(state, prob) {

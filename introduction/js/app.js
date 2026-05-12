@@ -52,5 +52,7 @@ function updateDescription(mu, sigma, threshold) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  init();
+  window.katexReady.then(() => {
+    init();
+  });
 });
