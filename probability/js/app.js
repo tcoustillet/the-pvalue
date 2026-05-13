@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
       '#controls-container',
       (state) => {
         const prob = GaussianChart.update(state);
-        updateDescription(state, prob, config);
+        updateDescription(state, prob, LANG);
       },
-      config
+      LANG
     );
 
     renderMathInElement(document.getElementById('controls-container'), {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const prob = GaussianChart.update(initialState);
-    updateDescription(initialState, prob, config);
+    updateDescription(initialState, prob, LANG);
   });
 });
 
@@ -29,12 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
  * Updates the dynamic description paragraph below the chart.
  * @param {Object} state - Current controls state.
  * @param {number|null} prob - Computed probability.
- * @param {Object} config
- * @param {Function} config.textLess
- * @param {Function} config.textGreater
- * @param {Function} config.textBetween
+ * @param {Object} LANG
+ * @param {Function} LANG.textLess
+ * @param {Function} LANG.textGreater
+ * @param {Function} LANG.textBetween
  */
-function updateDescription(state, prob, config) {
+function updateDescription(state, prob, LANG) {
   const description = document.querySelector('#chart-description');
   if (!description) return;
 
@@ -44,7 +44,7 @@ function updateDescription(state, prob, config) {
   }
 
   const { probType, mu, sigma, a, b, condition, groupLabel } = state;
-  const randomVar = config.randomVarLabel;
+  const randomVar = LANG.randomVarLabel;
   const probPercent = `${(prob * 100).toFixed(1)}`;
   const preset = Controls.PRESETS.find((p) => p.mu === mu && p.sigma === sigma);
   const emoji = preset ? preset.label : '';
@@ -58,9 +58,9 @@ function updateDescription(state, prob, config) {
   const renderedMath = katex.renderToString(probTexts[probType], { throwOnError: false });
 
   const naturalTexts = {
-    less: config.textLess(a, condition, groupLabel, probPercent),
-    greater: config.textGreater(a, condition, groupLabel, probPercent),
-    between: config.textBetween(a, b, condition, groupLabel, probPercent),
+    less: LANG.textLess(a, condition, groupLabel, probPercent),
+    greater: LANG.textGreater(a, condition, groupLabel, probPercent),
+    between: LANG.textBetween(a, b, condition, groupLabel, probPercent),
   };
 
   description.innerHTML = `

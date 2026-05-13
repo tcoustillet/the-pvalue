@@ -82,17 +82,17 @@ const Controls = {
    * Initializes the controls and binds event listeners.
    * @param {string} selector - CSS selector of the controls container.
    * @param {Function} onChange - Callback called with state on any change.
-   * @param {Object} config
-   * @param {string} config.sachant
-   * @param {string} config.conditions
-   * @param {string} config.groupLabels
+   * @param {Object} LANG
+   * @param {string} LANG.sachant
+   * @param {string} LANG.conditions
+   * @param {string} LANG.groupLabels
    * @returns {Object} Initial state.
    *
    */
-  init(selector, onChange, config) {
+  init(selector, onChange, LANG) {
     this.PRESETS.forEach((preset, i) => {
-      preset.condition = config.conditions[i];
-      preset.groupLabel = config.groupLabels[i];
+      preset.condition = LANG.conditions[i];
+      preset.groupLabel = LANG.groupLabels[i];
     });
 
     const container = document.querySelector(selector);
@@ -107,7 +107,7 @@ const Controls = {
     const leftCol = document.createElement('div');
     leftCol.classList.add('controls-col', 'controls-col--left');
 
-    const randomVar = config.randomVarLabel;
+    const randomVar = LANG.randomVarLabel;
 
     const probTypes = [
       {
@@ -147,7 +147,7 @@ const Controls = {
     const middleCol = document.createElement('div');
     middleCol.classList.add('controls-col', 'controls-col--middle');
 
-    [config.sachant, config.sachant, config.sachant].forEach((text) => {
+    [LANG.sachant, LANG.sachant, LANG.sachant].forEach((text) => {
       const span = document.createElement('span');
       span.textContent = text;
       span.style.display = 'block';
