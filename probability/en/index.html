@@ -153,13 +153,13 @@
           </p>
           <p>
             When dealing with continuous random variables, one will <strong>never</strong> seek the
-            probability that the random variable takes a single precise value &mdash; <em>e.g.</em>,
+            probability that the random variable takes a single precise value such as
             $\mathbb{P}(H=184)$ or $\mathbb{P}(H=184.123456)$ &mdash; but will always seek the
             <strong><u>probability that it falls within a certain range of values</u></strong>
-            &mdash; <em>e.g.</em>, $\mathbb{P}(172 \leq H \leq 184)$ or $\mathbb{P}(172.123 \leq H
-            \leq 184.456)$. This is an absolutely fundamental point: there is no real meaning in
-            looking at the exact value taken by a continuous random variable, given that there are
-            an infinite number of possible outcomes.
+            such as $\mathbb{P}(172 \leq H \leq 184)$ or $\mathbb{P}(172.123 \leq H \leq 184.456)$.
+            This is an absolutely fundamental point: there is no real meaning in looking at the
+            exact value taken by a continuous random variable, given that there are an infinite
+            number of possible outcomes, and that they cannot be counted.
           </p>
           <p>
             To draw a link between the sample space and continuous random variables, in the example
@@ -175,18 +175,19 @@
           <p>
             Still with us? Brilliant... but the most exciting part is yet to come. Here is yet
             another fundamental notion: <strong>probability density</strong>. In the case of
-            continuous random variables, probability density simply defines how chance is
-            distributed across the entire sample space: it is precisely this density that gives an
-            indication that, if a person is chosen at random from the French population, there is a
-            greater chance that this person measures between 172 and 184 cm rather than between 190
-            and 202 cm. Even more remarkably: thanks to probability density, it becomes possible to
-            know all the probabilities among the infinite number of possibilities, for any interval
-            you choose! Every corner of the sample space can be explored.
+            continuous random variables, probability density simply defines how
+            <strong>chance is distributed</strong> across the entire sample space: it is precisely
+            this density that gives an indication that, if a person is chosen at random from the
+            French population, there is a greater chance that this person measures between 172 and
+            184 cm rather than between 190 and 202 cm. Even more remarkably: thanks to probability
+            density, it becomes possible to know all the probabilities among the infinite number of
+            possibilities, for any interval you choose! Every corner of the sample space can be
+            explored.
           </p>
           <p>
             The probability density of a random variable is a mathematical function defined across
             the entire sample space. To calculate the probability that a random variable falls
-            within a given interval, one <em>simply</em> needs to calculate the
+            within a <strong>given interval</strong>, one <em>simply</em> needs to calculate the
             <strong>area under the curve</strong> of the probability density between the two bounds
             of the interval. The notion of area under the curve is arguably the most important
             concept in this journey through the land of probability, and quite possibly the key to
@@ -218,17 +219,16 @@
             and 4... All these definitions to arrive at this conclusion &mdash; such is the true
             beauty of mathematics and its formalism. In fact, we would have been unable to write
             this equality without the notions of continuous random variables, sample space, and
-            probability density. Now, to evaluate the probability that the drawn number falls within
-            a given interval, one simply needs to calculate the
+            probability density.
+          </p>
+          <p>
+            Now, to evaluate the probability that the drawn number falls within a given interval,
+            one simply needs to calculate the
             <strong>area under the probability density</strong> between the two bounds of the
             interval in question (Figure 3).
           </p>
           <figure>
-            <img
-              src="figures/figure_3.png"
-              alt="Probabilities of falling within an interval
-"
-            />
+            <img src="figures/figure_3.png" alt="Probabilities of falling within an interval" />
             <figcaption>
               Figure 3 — Representation of probabilities as simple area calculations. (a) Visual
               representation of $\mathbb{P}(1 \leq X \leq 2)$. (b) Visual representation of
@@ -268,17 +268,17 @@
             <figcaption>
               Figure 4 — Distribution of salaries in France (in net € per month). (a) Probability
               density of the random variable $S$ representing salary. (b) Representation of the
-              &ldquo;&nbsp;sample space&nbsp;&rdquo; of the experiment. Here, the distribution is
-              clearly not uniform. Data sourced from INSEE.
+              &ldquo;&nbsp;sample space&nbsp;&rdquo; of the experiment. Data sourced from INSEE.
             </figcaption>
           </figure>
           <p>
             In this model, we consider that 100% of people earn between €950 and €10,000 net per
             month (this is our sample space). The actual INSEE data accounts for salaries above
-            €10,000; we have omitted these for the sake of simplicity. Using standard notation, we
-            can already establish: $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$ Then, to evaluate the
-            probability that $S$ &mdash; the salary of a randomly drawn person &mdash; falls within
-            a certain interval, one simply needs to calculate the area under the probability density
+            €10,000; we have omitted these for the sake of simplicity. The probability density of
+            $S$ (Figure 4a) is clearly not uniform. Using standard notation, we can already
+            establish: $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$ Then, to evaluate the probability
+            that $S$ &mdash; the salary of a randomly drawn French person &mdash; falls within a
+            certain interval, one simply needs to calculate the area under the probability density
             between the two bounds in question (Figure 5).
           </p>
           <figure>
@@ -330,7 +330,7 @@
           <figure>
             <img src="figures/figure_6.png" alt="Conditional probabilities" />
             <figcaption>
-              Figure 6 — Probabilities of Bob choosing each of the six beverages given that he
+              Figure 6 — Probabilities of Bob choosing each of the five beverages given that he
               dislikes tea and has never had a Hot Chocolate.
             </figcaption>
           </figure>
@@ -358,7 +358,7 @@
             &#x2640;)$$
           </p>
           <p>
-            Unfortunately, in France, we know that: $\mathbb{P}(S \geq 3500 \mid &#x2640;) <
+            Unfortunately, in France, we know that: $\mathbb{P}(S \geq 3500 \mid &#x2640;) \lt
             \mathbb{P}(S \geq 3500 \mid &#x2642;)$ : if a person is a woman, the probability that
             she earns more than €3,500 net per month is lower than if she were a man.
           </p>

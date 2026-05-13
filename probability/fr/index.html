@@ -54,7 +54,7 @@
             <p>
               Alice lance un dé à 6 faces supposé équilibré. On note $S$ l'évènement
               &laquo;&nbsp;obtenir un 6&nbsp;&raquo;. Le calcul de sa probabilité devient alors
-              immédiat : $$\mathbb{P}(S) = 1/6 \approx 0.17 \approx 17\%$$
+              immédiat : $$\mathbb{P}(S) = 1/6 \approx 0{,}17 \approx 17\%$$
             </p>
             <h3>Une histoire de café</h3>
             <p>
@@ -63,7 +63,7 @@
               boissons différentes : Espresso, Cappuccino, Latte, Thé et Chocolat chaud. On suppose
               que Bob n'a pas de boisson préferée et choisit au hasard. On note $CC$ l'évènement
               &laquo;&nbsp;le Chocolat chaud est choisi&nbsp;&raquo;. Le calcul de $CC$ est
-              également immédiat : $$\mathbb{P}(CC) = 1/5 = 0.2 = 20\%$$
+              également immédiat : $$\mathbb{P}(CC) = 1/5 = 0{,}2 = 20\%$$
             </p>
           </section>
           <p>
@@ -76,7 +76,7 @@
             <img src="figures/figure_1.png" alt="Équiprobabilité" />
             <figcaption>
               Figure 1 — (a) Probabilités d'obtenir chacune des six faces lors d'un jet de dé. (b)
-              Probabilités de choisir chacune des six boissons.
+              Probabilités de choisir chacune des cinq boissons.
             </figcaption>
           </figure>
         </section>
@@ -100,7 +100,7 @@
             chaud &nbsp;&raquo;. Étant donné qu'il contient tous les résultats possibles de
             l'expérience et puisque l'expérience elle-même produit nécessairement l'un de ces
             résultats, alors la probabilité de l'univers est toujours égale à 1 (100%) &mdash;
-            c'est-à-dire que lorsqu'Alice jète son dé à 6 faces, elle a 100% de chances que le
+            c'est-à-dire que lorsqu'Alice jette son dé à 6 faces, elle a 100% de chances que le
             &laquo;&nbsp;super évènement&nbsp;&raquo; se réalise : elle tombera forcément sur un 1,
             ou un 2, ou un 3, ou un 4, ou un 5, ou un 6. De la même façon, il y a 100% de chances
             que Bob choisisse soit un Espresso, soit un Cappuccino, soit un Latte, soit un Thé ou
@@ -125,9 +125,14 @@
             et calculer les probabilités associées à chacune d'elles. En revanche, il est
             <strong>impossible</strong> de prédire avec certitude la valeur exacte qui apparaîtra
             lors d'une expérience particulière. En utilisant les variables aléatoires $F$ et $B$, on
-            peut réécrire: $$\mathbb{P}(F = 6) = 1/6$$ $$\mathbb{P}(B = \text{"Chocolat chaud")} =
-            1/5$$
+            peut réécrire:
           </p>
+          <div style="text-align: center">
+            <div class="bloc-latex-like">
+              <p>$\mathbb{P}(F = 6) = 1/6$</p>
+              <p>$\mathbb{P}(B = \text{"Chocolat chaud")} = 1/5$</p>
+            </div>
+          </div>
           <p>
             Dans ces deux exemples, les variables aléatoires $F$ et $B$ sont dites
             <strong>discrètes</strong>, <em>i.e.</em>, elles ne peuvent prendre qu'un ensemble de
@@ -146,52 +151,55 @@
             >. Un exemple classique de ce genre de variables aléatoires concerne la taille des
             personnes : prenons par exemple $T$ la variable aléatoire qui représente la taille d'une
             personne prise au hasard dans la population française (adultes uniquement). Il n'existe
-            pas seulement quelques tailles possibles, mais bien une infinité (un continuum) de sorte
-            que $T$ peut théoriquement prendre n'importe quelle valeur possible entre disons 140 et
-            222 cm. En réalité, la taille exacte d'une personne dépend simplement de la précision de
-            la mesure. Plus l'instrument est précis, plus on peut affiner la valeur obtenue. Par
-            exemple, avec un mètre suffisament précis, on pourrait être en capacité de dire que
-            telle personne mesure 184,123456 cm, ce qui serait différent d'une autre mesurant
-            184,123455 cm.
+            pas seulement quelques tailles possibles, mais bien une infinité (un continuum) de telle
+            sorte que $T$ peut théoriquement prendre n'importe quelle valeur possible entre, disons,
+            140 et 222 cm. En réalité, la taille exacte d'une personne dépend simplement de la
+            précision de la mesure. Plus l'instrument est précis, plus on peut affiner la valeur
+            obtenue. Par exemple, avec un mètre suffisament précis, on pourrait être en capacité de
+            dire que telle personne mesure 184,123456 cm, ce qui serait différent d'une autre
+            mesurant 184,123455 cm.
           </p>
           <p>
             Lorsqu'on s'intéresse aux variables aléatoires continues, on ne va
             <strong>jamais</strong> chercher la probabilité que la variable aléatoire prenne une
-            seule valeur précise &mdash; <em>e.g.</em>, $\mathbb{P}(T=184)$ ou
-            $\mathbb{P}(T=184,123456)$ &mdash; mais on voudra toujours chercher la
+            seule valeur précise comme $\mathbb{P}(T=184)$ ou $\mathbb{P}(T=184{,}123456)$ &mdash;
+            mais on voudra toujours chercher la
             <strong><u>probabilité qu'elle soit dans une certaine plage de valeurs</u></strong>
-            &mdash; <em>e.g.</em>, $\mathbb{P}(172 < T < 184)$ ou $\mathbb{P}(172,123 < T <
-            184,456)$. C'est un point absolument fondamental : il n'y a pas vraiment de sens à
+            comme $\mathbb{P}(172 \leq T \leq 184)$ ou $\mathbb{P}(172{,}123 \leq T \leq
+            184{,}456)$. C'est un point absolument fondamental : il n'y a pas vraiment de sens à
             regarder quelle valeur exacte prend une variable aléatoire continue étant donné qu'il y
-            a une infinité de résultats possibles.
+            a une infinité de résultats possibles, et qu'on ne peut pas les compter.
           </p>
           <p>
             Pour faire le lien entre l'univers et les variables aléatoires continues, dans l'exemple
             de $T$, on peut en quelque sorte dire que son univers est l'ensemble de toutes les
-            tailles comprises entre 140 et 222 cm. On a ainsi $\mathbb{P}(140 < T < 222) = 1
-            \;(100\%)$. Il y a toujours deux façons équivalentes d'interpréter un résultat comme
-            celui-ci : soit on dit que lorsqu'on tire une personne au hasard dans la population
-            française, il y a 100% de chances que cette personne mesure entre 140 et 222 cm (en
-            supposant que c'est notre univers), soit on dit que 100% de la population française
-            mesure entre 140 et 222 cm.
+            tailles comprises entre 140 et 222 cm. On a ainsi $\mathbb{P}(140 \leq T \leq 222) = 1
+            \;(100\%)$. Il y a toujours <strong>deux façons équivalentes</strong> d'interpréter un
+            résultat comme celui-ci : soit on dit que lorsqu'on tire une personne au hasard dans la
+            population française, il y a 100% de chances que cette personne mesure entre 140 et 222
+            cm (en supposant que c'est notre univers), soit on dit que 100% de la population
+            française mesure entre 140 et 222 cm.
           </p>
           <h3>Densité de probabilité</h3>
           <p>
             Vous suivez encore ? Bravo... mais le plus passionnant reste à découvrir. Encore une
             notion fondamentale abordée ici : la
             <strong>densité de probabilité</strong>. Dans le cas des variables aléatoires continues,
-            la densité de probabilité permet simplement de définir comment le hasard est réparti sur
-            tout l'univers : c'est précisément cette densité qui donne une indication sur le fait
-            que, si l'on choisit une personne au hasard dans la population française, il y a plus de
-            chances pour que cette personne mesure entre 172 et 184 cm plutôt qu'entre 190 et 202
-            cm. Encore plus fort : grâce à la densité de probabilité, il devient possible de
-            connaître toutes les probabilités parmi l'infinité de possibilités, et ce pour n'importe
-            quel intervalle que vous choisissez ! Chaque recoin de l'univers peut être exploré.
+            la densité de probabilité permet simplement de définir comment
+            <strong>le hasard est réparti</strong> sur tout l'univers : c'est précisément cette
+            densité qui donne une indication sur le fait que, si l'on choisit une personne au hasard
+            dans la population française, il y a plus de chances pour que cette personne mesure
+            entre 172 et 184 cm plutôt qu'entre 190 et 202 cm. Encore plus fort : grâce à la densité
+            de probabilité, il devient possible de connaître toutes les probabilités parmi
+            l'infinité de possibilités, et ce pour n'importe quel intervalle que vous choisissez !
+            Chaque recoin de l'univers peut être exploré.
           </p>
           <p>
             La densité de probabilité d'une variable aléatoire est une fonction mathématique définie
             sur tout l'univers. Pour calculer la probabilité que la variable aléatoire tombe dans un
-            intervalle donné, il <em>suffit</em> de calculer l'<strong>aire sous la courbe</strong>
+            <strong>intervalle donné</strong>, il <em>suffit</em> de calculer l'<strong
+              >aire sous la courbe</strong
+            >
             de la densité de probabilité entre les deux bornes de l'intervalle. La notion d'aire
             sous la courbe est probablement la plus importante de ce voyage au pays des
             probabilités, et sans doute même la clé pour comprendre les variables aléatoires
@@ -218,13 +226,16 @@
           <p>
             Dans cette expérience, la densité de probabilité (Figure 2a) est la ligne bleue à
             hauteur de 0.25 : les probabilités sont uniformes sur tout l'univers qui est simplement
-            l'ensemble des nombres qui sont compris entre 0 et 4. Ainsi : $\mathbb{P}(0 \leq X \leq
-            4) = 1$. Lorsque Charlie choisit un nombre entre 0 et 4, elle a 100% de chance que ce
-            nombre tombe entre 0 et 4... Toutes ces définitions pour en arriver à cette conclusion,
-            voici la vraie beauté des maths et de son formalisme. En fait, nous aurions été
-            incapables d'écrire cette égalité sans les notions de variable aléatoire continue,
-            d'univers et de densité de probabilité. Maintenant, pour évaluer la probabilité que le
-            nombre tiré tombe dans un certain intervalle donné, il nous suffit de calculer l'<strong
+            l'ensemble des nombres compris entre 0 et 4. Ainsi : $\mathbb{P}(0 \leq X \leq 4) = 1$.
+            Lorsque Charlie choisit un nombre entre 0 et 4, elle a 100% de chances que ce nombre
+            tombe entre 0 et 4... Toutes ces définitions pour en arriver à cette conclusion, voici
+            la vraie beauté des maths et de son formalisme. En fait, nous aurions été incapables
+            d'écrire cette égalité sans les notions de variable aléatoire continue, d'univers et de
+            densité de probabilité.
+          </p>
+          <p>
+            Maintenant, pour évaluer la probabilité que le nombre tiré tombe dans un certain
+            intervalle donné, il nous suffit de calculer l'<strong
               >aire sous la densité de probabilité</strong
             >
             entre les deux bornes de l'intervalle considéré (Figure 3).
@@ -239,8 +250,8 @@
             </figcaption>
           </figure>
           <p>
-            Sur la Figure 3, on voit que $\mathbb{P}(1 \leq X \leq 2) = 0.25$ et $\mathbb{P}(0.5
-            \leq X \leq 3) = 0.62$. Il y a encore une fois deux façons équivalentes d'appréhender
+            Sur la Figure 3, on voit que $\mathbb{P}(1 \leq X \leq 2) = 0{,}25$ et $\mathbb{P}(0.5
+            \leq X \leq 3) = 0{,}62$. Il y a encore une fois deux façons équivalentes d'appréhender
             ces résultats : si Charlie tire un nombre au hasard entre 0 et 4, il y a 62% de chances
             que le nombre tiré soit entre 0,5 et 3. On peut également dire que 62% des nombres
             compris entre 0 et 4 sont compris entre 0,5 et 3. Intuitivement, vous trouverez sans
@@ -276,11 +287,12 @@
           <p>
             Dans ce modèle, on considère que 100 % des gens gagnent entre 950€ et 10 000€ nets
             mensuel (c'est notre univers). Les données réelles de l'INSEE prennent en compte les
-            salaires supérieurs à 10 000€, nous les avons omis par soucis de simplicité. Avec les
-            notations usuelles, on peut déjà établir : $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$
-            Ensuite, pour évaluer la probabilité que $S$ &mdash; le salaire d'une personne tirée au
-            hasard &mdash; soit dans un certain intervalle, il suffit de calculer l'aire sous la
-            densité de probabilité entre les deux bornes considérées (Figure 5).
+            salaires supérieurs à 10 000€, nous les avons omis par soucis de simplicité. La densité
+            de probabilité de $S$ (Figure 4a) n'est clairement pas uniforme. Avec les notations
+            usuelles, on peut déjà établir : $$\mathbb{P}(950 \leq S \leq 10\,000) = 1$$ Ensuite,
+            pour évaluer la probabilité que $S$ &mdash; le salaire d'une personne française tirée au
+            hasard &mdash; soit dans un certain intervalle, il <em>suffit</em> de calculer l'aire
+            sous la densité de probabilité entre les deux bornes considérées (Figure 5).
           </p>
           <figure>
             <img src="figures/figure_5.png" alt="Probabilités des salaires en France" />
@@ -288,13 +300,16 @@
               Fig. 5 — Probabilités que le salaire net mensuel (€) d'une personne tirée au hasard
               dans la population française soit dans un certain intervalle. (a) Représentation
               visuelle de $\mathbb{P}(950 \leq S \leq 2190)$. (b) Représentation visuelle de
-              $\mathbb{P}(3500 \leq N \leq 10 000)$.
+              $\mathbb{P}(3500 \leq S \leq 10 000)$.
             </figcaption>
           </figure>
-          <p>
-            D'après ce modèle : $$\mathbb{P}(950 \leq S \leq 2190) = 0.5$$ $$\mathbb{P}(3\,500 \leq
-            S \leq 10\,000) = 0.19$$
-          </p>
+          <p>D'après ce modèle :</p>
+          <div style="text-align: center">
+            <div class="bloc-latex-like">
+              <p>$\mathbb{P}(950 \leq S \leq 2190) = 0{,}5$</p>
+              <p>$\mathbb{P}(3\,500 \leq S \leq 10\,000) = 0{,}19$</p>
+            </div>
+          </div>
           <p>
             Autrement dit, si on tire une personne dans la population française, il y a 50&nbsp;% de
             chances que son salaire soit inférieur à 2 190€ nets par mois car l'aire sous la densité
@@ -312,7 +327,7 @@
         <section>
           <h2>Les probabilités conditionnelles</h2>
           <p>
-            Le calcul des probabilités par les aires était le premier gros point de ce chapitre.
+            Le calcul des probabilités par les aires était le premier gros point de cette vignette.
             Avant de parler de p-value, nous devons nous intéresser à l'autre gros morceau : les
             probabilités conditionnelles. Lorsque l'on calcule des probabilités, il est possible
             d'affiner la précision de celles-ci en ajoutant des informations connues &mdash; ou
@@ -328,7 +343,7 @@
           <figure>
             <img src="figures/figure_6.png" alt="Probabilités conditionnelles" />
             <figcaption>
-              Figure 6 — Probabilités que Bob choisisse chacune des six boissons sachant qu'il
+              Figure 6 — Probabilités que Bob choisisse chacune des cinq boissons sachant qu'il
               n'aime pas le thé et n'a jamais pris de Chocolat chaud.
             </figcaption>
           </figure>
@@ -343,7 +358,7 @@
             Si notre <em>croyance</em> &mdash; véritablement observée ou supposée vraie &mdash; est
             que la personne est une femme, et que l'on souhaite calculer la probabilité qu'elle
             gagne plus de 3 500€ nets mensuel, alors cette nouvelle information change tout étant
-            donné que les croyances influencent la probabilités. On
+            donné que les croyances influencent les probabilités. On
             <strong>ne doit pas</strong> utiliser la même densité de probabilité que celle que l'on
             aurait utilisée si l'on ne savait rien de cette personne. Il faut se baser sur la
             densité qui prend en compte cette croyance et reflète cette réalité &mdash; c'est-à-dire
@@ -353,13 +368,13 @@
             Avec les notations habituelles, la probabilité <em>sachant</em> une croyance s'écrit
             avec une barre verticale. En notant $&#x2640;$ l'évènement&nbsp;: &laquo;&nbsp;la
             personne est une femme&nbsp;&raquo;, la probabilité que notre variable aléatoire $S$
-            soit supérieure à 3 500 sachant que la personne est une femme s'écrit : $$\mathbb{P}(S >
-            3500 \mid &#x2640;)$$
+            soit supérieure à 3 500 sachant que la personne est une femme s'écrit : $$\mathbb{P}(S
+            \geq 3500 \mid &#x2640;)$$
           </p>
           <p>
-            Malheuresement, on sait que : $\mathbb{P}(S > 3500 \mid &#x2640;) < \mathbb{P}(S > 3500
-            \mid &#x2642;)$ : si une personne est une femme, la probabilité qu'elle gagne plus de 3
-            500€ nets mensuel est plus faible que si c'était un homme.
+            Malheuresement, on sait que : $\mathbb{P}(S \geq 3500 \mid &#x2640;) \lt \mathbb{P}(S
+            \geq 3500 \mid &#x2642;)$ : si une personne est une femme, la probabilité qu'elle gagne
+            plus de 3 500€ nets mensuel est plus faible que si c'était un homme.
           </p>
           <p>
             Dans tous ces cas, les probabilités dépendent de ce que l’on
@@ -379,10 +394,10 @@
             Un exemple classique de confusion concerne le lien entre être malade et obtenir un test
             positif à cette maladie. À titre indicatif, prenons l'évènement $C$ : &laquo;&nbsp;David
             est atteint du Covid-19&nbsp;&raquo; et l'évènement $P$ : &laquo;&nbsp;Le test PCR est
-            positif&nbsp;&raquo;. On confond souvent la probabilité d’être vraiment malade sachant
-            que le test est positif avec la probabilité que le test soit positif sachant que l’on
-            est malade. Même si ce n'est pas évident au premier abord, ces deux probabilités sont
-            bien différentes : $$\mathbb{P}(C \mid P) \neq \mathbb{P}(P \mid C)$$
+            positif&nbsp;&raquo;. On confond souvent la probabilité d’être malade sachant que le
+            test est positif avec la probabilité que le test soit positif sachant que l’on est
+            malade. Même si ce n'est pas évident au premier abord, ces deux probabilités sont bien
+            différentes : $$\mathbb{P}(C \mid P) \neq \mathbb{P}(P \mid C)$$
           </p>
           <p>
             Même si elles semblent proches, elles ne disent pas du tout la même chose. La seconde,
@@ -399,21 +414,21 @@
             Prenons un exemple concret pour bien saisir toute la nuance. Soit $V$ l'évènement
             &laquo;&nbsp;La personne est un agresseur sexuel&nbsp;&raquo; et $&#x2642;$ l'évènement
             &laquo;&nbsp;la personne est un homme&nbsp;&raquo;. Alors en France, d'après l'INSEE on
-            obtient : $\mathbb{P}(&#x2642; \mid V) = 0.97$ : la probabilité qu'une personne soit un
-            homme sachant qu'elle est un agresseur sexuel est de 97%. Autrement dit, parmi les
+            obtient : $\mathbb{P}(&#x2642; \mid V) = 0{,}97$ : la probabilité qu'une personne soit
+            un homme sachant qu'elle est un agresseur sexuel est de 97%. Autrement dit, parmi les
             personnes identifiées comme agresseurs sexuels, 97% sont des hommes. Fort heuresement,
             la réciproque n'est pas vraie : si une personne est un homme, la probabilité qu'elle
-            soit un agresseur sexuel reste largement inférieure à 97%, il serait alors faux
+            soit un agresseur sexuel reste largement inférieure à 97%. Il serait alors faux
             d'affirmer que, parmis tous les hommes, 97% sont des agresseurs sexuels. On peut
             néanmoins établir la relation : $$\mathbb{P}(V \mid &#x2640;) \lt \mathbb{P}(V \mid
             &#x2642;) \lt \mathbb{P}(&#x2642; \mid V)$$
           </p>
           <p>
             Dans la vie de tous les jours, beaucoup de personnes confondent ces deux probabilités et
-            pensent à tort que si $\mathbb{P}(A \mid B)$ est élevée, alors $\mathbb{P}(B \mid A)$
-            l'est nécessairement aussi. La prochaine fois que vous verrez ou entendrez ce type
-            d'argument, prenez un instant pour vous demander si une maladresse aurait pû conduire à
-            cette conclusion, qu'elle soit intentionnelle ou non.
+            pensent à tort que si $\mathbb{P}(A \mid B)$ est élevée (ou faible), alors $\mathbb{P}(B
+            \mid A)$ l'est nécessairement aussi. La prochaine fois que vous verrez ou entendrez ce
+            type d'argument, prenez un instant pour vous demander si une maladresse aurait pû
+            conduire à cette conclusion, qu'elle soit intentionnelle ou non.
           </p>
           <p></p>
           <h3>Une histoire de taille</h3>
@@ -506,7 +521,7 @@
           "qu'il s'agit d'un homme français",
           "qu'elle est de nationalité suédoise",
           "qu'il s'agit d'une femme suédoise",
-          "qu'il s'agit d'homme suédois",
+          "qu'il s'agit d'un homme suédois",
           "qu'il s'agit d'un basketteur américain",
         ],
         groupLabels: [
