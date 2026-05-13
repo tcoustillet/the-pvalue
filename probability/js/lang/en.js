@@ -19,6 +19,8 @@ const LANG = {
     'Swedish men',
     'American basketball players',
   ],
+  xLabel: 'height (cm)',
+  yLabel: 'density',
 };
 
 LANG.textLess = (a, condition, groupLabel, probPercent) =>

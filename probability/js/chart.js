@@ -12,7 +12,7 @@ const GaussianChart = {
   /** @type {Object} Chart dimensions and margins */
   dims: {
     height: 350,
-    margin: { top: 20, right: 30, bottom: 40, left: 50 },
+    margin: { top: 20, right: 30, bottom: 50, left: 60 },
   },
 
   /** @type {Object} D3 scale functions */
@@ -64,6 +64,27 @@ const GaussianChart = {
     this.svg.append('text').attr('class', 'arrow-b2');
     this.svg.append('rect').attr('class', 'probability-label-bg');
     this.svg.append('text').attr('class', 'probability-label');
+
+    // X axis label
+    this.svg
+      .append('text')
+      .attr('class', 'x-label')
+      .attr('text-anchor', 'middle')
+      .attr('x', innerWidth / 2)
+      .attr('y', innerHeight + margin.bottom - 10)
+      .attr('font-size', '12px')
+      .text(LANG.xLabel);
+
+    // Y axis label
+    this.svg
+      .append('text')
+      .attr('class', 'y-label')
+      .attr('text-anchor', 'middle')
+      .attr('transform', `rotate(-90)`)
+      .attr('x', -innerHeight / 2)
+      .attr('y', -margin.left + 15)
+      .attr('font-size', '12px')
+      .text(LANG.yLabel);
   },
 
   /**
