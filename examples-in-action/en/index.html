@@ -37,17 +37,20 @@
           hypothesis $H_0$ that defines what ordinary means &mdash; it is the
           &ldquo;&nbsp;default&nbsp;&rdquo; world. The 0.05 (5%) threshold allows us to decide
           whether a result is ordinary or extraordinary and, where appropriate, to move from the
-          world of $H_0$ to that of $H_1$. Classically, a result that had less than a 5% chance of
-          occurring in the world where $H_0$ is true (p-value &lt; 0.05) is considered
-          extraordinary, and constitutes sufficient evidence to shift towards $H_1$: we must
-          <em>reject</em> the world in which $H_0$ is true and shift into $H_1$. Indeed, if we were
-          truly in the world of $H_0$, this result was too unlikely to be observed. Conversely, a
-          result that had more than a 5% chance of occurring in the world where $H_0$ is true
-          (p-value ≥ 0.05) is ordinary, and does not constitute sufficient evidence to shift towards
-          $H_1$: we cannot <em>reject</em> the world in which $H_0$ is true and shift into $H_1$.
-          Indeed, if we were truly in the world of $H_0$, this result was likely, possible. This
-          does not mean that $H_0$ is true or that $H_1$ is false, but simply that we have not
-          accumulated enough evidence to change worlds.
+          world of $H_0$ to that of $H_1$.
+        </p>
+        <p>
+          Classically, a result that had less than a 5% chance of occurring in the world where $H_0$
+          is true, but which occurred nonetheless, is considered <em>extraordinary</em> (p-value
+          &lt; 0.05), and constitutes sufficient evidence to <em>reject</em> the world in which
+          $H_0$ is true and shift into that of $H_1$. Indeed, if we were truly in the world of
+          $H_0$, this result was too unlikely to be observed, to arise through the mere workings of
+          chance. Conversely, a result that had more than a 5% chance of occurring in the world
+          where $H_0$ is true is <em>ordinary</em> (p-value ≥ 0.05), and does not constitute
+          sufficient evidence to shift towards $H_1$: we cannot <em>reject</em> the world in which
+          $H_0$ is true and shift into $H_1$. Indeed, if we were truly in the world of $H_0$, this
+          result was likely, possible. This does not mean that $H_0$ is true or that $H_1$ is false,
+          but simply that we have not accumulated enough evidence to change worlds.
         </p>
         <h3>A tale of a coin</h3>
         <p>
@@ -61,28 +64,33 @@
         </p>
         <p>
           In this example, Franck's world $H_1$ is the one where the coin is biased towards heads.
-          And the default world, $H_0$, is the one where the coin is fair. In fact, since $H_0$ must
-          be the strict opposite of $H_1$, it is the world in which the coin is either fair or
-          biased towards tails. For the sake of simplicity, we assume that $H_0$ is the world in
-          which the coin is fair. Even though Franck is trying to find out whether the world where
-          $H_1$ is true exists (the coin is biased), he must first place himself in the world where
-          $H_0$ is true and
+          And the default world, $H_0$, is the one where the coin is fair. Actually, since $H_0$
+          must be the <strong>strict opposite</strong> of $H_1$, it is the world in which the coin
+          is either fair or biased towards tails. For the sake of simplicity, we assume that $H_0$
+          is the world in which the coin is fair. Even though Franck is trying to find out whether
+          the world where $H_1$ is true exists (the coin is biased), he must first place himself in
+          the world where $H_0$ is true and
           <strong>act as though his coin were perfectly fair</strong>. If, and only if, he
           accumulates sufficient evidence to call $H_0$ into question (p &lt; 0.05), will he be able
           to shift towards $H_1$ and believe that his coin is biased towards heads. If he does not
           accumulate enough evidence (p ≥ 0.05), he will not be able to shift towards $H_1$ and will
           find himself compelled to remain in the world of $H_0$. This does not mean that his coin
-          is fair, but only that he has not accumulated enough evidence to show that it was biased,
-          if it truly was.
+          is fair (or biased toward tails), but only that he has not accumulated enough evidence to
+          show that it was biased in favour of heads, if it truly was.
         </p>
         <p>
           To test whether his coin is biased or not, Franck decides to toss it 20 times. Let $H$ be
           the discrete random variable that counts the number of heads obtained over the 20 tosses.
           The null hypothesis $H_0$ being &ldquo;&nbsp;the coin is fair&nbsp;&rdquo; and the
           alternative hypothesis $H_1$ being &ldquo;&nbsp;the coin is biased towards
-          heads&nbsp;&rdquo;, we can write mathematically: $$H_0 : \mathbb{P}(\text{heads}) =
-          \mathbb{P}(\text{tails})$$ $$H_1 : \mathbb{P}(\text{heads}) \gt \mathbb{P}(\text{tails})$$
+          heads&nbsp;&rdquo;, we can write
         </p>
+        <div style="text-align: center">
+          <div class="bloc-latex-like">
+            <p>$H_0 : \text{the coin is fair}$</p>
+            <p>$H_1 : \text{the coin is biased towards heads}$</p>
+          </div>
+        </div>
         <p>Franck carries out the experiment and gets 15 heads ($H = 15$). What can he conclude?</p>
         <p>
           First and foremost, a crucial point to bear in mind is that he will never be able to know
@@ -101,32 +109,35 @@
           simply needs to ask himself, in the world where $H_0$ is true (the coin is fair), what is
           the probability of observing a result at least as extreme as his own? If the coin is fair,
           what is the probability of obtaining <em>at least</em> 15 heads out of 20 tosses?
-          Mathematically, this amounts to calculating: $$\mathbb{P}(F \geq 15 \mid \text{the coin is
-          fair})$$
+          Mathematically, this amounts to calculating: $$\mathbb{P}(F \geq 15 \mid H_0 \text{ true})
+          = \mathbb{P}(F \geq 15 \mid \text{the coin is fair})$$
         </p>
         <p>
           If this probability &mdash; which is nothing other than what we call the p-value &mdash;
           is greater than or equal to 5% (p ≥ 0.05), then Franck's result is ordinary, probable
           enough that he need not call his initial belief $H_0$ into question: either his coin is
-          fair, or it is biased but he does not have enough evidence to shift towards $H_1$.
-          However, if this probability is less than 5% (p &lt; 0.05), the result becomes
-          extraordinary in the world of $H_0$, and Franck has accumulated enough evidence to shift
-          towards $H_1$: observing such a result (or one just as extreme) if the coin were truly
-          fair would have been too unlikely &mdash; it is therefore more reasonable to think that it
-          is his initial belief that is false: his coin is in all likelihood biased towards heads.
+          fair, or it is biased but he does not have enough evidence to demonstrate it and to shift
+          towards $H_1$. However, if this probability is less than 5% (p &lt; 0.05), the result
+          becomes extraordinary in the world of $H_0$, and Franck has accumulated enough evidence to
+          shift towards $H_1$: observing such a result (or one just as extreme) if the coin were
+          truly fair would have been too unlikely &mdash; it is therefore more reasonable to think
+          that it is his initial belief that is false: his coin is in all likelihood biased towards
+          heads.
+        </p>
+        <p>
           An ordinary result in $H_0$ does not allow us to call the validity of this world into
           question; an extraordinary result does. The reasoning is as simple as that.
         </p>
         <p>
-          The first thing Franck needs to do is to characterise the ordinary, the world of $H_0$:
-          when tossing a fair coin 20 times, what should one expect? One might think that 10 heads
-          and 10 tails should be obtained. This is indeed the most likely result, but it only occurs
-          in 17.6% of cases. Obtaining 11 heads and 9 tails is slightly less likely and occurs in
-          16% of cases, as does obtaining 9 heads and 11 tails. Thus, when tossing a fair coin 20
-          times, we are almost twice as likely to get 11 tails and 9 heads (16%) or 9 tails and 11
-          heads (16%) than 10 tails and 10 heads (17.6%). 32% versus 17.6%. But then, how does one
-          decide that a result falls outside the norm? The answer is now obvious: by using the
-          p-value.
+          The first thing Franck needs to do is to <strong>characterise the ordinary</strong>, the
+          world of $H_0$: when tossing a fair coin 20 times, what should one expect? One might think
+          that 10 heads and 10 tails should be obtained. This is indeed the most likely result, but
+          it only occurs in 17.6% of cases. Obtaining 11 heads and 9 tails is slightly less likely
+          and occurs in 16% of cases, as does obtaining 9 heads and 11 tails. Thus, when tossing a
+          fair coin 20 times, we are almost twice as likely to get 11 tails and 9 heads (16%) or 9
+          tails and 11 heads (16%) than 10 tails and 10 heads (17.6%). 32% versus 17.6%. But then,
+          how does one decide that a result falls outside the norm? The answer is now obvious: by
+          using the p-value.
         </p>
         <p>
           The probability distribution of the random variable $H$ counting the number of heads one
@@ -150,8 +161,8 @@
           To calculate the p-value, one simply needs to calculate the probability of obtaining a
           result at least as extreme as the one observed given $H_0$ is true, namely: $\mathbb{P}(H
           \geq 15 \mid \text{fair coin})$. Since the random variable $H$ is discrete, one can simply
-          add up the probabilities such that obtaining at least 15 heads is equivalent to obtaining
-          15 heads, or 16 heads, or 17 heads, or 18 heads, or 19 heads, or 20 heads: $$
+          add up the probabilities such that obtaining <em>at least</em> 15 heads is equivalent to
+          obtaining 15 heads, or 16 heads, or 17 heads, or 18 heads, or 19 heads, or 20 heads: $$
           \begin{alignedat}{3} \text{p-value} &\;:&= &\; \mathbb{P}(H=15 \mid \text{fair coin}) \\ &
           & + &\; \mathbb{P}(H=16 \mid \text{fair coin}) \\ & & + &\; \mathbb{P}(H=17 \mid
           \text{fair coin}) \\ & & + &\; \mathbb{P}(H=18 \mid \text{fair coin}) \\ & & + &\;
@@ -203,15 +214,23 @@
           which occurs in 2.1% of cases &mdash; his conclusion will be the same, his reasoning will
           be sound, but he will be wrong.
         </p>
+        <p>
+          Once again, the p-value <strong>does not allow</strong> Franck to know to what extent
+          <strong>he can believe in $H_0$</strong>. It does not give the probability that the coin
+          is fair given that he obtained 15 heads out of 20 tosses. It would be
+          <strong>wrong</strong> to claim that the coin has a 2.1% chance of being fair given the
+          observed result.
+        </p>
         <h2>Over to you</h2>
         <p>
           In this interactive section, I invite you to test for yourself from what point a coin can
           be considered biased towards heads. By considering a certain number of tosses as well as
           the number of times the coin has landed on heads (denoted $k$), you can calculate the
           probabilities that the random variable $H$ is equal to a certain value $k$, or greater
-          than or equal to this value, always within the world of $H_0$, that is, by
-          &laquo;&nbsp;naively&nbsp;&raquo; assuming that the coin is fair.<br />
-          As a reminder, the p-value is: $\mathbb{P}(H \geq k \mid \text{the coin is fair})$
+          than or equal to this value, <strong>always within the world of $H_0$</strong>, that is,
+          by &laquo;&nbsp;naively&nbsp;&raquo; assuming that the coin is fair.<br />
+          As a reminder, the p-value is: $\mathbb{P}(H \geq k \mid H_0 \text{ true}) = \mathbb{P}(H
+          \geq k \mid \text{the coin is fair})$
         </p>
         <div id="controls-container"></div>
         <div id="chart-container"></div>
@@ -234,7 +253,8 @@
           supposedly fair coin, one would have obtained $p = 0.002 &lt; 0.05$ &mdash; a result that
           would have led us to conclude that the coin is biased towards heads. By symmetry, one can
           therefore conclude here that
-          <strong>the coin is in all likelihood biased towards tails</strong>.
+          <strong>the coin is in all likelihood biased towards <u>tails</u></strong
+          >.
         </p>
         <p>
           It is precisely to avoid this type of indirect reasoning that two broad families of tests

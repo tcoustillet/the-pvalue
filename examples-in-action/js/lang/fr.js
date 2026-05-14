@@ -25,3 +25,6 @@ LANG.pvalueHigh = (H0, H1, pGte) =>
 
 LANG.pvalueLow = (H0, H1, pLt) =>
   `Étant donné que ${pLt} : le résultat obtenu est extraordinaire dans le monde de ${H0}. Si la pièce était vraiment équilibrée, observer ce résultat aurait été trop peu probable. Avec un niveau de preuve suffisant, on bascule vers ${H1} : on peut raisonnablement croire que notre pièce est truquée en faveur du côté face.`;
+
+LANG.pvalueWarning = (n, k, faces, probPercent) =>
+  `<strong><u>Il est faux d'affirmer</u></strong> que, si l'on obtient ${k} ${faces} lors de ${n} lancers, la pièce a ${probPercent}% de chances d'être équilibrée.`;

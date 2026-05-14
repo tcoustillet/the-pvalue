@@ -61,9 +61,12 @@ function updateDescription(state, prob) {
 
   const pvalue = prob >= 0.05 ? LANG.pvalueHigh(H0, H1, pGte) : LANG.pvalueLow(H0, H1, pLt);
 
+  const pvalueWarning = mode === 'gte' ? LANG.pvalueWarning(n, k, faces, probPercent) : '';
+
   description.innerHTML = `
     <p style="text-align: center;">${renderedMath}</p>
     <p>${sentence}</p>
     ${mode === 'gte' ? `<p>${pvalue}</p>` : ''}
+    ${mode === 'gte' ? `<p>${pvalueWarning}</p>` : ''}
   `;
 }

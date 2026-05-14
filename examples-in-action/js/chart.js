@@ -6,7 +6,7 @@ const BinomialChart = {
   svg: null,
 
   dims: {
-    margin: { top: 20, right: 30, bottom: 40, left: 60 },
+    margin: { top: 20, right: 30, bottom: 50, left: 60 },
   },
 
   FIXED_WIDTH: 800,
@@ -44,7 +44,7 @@ const BinomialChart = {
       .attr('class', 'x-label')
       .attr('text-anchor', 'middle')
       .attr('x', innerWidth / 2)
-      .attr('y', innerHeight + margin.bottom - 5)
+      .attr('y', innerHeight + margin.bottom - 10)
       .text(LANG.xAxisLabel);
 
     // Y axis label
@@ -118,7 +118,6 @@ const BinomialChart = {
     this.svg
       .selectAll('.tick text, .x-label, .y-label')
       .style('font-size', '12px')
-      .style('font-family', 'sans-serif')
       .style('fill', '#000');
 
     const bandData =
