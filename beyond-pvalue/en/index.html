@@ -22,7 +22,7 @@
       <div class="container">
         <p>
           The p-value is subject to numerous errors, misinterpretations, mistaken beliefs, and
-          cognitive biases. This section aims to demystify the most common pitfalls, dispel
+          cognitive biases. This section aims to <em>demystify</em> the most common pitfalls, dispel
           misconceptions, and clarify what the p-value is and what it is not.
         </p>
         <h2>The p-value <u>is not</u> the probability of the null hypothesis $H_0$</h2>
@@ -43,25 +43,27 @@
         <p>
           Frustrating, but that is how it is! There is indeed a way of calculating the probability
           that $H_0$ is true given the observed data &mdash; but it requires an additional
-          ingredient: being able to quantify how strongly one believes in $H_0$
-          <em>before even</em> collecting the data. Yet in experimental sciences in particular, this
-          initial belief is very often impossible to evaluate objectively &mdash; and without it,
-          there is no way of going further. This approach does nonetheless exist (because yes,
-          mathematics is remarkably well-designed), and it rests on the magnificent Bayes' theorem,
-          which proves extraordinarily powerful in certain contexts: it is this theorem that allows
-          one to turn the problem on its head and evaluate the probability that $H_0$ is true given
-          the observed data &mdash; but that is a story for another time...
+          ingredient: being able to quantify <strong>how strongly one believes</strong> in $H_0$
+          <em>before even</em> collecting the data. Yet, in experimental sciences in particular,
+          this initial belief is very often impossible to evaluate
+          <strong>objectively</strong> &mdash; and without it, there is no way of going further.
+          This approach does nonetheless exist (because yes, mathematics is remarkably
+          well-designed), and it rests on the magnificent <strong>Bayes' theorem</strong>, which
+          proves extraordinarily powerful in certain contexts: it is precisely this theorem that
+          allows one <strong>to turn the problem on its head</strong> and evaluate the probability
+          that $H_0$ is true given the observed data &mdash; but that is a story for another time...
         </p>
         <p>
           To summarise: in an ideal world, one would calculate $\mathbb{P}(H_0 \mid \text{data})$
           &mdash; the probability that our initial hypothesis, our initial belief, is true in light
           of what has been observed. This is exactly what our brain demands, and it would be far
           more satisfying. But experimental sciences condemn us to calculating something subtly
-          different: $\mathbb{P}(\text{data at least as extreme} \mid H_0)$ &mdash; the probability
-          of observing results as extreme as our own, assuming that $H_0$, our initial belief, is
-          true. These are not the same thing, and as we saw in our introduction to probabilities,
-          swapping these two quantities is a fundamental error. The p-value is a powerful tool
-          &mdash; provided one never loses sight of what it truly measures, and what it does not.
+          different: $\mathbb{P}(\text{data at least as extreme} \mid H_0 \text{ true})$ &mdash; the
+          probability of observing results as extreme as our own, assuming that $H_0$, our initial
+          belief, is true. These are not the same thing, and as we saw in our introduction to
+          probabilities and throughout our journey into the world of mathematics, swapping these two
+          quantities is a fundamental error. The p-value is a powerful tool &mdash; provided one
+          never loses sight of what it truly measures, and what it does not.
         </p>
         <h3>Proof by contradiction</h3>
         <p>
@@ -88,36 +90,32 @@
           would have naturally fallen on the child. That is proof by contradiction: a contradiction
           that allows one to refute the initial hypothesis. Of course, one can never be 100% certain
           &mdash; perhaps the child deliberately nibbled at the edges or avoided using a knife to
-          frame the dog. But here the data make certain hypotheses far more credible than others.
-          And that is precisely the reasoning the p-value carries out in practice: it does not
-          answer the question "What is the probability that Laska ate the slice of cake given that
-          there are teeth marks?" &mdash; that would be too good to be true. It answers the question
-          "If Laska had eaten the slice, what is the probability of observing such a cut with teeth
-          marks?" It is subtle, and that is where the whole difficulty lies: one never calculates
-          the probability that $H_0$ is true, only the <em>likelihood</em> of the data under $H_0$.
-          Two questions that look alike, but do not mean the same thing at all.
+          frame the dog. But here the <strong>data</strong> make certain hypotheses far more
+          <strong>credible</strong> than others. And that is precisely the reasoning the p-value
+          carries out in practice: it does not answer the question "What is the probability that
+          Laska ate the slice of cake <em>given that</em> there are teeth marks?" &mdash; that would
+          be too good to be true. It answers the question "<em>If</em> Laska had eaten the slice,
+          what is the probability of observing such a cut with teeth marks?" It is subtle, and that
+          is where the whole difficulty lies: one never calculates the probability that $H_0$ is
+          true, only the <em>likelihood</em> of the data under $H_0$. Two questions that look alike,
+          but do not mean the same thing at all.
         </p>
-        <div style="display: flex; justify-content: center">
-          <div>
-            <span style="margin-top: -20px; display: inline-block; position: relative">
-              $$\text{p-value} := \mathbb{P}(H_0 \mid \text{data})$$
-              <span
-                style="position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid black"
-              ></span>
-            </span>
-            <div style="margin-top: -30px">
-              $$\text{p-value} := \mathbb{P}(\text{data} \mid H_0 \text{ true})$$
-            </div>
+        <div style="text-align: center">
+          <div class="bloc-latex-like">
+            <p>$\sout{\text{p-value} := \mathbb{P}(H_0 \text{ true} \mid \text{data})}$</p>
+            <p>
+              $\text{p-value} := \mathbb{P}(\text{data at least as extreme} \mid H_0 \text{ true})$
+            </p>
           </div>
         </div>
         <h2>Absence of evidence <u>is not</u> evidence of absence</h2>
         <p>
           Another very widespread belief is that if $H_0$ is not rejected (p ≥ 0.05), then it must
-          necessarily be true. In the context of scientific studies, one will often hear &mdash;
-          wrongly &mdash; that there is no difference between two groups because p ≥ 0.05. In
-          reality, when the null hypothesis $H_0$ is not rejected, there are indeed two possible
-          scenarios: either it is genuinely true, or it is false but we have not gathered sufficient
-          evidence to demonstrate it.
+          <strong>necessarily be true</strong>. In the context of scientific studies, one will often
+          hear &mdash; wrongly &mdash; that there is no difference between two groups because p ≥
+          0.05. In reality, when the null hypothesis $H_0$ is not rejected, there are indeed two
+          possible scenarios: either it is genuinely true, or it is false but we have not gathered
+          sufficient evidence to demonstrate it.
         </p>
         <p>
           To bear this in mind, let us revisit the metaphor of extraterrestrial detection introduced
@@ -134,19 +132,20 @@
         </p>
         <p>
           That said, there are situations where one has very good reasons &mdash; theoretical or
-          experimental &mdash; to believe that $H_0$ is genuinely true when p ≥ 0.05. Such a p-value
-          therefore confirms the null hypothesis, our initial belief. In this case, it becomes
-          reasonable and legitimate to conclude that there is no difference between two groups, for
-          instance, or that extraterrestrials do not exist. But bear in mind: it is not the p-value
-          that allows this conclusion &mdash; it is the broader scientific context that permits it.
+          experimental &mdash; to believe that $H_0$ is <strong>genuinely true</strong> when p ≥
+          0.05. Such a p-value therefore confirms the null hypothesis, our initial belief. In this
+          case, it becomes reasonable and legitimate to conclude that there is no difference between
+          two groups, for instance, or that extraterrestrials do not exist. But bear in mind: it is
+          not the p-value itself that allows this conclusion &mdash; it is the broader scientific
+          context that permits it.
         </p>
         <p>
-          When $H_0$ is not rejected, it is therefore essential to place this result in its
-          scientific context: is it because $H_0$ is genuinely true, or simply because the data are
-          not sufficient to contradict it? A sample that is too small, variability that is too
-          great, an ill-suited test &mdash; all reasons that can lead to failing to reject $H_0$,
-          not because it is true, but because the evidence is lacking. At that point, it is the
-          state of established knowledge that allows one to settle the matter.
+          When $H_0$ is not rejected, it is therefore <strong>essential</strong> to place this
+          result in its scientific context: is it because $H_0$ is genuinely true, or simply because
+          the data are not sufficient to contradict it? A sample that is too small, variability that
+          is too great, an ill-suited test &mdash; all reasons that can lead to failing to reject
+          $H_0$, not because it is true, but because the evidence is lacking. At that point, it is
+          the state of established knowledge that allows one to settle the matter.
         </p>
         <h3>The presumption of innocence</h3>
         <p>
@@ -161,7 +160,7 @@
         </p>
         <p>
           To summarise: a dropped case is therefore not equivalent to a declaration of innocence, or
-          in other words: absence of evidence is not evidence of absence
+          in other words: absence of evidence <strong>is not</strong> evidence of absence.
         </p>
         <h2>p = 0.049 <u>is not</u> radically different from p = 0.051</h2>
         <figure>
@@ -171,50 +170,51 @@
           One might think that p = 0.051 and p = 0.049 are worlds apart. This is indeed the case to
           a certain extent, since the former leads us to remain in the world of $H_0$ whilst the
           latter allows us to shift towards that of $H_1$: at the end of the experiment, we are
-          indeed in two diametrically opposed worlds. Yet one must be fully aware that these two
-          numbers remain probabilities and therefore exist on a
+          indeed in <strong>two diametrically opposed worlds</strong>. Yet, one must be fully aware
+          that these two numbers remain probabilities and therefore exist on a
           <strong>continuum</strong>: a probability (including the p-value) as such is not a switch
           that allows one to toggle between the worlds $H_0$ and $H_1$ &mdash; it is simply a
           measure of the likelihood of a result in a given world. It is therefore difficult to argue
           that an event with a 4.9% chance of occurring is fundamentally different from one with a
-          5.1% chance. I think we can all agree that such events <em>are</em> equally likely.
+          5.1% chance. I think we can all agree that such events 'are' equally likely.
         </p>
         <p>
           It is us, human beings &mdash; well, neither you nor I &mdash;, who decided to draw a
           boundary between two probabilities. We have transformed an objective measure (a
-          probability) into a subjective binary conclusion: which world are we in? Yet this boundary
-          is by definition subjective, as it is set arbitrarily and rests on no law of nature.
-          Throughout our journey, we have used a threshold of 0.05 to move from $H_0$ to $H_1$, but
-          this choice was indeed an arbitrary convention: any other value could serve as the
-          boundary between the ordinary and the extraordinary. In disciplines that rely on the
-          p-value to draw conclusions, 0.05 is the most widespread convention &mdash; but it is not
-          uncommon to encounter studies that adopt a stricter threshold, such as 0.01, when the
-          stakes demand it.
+          probability) into a subjective binary conclusion: which world are we in? Yet, this
+          boundary is by definition <strong>subjective</strong>, as it is set arbitrarily and rests
+          on no law of nature. Throughout our journey, we have used a threshold of 0.05 to move from
+          $H_0$ to $H_1$, but this choice was indeed an arbitrary convention: any other value could
+          serve as the boundary between the <em>ordinary</em> and the <em>extraordinary</em>. In
+          disciplines that rely on the p-value to draw conclusions, 0.05 is the most widespread
+          convention &mdash; but it is not uncommon to encounter studies that adopt a stricter
+          threshold, such as 0.01, when the stakes demand it.
         </p>
         <p>
           The choice of the tipping point between the two worlds $H_0$ and $H_1$ is not trivial: all
           the conclusions we have drawn so far rest on the convention of 0.05. Changing this tipping
-          point means changing the rules of the game &mdash; and therefore potentially changing the
-          conclusions. A result with p = 0.03 is extraordinary with a tipping point of 0.05, but no
-          longer is if it is moved to 0.01. Conversely, a result with p = 0.08 is ordinary at 0.05
-          but would become extraordinary if 0.10 were chosen as the tipping point. This is why it is
-          essential to always specify the chosen tipping point before conducting an analysis &mdash;
-          and above all not to choose it <em>after</em> having looked at the data, which would
-          amount to moving the finish line once the race is over. To illustrate this with the
-          examples encountered along our journey: with a boundary of 0.01, our conclusions collapse.
-          The coin we had declared biased no longer is &mdash; at least, we no longer have proof of
-          it. And the tree we had identified as a beech can no longer be considered as such. All of
-          this, without the data having changed one iota!
+          point means changing <strong>the rules of the game</strong> &mdash; and therefore
+          potentially changing the conclusions. A result with p = 0.03 is extraordinary with a
+          tipping point of 0.05, but no longer is if it is moved to 0.01. Conversely, a result with
+          p = 0.08 is ordinary at 0.05 but would become extraordinary if 0.10 were chosen as the
+          tipping point. This is why it is essential to always specify the chosen tipping point
+          <strong>before</strong> conducting an analysis &mdash; and above all not to choose it
+          <strong>after</strong> having looked at the data, which would amount to moving the finish
+          line once the race is over. To illustrate this with the examples encountered along our
+          journey into the world of mathematics: with a boundary of 0.01, our conclusions collapse.
+          The coin we had declared biased (15 heads in 20 tosses) no longer is &mdash; at least, we
+          no longer have proof of it. And the tree we had identified as a beech (25 m) can no longer
+          be considered as such. All of this, without the data having changed one iota!
         </p>
         <p>
           When one seeks to shift towards the world of $H_1$ and obtains a p-value of 0.051, the
           situation can be frustrating if 0.05 had been chosen as the tipping point: we were only
-          0.002 away from being able to shift, and yet we are compelled to remain in $H_0$. Faced
-          with this situation, the temptation is great to conclude that the world of $H_1$ is
-          &ldquo;&nbsp;almost&nbsp;&rdquo; true. In the context of statistical tests, one may hear
-          expressions such as &ldquo;&nbsp;there is a trend&nbsp;&rdquo;. In both cases, these
-          expressions all convey the same reality: we were truly not far from shifting towards $H_1$
-          &mdash; but we did not shift. And in statistics, <em>almost</em> does not count: the
+          0.002 away from being able to shift, and yet we are <strong>compelled</strong> to remain
+          in $H_0$. Faced with this situation, the temptation is great to conclude that the world of
+          $H_1$ is &ldquo;&nbsp;almost&nbsp;&rdquo; true. In the context of statistical tests, one
+          may hear expressions such as &ldquo;&nbsp;there is a trend&nbsp;&rdquo;. In both cases,
+          these expressions all convey the same reality: we were truly not far from shifting towards
+          $H_1$ &mdash; but we did not shift. And in statistics, <em>almost</em> does not count: the
           boundary has not been crossed and we must remain in $H_0$, whether we like it or not.
         </p>
         <p>
@@ -227,39 +227,39 @@
         </p>
         <h3>The sudden darkness bias</h3>
         <p>
-          The sudden darkness bias is the bias that leads us to perceive as a sharp break what is in
-          reality a continuous transition. In practice, night never falls all at once: the light
-          fades gradually, dusk sets in, then darkness gains ground little by little, without any
-          truly instantaneous shift. Yet at some point, one is compelled to set a threshold and say
-          &ldquo;&nbsp;it is dark&nbsp;&rdquo;. And yet, the brightness a few moments before and a
-          few moments after this threshold is in reality almost the same.
+          The sudden darkness bias is the bias that leads us to perceive as a
+          <strong>sharp break</strong> what is in reality a <strong>continuous transition</strong>.
+          In practice, night never falls all at once: the light fades gradually, dusk sets in, then
+          darkness gains ground little by little, without any truly instantaneous shift. Yet, at
+          some point, one is compelled to set a threshold and say &ldquo;&nbsp;it is
+          dark&nbsp;&rdquo;. And yet, the brightness a few moments before and a few moments after
+          this threshold is in reality <em>almost</em> the same.
         </p>
         <p>
           This problem is far more universal than it might seem and arises whenever humans impose an
-          arbitrary threshold on a continuous objective measure. Let us take the example of the age
-          of majority: in France, it is set at 18. Thus, a person aged 17 years and 11 months is a
-          minor, but a person aged 18 years and 1 month is an adult. Worse still: a person aged 17
-          years, 11 months, and 364 days is a minor, but a person aged 18 years, 0 months, and 1 day
-          is an adult. The gap between the two? 48 hours. Yet one can vote, get a tattoo, drive,
-          sign a contract &mdash; the other cannot. Thus, saying that a person aged 17 years, 11
-          months, and 364 days is &ldquo;&nbsp;almost an adult&nbsp;&rdquo; is factually true, but
-          opens no doors for them: in regulatory matters, as with the p-value, almost does not
-          count.
+          <strong>arbitrary threshold</strong> on a continuous objective measure. Let us take the
+          example of the age of majority: in France, it is set at 18. Thus, a person aged 17 years
+          and 11 months is a minor, but a person aged 18 years and 1 month is an adult. Worse still:
+          a person aged 17 years, 11 months, and 364 days is a minor, but a person aged 18 years, 0
+          months, and 1 day is an adult. The gap between the two? 48 hours. Yet, one can vote, get a
+          tattoo, drive, sign a contract &mdash; the other cannot. Thus, saying that a person aged
+          17 years, 11 months, and 364 days is &ldquo;&nbsp;almost an adult&nbsp;&rdquo; is
+          <strong>factually true</strong>, but opens no doors for them: in regulatory matters, as
+          with the p-value, <em>almost</em> does not count.
         </p>
         <p>
           Everyday life is full of examples built on this effect. Scoring 9.99/20 or 10.01/20 in the
           baccalauréat: factually, both pupils are at the same academic level &mdash; yet one leaves
           with the diploma, the other does not. Luggage on a plane: a suitcase weighing 22.9 kg
           theoretically costs nothing extra, whilst one weighing 23.1 kg may incur additional
-          charges. Yet these extra 200 grams change virtually nothing about the flight: neither fuel
-          consumption, nor safety, nor the comfort of the other passengers are perceptibly affected.
-          In all these cases, the boundary is a practical necessity because a decision must be made,
-          a choice taken. But reality itself cares nothing for our compromises: it is continuous,
-          infinitely more nuanced than the categories we impose upon it, and is utterly indifferent
-          to our arbitrary thresholds, which are nothing but conventions, not truths. One must never
-          forget that they are
-          <em>our</em> invention, not nature's. That is the price to pay for turning a complex world
-          into simple decisions.
+          charges. Yet, these extra 200 grams change virtually nothing about the flight: neither
+          fuel consumption, nor safety, nor the comfort of the other passengers are perceptibly
+          affected. In all these cases, the boundary is a practical necessity because a
+          <strong>decision</strong> must be made, a choice taken. But reality itself cares nothing
+          for our compromises: it is continuous, infinitely more nuanced than the categories we
+          impose upon it, and is utterly indifferent to our arbitrary thresholds, which are nothing
+          but conventions, not truths. One must never forget that they are <em>our</em> invention,
+          not nature's. That is the price to pay for turning a complex world into simple decisions.
         </p>
       </div>
     </main>
