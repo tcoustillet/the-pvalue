@@ -226,30 +226,31 @@
         <p>
           You may have noticed in the previous examples that $H_0$ is by no means chosen at random:
           it is the <strong>default world</strong> &mdash; the world where nothing extraordinary
-          happens. $H_0$ is the naive hypothesis and it assumes that nothing interesting is at work.
-          In the world of $H_0$, Father Christmas and extraterrestrials do not exist, the pupil is
-          not cheating, climate change does not exist, there is no link between two phenomena, air
+          happens. $H_0$ is the naive hypothesis and it assumes that nothing of note is at work. In
+          the world of $H_0$, Father Christmas and extraterrestrials do not exist, the pupil is not
+          cheating, climate change does not exist, there is no link between two phenomena, air
           pollution does not cause respiratory diseases, ultra-processed foods have no link with
-          metabolic diseases or cancers, and so on. In short: everything is fine, the world is
-          ticking along nicely, and that is perfectly fine. In the world of $H_0$, one believes in
-          nothing. And if something odd occurs &mdash; no need to panic, it is simply the result of
-          chance, a mere coincidence. In the world of $H_0$, everything that deviates from the
-          ordinary can be explained by chance.
+          metabolic diseases or cancers, the additives E471 and E407 do not increase the risk of
+          cancer, and so on. In short: everything is fine, the world is ticking along nicely, and
+          that is perfectly fine. In the world of $H_0$, one believes in nothing. And if something
+          odd occurs &mdash; no need to panic, it is simply the result of chance, a mere
+          coincidence. In the world of $H_0$, everything that deviates from the ordinary can be
+          explained by chance.
         </p>
         <p>
           $H_1$ is the world on the other side &mdash; the one where something is truly happening.
           Father Christmas and extraterrestrials exist, the pupil is cheating, climate change
           exists, two phenomena are indeed linked, air pollution increases the risk of respiratory
-          diseases, ultra-processed foods increase the risk of metabolic diseases or cancers, and so
-          on. But this world is not easily reached: one only shifts towards $H_1$ if what is
-          observed makes $H_0$ truly too unlikely to be true. In other words, a sufficiently high
-          level of evidence is required to shift towards $H_1$ and abandon $H_0$. These two worlds
-          coexist, but one must always assume that the world of $H_0$ is true: it is up to $H_1$ to
-          bring evidence of its existence, never the other way around. By default, $H_0$ is
-          therefore always true, and it is rejected when enough evidence against it has been
-          accumulated. And in general, this level of evidence is the 5% threshold: if a result had
-          less than a 5% chance of occurring in the world of $H_0$, one is permitted to shift
-          towards $H_1$.
+          diseases, ultra-processed foods increase the risk of metabolic diseases or cancers, the
+          additives E471 and E407 are risk factors for breast and prostate cancer, and so on. But
+          this world is not easily reached: one only shifts towards $H_1$ if what is observed makes
+          $H_0$ truly too unlikely to be true. In other words, a sufficiently high level of evidence
+          is required to shift towards $H_1$ and abandon $H_0$. These two worlds coexist, but one
+          must always assume that the world of $H_0$ is true: it is up to $H_1$ to bring evidence of
+          its existence, never the other way around. By default, $H_0$ is therefore always true, and
+          it is rejected when enough evidence against it has been accumulated. And in general, this
+          level of evidence is the 5% threshold: if a result had less than a 5% chance of occurring
+          in the world of $H_0$, one is permitted to shift towards $H_1$.
         </p>
         <p>
           What if we did the opposite &mdash; what if we started from the world of $H_1$ by default?
@@ -321,7 +322,8 @@
           <img src="../fr/figures/oeil_bleu.png" class="latex-like" />$)$. According to Figure 1,
           this probability is equal to 0.005, giving us a p-value of 0.005: the probability of a
           child being born with green eyes given that both parents have blue eyes is 0.5%. If both
-          parents have blue eyes, the birth of a child with green eyes would be an extraordinary
+          parents have blue eyes, the birth of a child with green eyes would be an
+          <em>extraordinary</em>
           occurrence. Since 0.005 &lt; 0.05, we must reject the null hypothesis $H_0$ and consider
           the alternative hypothesis $H_1$. We have accumulated sufficient evidence (&lt; 5%) to
           call into question the world in which $H_0$ is true, that is, the world in which both
@@ -331,7 +333,7 @@
         </p>
         <p>
           If you have followed this reasoning, then congratulations &mdash; you are (almost) there:
-          you now know what a p-value is!
+          you've just gotten your first real feel for what a p-value is!
         </p>
         <h4>Try it yourself!</h4>
         <p>
@@ -371,12 +373,12 @@
         <p>
           Let us take an example that this time uses the true definition of the p-value:
           $\text{p-value} \coloneqq \mathbb{P}(X \geq X_{\text{observed}} \mid H_0 \text{ true})$.
-          Eve is taking a walk in a forest made up exclusively of oak trees and beech trees; she is
-          currently in an area rich in oak trees but spots a tree that appears to be taller than the
-          others and wonders whether it might be a beech tree, beeches being on average taller than
-          oaks. The question she asks herself is: how can I decide whether this tree is a tall oak
-          among the oaks, or a beech among the oaks? To answer her question, the answer is now
-          obvious: she is going to use the p-value!
+          Eve is taking a walk in a forest made up exclusively of <strong>oak trees</strong> and
+          <strong>beech trees</strong>; she is currently in an area rich in oak trees but spots a
+          tree that appears to be taller than the others and wonders whether it might be a beech
+          tree, beeches being on average taller than oaks. The question she asks herself is: how can
+          I decide whether this tree is a tall oak among the oaks, or a beech among the oaks? To
+          answer her question, the answer is now obvious: she is going to use the p-value!
         </p>
         <p>
           Since she is in an area rich in oak trees, her null hypothesis, her initial belief, is
@@ -387,8 +389,8 @@
         \end{align*} $$
         <p>
           First of all, Eve needs to define her null hypothesis $H_0$, that is, to know the normal
-          height that an oak tree should have. According to her father, a forest ranger, the
-          distribution of the heights of the oak trees in this forest (in m.)
+          height that an oak tree <strong>should have</strong>. According to her father, a forest
+          ranger, the distribution of the heights of the oak trees in this forest (in m.)
           <em>follows</em> a normal distribution with mean $\mu = 18$ and standard deviation $\sigma
           = 4$. Let $H$ be the random variable describing the height of a tree in this forest.
           Suppose that Eve's tree measures 25 m, and let us try to determine its species using the
@@ -396,16 +398,18 @@
         </p>
         <p>
           By definition of the p-value, we <em>simply</em> need to calculate the probability of
-          measuring at least 25 m given that we are an oak (the probability of observing a value at
-          least as extreme as the one observed given that $H_0$ is true). And, as we saw in the
-          previous section, calculating such a probability amounts to measuring the area under the
-          density curve associated with the random variable representing the height of oak trees.
-          Here, this area is therefore bounded between 25 and +&infin;. No need to worry about this
-          infinite upper bound: since the height follows a normal distribution, very high values are
-          extremely rare, and the curve flattens so rapidly towards the horizontal axis that the
-          area beyond a certain point becomes entirely negligible. Mathematically, Eve must
-          calculate $\mathbb{P}(H \ge 25 \mid \text{the tree is an oak})$. Two cases then present
-          themselves:
+          measuring at least 25 m <strong>given that we are an oak</strong> (the probability of
+          observing a value at least as extreme as the one observed given that $H_0$ is true). And,
+          as we saw in the previous section, calculating such a probability amounts to measuring the
+          area under the density curve associated with the random variable representing the height
+          of oak trees. Here, this area is therefore bounded between 25 and +&infin;. No need to
+          worry about this infinite upper bound: since the height follows a normal distribution,
+          very high values are extremely rare, and the curve flattens so rapidly towards the
+          horizontal axis that the area beyond a certain point becomes entirely negligible.
+        </p>
+        <p>
+          Mathematically, Eve must calculate $\mathbb{P}(H \ge 25 \mid \text{the tree is an oak})$,
+          the p-value. Two cases then present themselves:
         </p>
         <ul class="center-list">
           <li>
@@ -447,8 +451,8 @@
         </p>
         <div style="text-align: center">
           <div class="bloc-latex-like">
-            <p>$\mathbb{P}(H \geq 24,58 \mid \text{the tree is an oak}) = 5\%$</p>
-            <p>$\mathbb{P}(H \lt 24,58 \mid \text{the tree is an oak}) = 95\%$</p>
+            <p>$\mathbb{P}(H \geq 24.58 \mid \text{the tree is an oak}) = 5\%$</p>
+            <p>$\mathbb{P}(H \lt 24.58 \mid \text{the tree is an oak}) = 95\%$</p>
           </div>
         </div>
         <p>

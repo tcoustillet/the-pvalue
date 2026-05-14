@@ -123,7 +123,6 @@ const GaussianChart = {
     this.svg
       .selectAll('.tick text, .x-label, .y-label')
       .style('font-size', '12px')
-      .style('font-family', 'sans-serif')
       .style('fill', '#000');
 
     const line = d3
