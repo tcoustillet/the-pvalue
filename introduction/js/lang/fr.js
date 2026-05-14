@@ -61,3 +61,6 @@ LANG.treeConclusion = {
   descriptionText: (threshold, pct, raw, conclusion) =>
     `La probabilité qu'un arbre mesure plus de ${threshold} m, sachant (en croyant) que c'est un chêne, est de ${pct}%. Cette probabilité est précisément la définition de la p-value : ici donc p = ${raw}. Cela signifie que l'aire sous la courbe entre ${threshold} et + &infin; représente ${pct}% de l'aire totale qui, elle, regroupe toutes les hauteurs possibles (univers). ${conclusion}`,
 };
+
+LANG.pvalueWarning = (threshold, pct) =>
+  `Et attention à ne pas confondre ni inverser la probabilité conditionnelle : <u>la p-value ne dit rien</u> sur la probabilité de $H_0$ :<br>il serait <strong>faux</strong> de dire qu'un arbre a ${pct}% de chances d'être un chêne sachant qu'il mesure au moins ${threshold} m. Par contre un arbre a bien ${pct}% de chances de mesurer au moins ${threshold} m sachant que c'est un chêne.`;

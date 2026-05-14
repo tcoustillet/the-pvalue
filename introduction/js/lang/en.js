@@ -61,3 +61,6 @@ LANG.treeConclusion = {
   descriptionText: (threshold, pct, raw, conclusion) =>
     `The probability that a tree measures more than ${threshold} m, assuming it is an oak, is ${pct}%. This probability is precisely the definition of the p-value: here p = ${raw}. This means that the area under the curve between ${threshold} and + &infin; represents ${pct}% of the total area, which encompasses all possible heights (the sample space). ${conclusion}`,
 };
+
+LANG.pvalueWarning = (threshold, pct) =>
+  `And be careful not to confuse or invert the conditional probability: <u>the p-value says nothing</u> about the probability of $H_0$ :<br>it would be <strong>wrong</strong> to say that a tree has a ${pct}% chance of being an oak given that it measures at least ${threshold} m. However, a tree does indeed have a ${pct}% chance of measuring at least ${threshold} m given that it is an oak.`;

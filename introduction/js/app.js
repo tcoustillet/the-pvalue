@@ -41,6 +41,7 @@ function updateDescription(mu, sigma, threshold) {
   description.innerHTML = `
     <span class="chart-description__formula">${LANG.treeConclusion.formula(threshold, pct)}</span>
     <span class="chart-description__text">${LANG.treeConclusion.descriptionText(threshold, pct, raw, conclusion)}</span>
+    <p><br>${LANG.pvalueWarning(threshold, pct)}</p>
   `;
 
   renderMathInElement(description, {
