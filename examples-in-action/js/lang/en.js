@@ -25,4 +25,4 @@ LANG.pvalueLow = (H0, H1, pLt) =>
   `Since ${pLt}: the result is extraordinary in the world of ${H0}. If the coin were truly fair, observing this result would have been too unlikely. With sufficient evidence, we shift towards ${H1}: we can reasonably believe that our coin is biased towards heads.`;
 
 LANG.pvalueWarning = (n, k, faces, probPercent) =>
-  `<strong><u>It is wrong to claim</u></strong> that, if ${k} ${faces} are obtained out of ${n} tosses, the coin has a ${probPercent}% chance of being fair.`;
+  `<strong><u>It is wrong to claim</u></strong> that, if ${k} ${faces} are obtained out of ${n} tosses, the coin has a ${probPercent}% chance of <strong>not being</strong> biased towards heads.`;
