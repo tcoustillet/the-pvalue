@@ -13,8 +13,9 @@ jobs:
         env:
           GIST_ID: 1bbd83cc44eccca443a9f8bb26610930
           GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          TZ: Europe/Paris
         run: |
-          DATE=$(date +'%d %B %Y')
+          DATE=$(date +'%a %d %B %Y %T %Z')
 
           CURRENT=$(curl -s \
             -H "Authorization: token $GIST_TOKEN" \
