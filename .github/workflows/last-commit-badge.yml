@@ -1,0 +1,30 @@
+name: Update last update badge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Gist with last commit date
+        env:
+          GIST_ID: 1bbd83cc44eccca443a9f8bb26610930
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: |
+          DATE=$(date +'%d %B %Y')
+
+          CURRENT=$(curl -s \
+            -H "Authorization: token $GIST_TOKEN" \
+            https://api.github.com/gists/$GIST_ID)
+
+          CONTENT=$(echo $CURRENT | jq -r '.files["last-commit.json"].content' | jq --arg d "$DATE" '.message = $d')
+
+          PAYLOAD=$(jq -n --arg c "$CONTENT" '{"files":{"last-commit.json":{"content":$c}}}')
+          curl -s -X PATCH \
+            -H "Authorization: token $GIST_TOKEN" \
+            -H "Content-type: application/json" \
+            -d "$PAYLOAD" \
+            https://api.github.com/gists/$GIST_ID

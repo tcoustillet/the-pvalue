@@ -1,7 +1,7 @@
 # The p-value
 
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-0fbf3e)
-![Last update](https://img.shields.io/github/last-commit/tcoustillet/the-pvalue?label=Last%20Update&color=1f77b4)
+![Last update](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/tcoustillet/1bbd83cc44eccca443a9f8bb26610930/raw/last-commit.json)
 ![Made with love](https://img.shields.io/badge/Made%20with-%F0%9F%A4%8D-d62728)
 
 The p-value, interactively demystified.
