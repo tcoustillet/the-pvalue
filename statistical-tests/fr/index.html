@@ -1,29 +1,119 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <title>Tests statistiques</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <title>Tests statistiques</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+    <script src="../../js/katex-loader.js"></script>
+  </head>
+  <body>
+    <site-header show-back is-subpage lang="fr"></site-header>
 
-  <site-header show-back is-subpage lang="fr"></site-header>
+    <main class="page-content">
+      <div class="container">
+        <p>
+          Dans les exemples des précédentes pages, nous avons calculé les p-values
+          &laquo;&nbsp;directement&nbsp;&raquo;, c'est-à-dire comme de simples probabilités
+          conditionnelles. Cela était possible parce que nous
+          <strong>connaissions la distribution</strong> de la variable aléatoire d'intérêt sous
+          l'hypothèse nulle : on savait à quoi s'attendre en lançant 20 fois une pièce supposée
+          équilibrée, tout comme l'on savait à quoi s'attendre en observant la taille d'un arbre
+          supposé être un chêne.
+        </p>
+        <p>
+          En sciences expérimentales, et en biologie en particulier, cette situation est
+          <strong>rare</strong> : lorsqu'on teste une hypothèse, il n'existe généralement pas de
+          distribution de probabilité connue directement associée à la variable étudiée. Et c'est là
+          qu'interviennent les <strong>tests statistiques</strong> : ils permettent de
+          <strong>construire une variable aléatoire</strong> représentative de la situation
+          d'intérêt, puis de calculer la p-value exactement comme on l'a fait précédemment.
+        </p>
+        <h2>La statistique : résumer une comparaison en un seul nombre</h2>
+        <h3>Encore une histoire de taille</h3>
+        <p>
+          Le mardi 30 juin 2026, lors de la Coupe du monde de football, la France a affronté la
+          Suède en 1/16<sup>e</sup> de finale à New York. Imaginons que l'on veuille savoir si les
+          joueurs de l'équipe de Suède sont, en moyenne, plus grands que ceux de l'équipe de France.
+          Notre hypothèse nulle $H_0$, le monde par défaut, serait alors de considérer qu'il n'y a
+          pas de différence de taille moyenne entre les joueurs de l'équipe de France et ceux de
+          l'équipe de Suède : les deux moyennes seraient globalement les mêmes. Pour savoir si les
+          suédois sont plus grands que les français, il nous suffirait alors de mesurer la taille
+          moyenne des deux équipes, puis d'observer la différence entre ces moyennes (c'est notre
+          variable aléatoire, c'est-à-dire la quantité qui nous intéresse dans cette expérience), et
+          enfin de calculer la <strong>p-value</strong> associée&nbsp;: la probabilité d'observer
+          une différence au moins aussi extrême que celle observée, en supposant $H_0$ vraie (les
+          moyennes sont identiques). Facile non ?
+        </p>
+        <p>
+          Un problème se pose alors&nbsp;: comment traduire mathématiquement «&nbsp;H0 vraie&nbsp;»,
+          autrement dit comment retranscrire le fait que les deux équipes aient la même taille
+          moyenne&nbsp;? À quoi devons-nous nous attendre si les deux équipes ont vraiment la même
+          taille moyenne&nbsp;? Et surtout : quelle est la distribution de probabilité de la
+          variable aléatoire représentant la différence des tailles moyennes ?
+        </p>
+        <p>
+          Notons $\bar{x}_{{}_\text{\scriptsize &#x1F1F8;&#x1F1EA;}}$ la taille moyenne (en cm.) des
+          11 titulaires suédois qui ont commencé le match et $\bar{x}_{{}_\text{\scriptsize
+          &#x1F1EB;&#x1F1F7;}}$ la taille moyenne (en cm.) des 11 titulaires français qui ont débuté
+          le match. Dans notre expérience, puisque nous nous intéressons à la différence des
+          moyennes, on peut introduire la variable aléatoire $D \coloneqq
+          \bar{x}_{{}_\text{\scriptsize &#x1F1F8;&#x1F1EA;}} - \bar{x}_{{}_\text{\scriptsize
+          &#x1F1EB;&#x1F1F7;}}$. Si les moyennes étaient strictement identiques, on aurait $D = 0$.
+          Mais si on obtient $D = 0{,}3$, cela signifie que la différence des moyennes observée est
+          de 0,3 mm en faveur des suédois. Les joueurs suédois sont-ils alors vraiment plus grands
+          que les français ? À partir de quand peut-on conclure quelque chose ? Quelle est la
+          différence seuil qui nous permettrait de basculer de $H_0$ (les deux équipes mesurent la
+          même taille) vers $H_1$ (les joueurs suédois sont plus grands que les français) ? Une
+          différence de 0,2 mm est-elle suffisante pour déclarer les suédois plus grands ? Ou alors
+          faut-il au minimum 5 cm ?
+        </p>
+        <p>
+          Dans la réalité, le problème qu'on cherche à résoudre est de savoir si la valeur de $D$
+          observée ($D_{observée}$) a un sens concret : si cette différence observée est pertinente
+          ou bien négligeable ? En statistiques, on dit qu'on cherche à savoir si la différence est
+          <em>significative</em>, c'est-à-dire si elle est suffisamment grande pour ne pas être due
+          au simple hasard.
+        </p>
+        <p>
+          En fait, le calcul de la p-value étant objectif mais la conclusion qu'on en tire étant
+          subjective (le choix du seuil de 5%), on pourrait très bien construire une nouvelle
+          théorie alternative, elle aussi basée sur un seuil subjectif. Je pourrais très bien
+          décider (<strong>avant</strong> de faire l'expérience) : &laquo; je considère qu'une
+          différence d'au moins 2 cm est significative, et qu'elle me permettra de conclure que les
+          suédois sont plus grands, le cas échéant &raquo; (on bascule de $H_0$ vers $H_1$). À
+          l'inverse, si j'observe une différence inférieure à 2 cm, je considèrerai que c'est
+          négligeable, et j'aurai le droit de conclure que la différence n'est pas significative :
+          les suédois ne sont pas franchement plus grands que les français (non-rejet de $H_0$).
+        </p>
+        <p>
+          Les conclusions qu'on tirera seront &laquo; vraies &raquo; dans <em>cette</em> théorie. Et
+          on peut construire n'importe quelle théorie alternative : par exemple, décider que la
+          différence doit être supérieure au rayon d'un ballon de foot (&#126;11 cm) pour basculer
+          de $H_0$ vers $H_1$. Si on observe 8 cm d'écart, on aura alors le droit de considérer que
+          cette différence n'est pas significative &mdash; dans notre théorie. Ces théories ne sont
+          ni fausses ni vraies : ce sont juste des règles simples qu'on se donne pour tirer des
+          conclusions. Si les sciences expérimentales fonctionnaient comme ça, chacun choisirait le
+          seuil qui l'arrange, et plus rien n'aurait de sens. Pour trancher une bonne fois pour
+          toutes si les joueurs suédois sont plus grands que les français, il nous faut utiliser une
+          théorie reconnue par l'ensemble du monde académique... la théorie de la p-value.
+        </p>
+      </div>
+    </main>
 
-  <main class="page-content">
-    <div class="container">
-    </div>
-  </main>
+    <site-footer></site-footer>
 
-  <site-footer></site-footer>
-
-  <script src="../../js/site-header.js"></script>
-  <script src="../../js/site-footer.js"></script>
-  <script src="../../js/page-loader.js"></script>
-
-</body>
+    <script src="../../js/site-header.js"></script>
+    <script src="../../js/site-footer.js"></script>
+    <script src="../../js/page-loader.js"></script>
+  </body>
 </html>
