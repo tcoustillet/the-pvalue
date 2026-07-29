@@ -1,0 +1,56 @@
+/* Layout for the France / Sweden player height tables */
+
+#player-height-tables {
+  display: flex;
+  gap: 14rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+#player-height-tables table {
+  flex: 1;
+  min-width: 250px;
+  border-collapse: collapse;
+}
+
+#player-height-tables th,
+#player-height-tables td {
+  padding: 0.1rem 0.75rem;
+  text-align: left;
+  border-bottom: none;
+}
+
+#player-height-tables th:nth-child(2),
+#player-height-tables td:nth-child(2) {
+  text-align: right;
+}
+
+#player-height-tables th {
+  border-bottom: 1px solid #333;
+}
+
+#player-height-tables .summary-row td {
+  font-weight: bold;
+  border-bottom: none;
+}
+
+#player-height-tables .summary-row + .summary-row td {
+  border-top: none;
+}
+
+#player-height-tables tbody tr:not(.summary-row) + .summary-row td {
+  border-top: 1px solid #333;
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 0.5em 0;
+  margin: 1em 0;
+}
+
+caption {
+  font-size: 0.9em;
+  margin-bottom: 4px;
+  text-align: left;
+}

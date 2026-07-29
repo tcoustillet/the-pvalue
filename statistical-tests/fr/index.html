@@ -107,6 +107,24 @@
           toutes si les joueurs suédois sont plus grands que les français, il nous faut utiliser une
           théorie reconnue par l'ensemble du monde académique... la théorie de la p-value.
         </p>
+        <p>
+          Pour calculer la p-value dans les règles de l'art, il nous faut connaitre la distribution
+          de probabilité de la variable aléatoire représentative de la situation étudiée (différence
+          des moyennes). Commençons par regarder les données de plus près&nbsp;:
+        </p>
+        <div id="player-height-tables"></div>
+        <script src="../js/players.js"></script>
+        <script>
+          renderPlayerTables('player-height-tables');
+        </script>
+
+        <p>
+          L'équipe de France mesure en moyenne 183,2 cm, tandis que l'équipe de Suède mesure en
+          moyenne 185,6 cm. Les joueurs suédois sont donc plus grands que les joueurs français. La
+          question à se poser est de savoir si cette différence est <em>significative</em> ? Est-ce
+          que ces 2,4&nbsp;cm d'écart suffisent à conclure que les footballeurs suédois sont
+          réellement plus grands que les français ?
+        </p>
       </div>
     </main>
 
