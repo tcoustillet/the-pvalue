@@ -125,6 +125,138 @@
           que ces 2,4&nbsp;cm d'écart suffisent à conclure que les footballeurs suédois sont
           réellement plus grands que les français ?
         </p>
+        <p>
+          Reprenons notre variable aléatoire $D \coloneqq \subse{\bar{x}} - \subfr{\bar{x}}$. Ici,
+          on a donc $D_{observé} = 185{,}6 - 183{,}2 = 2{,}4$. Si on prend comme point de bascule de
+          $H_0$ vers $H_1$ le seuil 2 cm, la différence est significative car 2,4 > 2 mais si on
+          prend comme seuil le rayon du ballon, la différence n'est plus significative puisque 2,4 <
+          11. Soyons plus rigoureux et utilisons les méthodes conventionnelles.
+        </p>
+        <p>
+          Pour tester si cette différence est significative en utilisant la théorie de la p-value,
+          il nous faut créer une <strong>variable aléatoire</strong> $X$ qui représente la situation
+          (la différence moyenne des tailles) <strong>et</strong> dont la distribution de
+          probabilité est <strong>connue</strong>. Puis, il nous suffit de regarder quelle est la
+          probabilité d'observer une telle différence &mdash; ou une différence encore plus grande
+          &mdash; si les tailles des deux équipes étaient réellement identiques ($H_0$ vraie). Cela
+          revient à calculer : $\mathbb{P}(X \geq X_{observé} \mid H_0 \text{ vraie})$, ce qui est
+          la définition de la p-value.
+        </p>
+        <h3>Le test t de Student</h3>
+        <p>
+          Reprenons notre variable aléatoire $D$ que l'on renomme $T$&nbsp;: $$T = \subse{\bar{x}} -
+          \subfr{\bar{x}}$$ Certes $T$ représente bien la situation étudiée puisqu'elle caractérise
+          correctement la différence des moyennes, mais on ne connait pas sa distribution de
+          probabilité. Impossible donc de calculer une p-value.
+        </p>
+        <p>
+          Modifions alors $T$ de telle sorte que : $$T = \dfrac{\subse{\bar{x}} -
+          \subfr{\bar{x}}}{s_p \cdot \sqrt{\dfrac{1}{\subse{n}} + \dfrac{1}{\subfr{n}}}}$$ où
+          $\subse{n}$ est le nombre de joueurs du groupe Suède, $\subfr{n}$ le nombre de joueurs du
+          groupe France et $s_p$ est l'écart-type combiné des deux groupes&nbsp;:
+        </p>
+        <p>
+          $$s_p = \sqrt{\dfrac{(\subse{n}-1) \cdot \subse{s}^2 +
+          (\subfr{n}-1)\,\subfr{s}^2}{\subse{n} + \subfr{n} - 2}}$$
+        </p>
+        <p>
+          Contrairement à la simple différence des moyennes ($\subse{\bar{x}} - \subfr{\bar{x}}$),
+          cette nouvelle variable aléatoire $T$ a un <u><strong>avantage précieux</strong></u
+          >&nbsp;: sous $H_0$ (c'est-à-dire si les deux groupes ont vraiment la même moyenne), on
+          peut démontrer que $T$ suit une <strong>loi de Student</strong> de paramètre $\subse{n} +
+          \subfr{n} - 2$. Techniquement, ce paramètre décrit les <em>degrés de liberté</em> de la
+          densité de probabilité, et ici $T$ suit par conséquent une loi de Student à 11 + 11 - 2 =
+          20 degrés de liberté. Ici donc, on sait maintenant à quoi s'attendre lorsque $H_0$ est
+          vraie : on pourra donc évaluer si un résultat observé est conforme à notre hypothèse, ou
+          bien s'il est <em>extraordinaire</em>.
+        </p>
+        <p>
+          Autrement dit, en divisant l'écart des moyennes par une estimation de la variabilité
+          naturelle des données (via $s_p$), on transforme un nombre dont on ignorait la
+          distribution en une variable aléatoire dont la distribution est parfaitement connue ! La
+          variable aléatoire que nous venons de construire est appelé
+          <em>statistique de Student</em>. C'est précisément cette construction qui permettra de
+          calculer notre p-value avec les méthodes usuelles.
+        </p>
+        <figure>
+          <img src="figures/figure_1.png" alt="Loi de Student (20 ddl)" />
+          <figcaption>
+            Figure 1 — (a) Densité de probabilité liée à la variable aléatoire T qui suit une loi de
+            Student à 20 degrés de liberté. (b) Représentation de l'univers de T = représentation de
+            $\mathbb{P}(-\infty \lt T \lt +\infty)$. $T$ a 100% de chances de se trouver dans
+            l'intervalle $]-\infty \; ; +\infty[$.
+          </figcaption>
+        </figure>
+        <p>
+          La figure 1 désigne la densité de probabilité de la variable aléatoire $T$ construite plus
+          haut, lorsque $H_0$ <strong>est vraie</strong>. Pour calculer la probabilité que $T$ tombe
+          dans un certain intervalle donné <strong>sachant</strong> que les deux équipes ont la même
+          taille moyenne, il nous suffit alors d'évaluer <strong>l'aire sous la courbe</strong> de
+          la densité entre les deux bornes considérées (Figure 2).
+        </p>
+        <figure>
+          <img src="figures/figure_2.png" alt="Probabilités Loi de Student" />
+          <figcaption>
+            Figure 2 — (a) Représentation visuelle de $\mathbb{P}(-1{,}4 \leq T \leq 1{,}4)$. (b)
+            Représentation visuelle de $\mathbb{P}(T \geq 0{,}9)$.
+          </figcaption>
+        </figure>
+        <p>
+          Ainsi, si on suppose que les deux équipes <strong>ont la même taille moyenne</strong>, la
+          probabilité d'observer une valeur de $T$ comprise entre -1,4 et 1,4 (Figure 2a) est de
+          82,3% : cela signifie que, même si les deux équipes étaient réellement identiques en
+          taille, il serait tout à fait courant d'observer, par simple hasard d'échantillonnage ou
+          par chance, un écart comme celui-ci.
+        </p>
+        <p>
+          Dans notre exemple avec les joueurs français et suédois, on obtient : $$T_{observé} =
+          \dfrac{185{,}6 - 183{,}2}{\sqrt{\dfrac{(11 -1) \cdot 7^2 + (11 -1) \cdot 5{,}4^2}{11 + 11
+          - 2}} \cdot \sqrt{\dfrac{1}{11} + \dfrac{1}{11}}} = 0{,}9$$
+        </p>
+        <p>
+          Pour calculer la p-value et conclure si la différence de 2,4 cm entre les deux équipes est
+          <em>significative</em> ou non, il nous suffit d'appliquer la définition de la p-value et
+          de calculer $\mathbb{P}(T \geq 0{,}9 \mid H_0 \text{ vraie})$. Étant donné que $T$ suit
+          une loi de Student à 20 degrés de liberté sous $H_0$ (lorsque $H_0$ est vraie), nous
+          pouvons évaluer cette quantité directement à l'aide de la Figure 2b&nbsp;: $$\mathbb{P}(T
+          \geq 0{,}9 \mid H_0 \text{ vraie}) = 0{,}189 \gt 0.05$$
+        </p>
+        <p>
+          Étant donné que 0,189 > 0.05 (18,9% > 5%), nous n'avons pas recueilli suffisamment de
+          preuves pour pouvoir basculer vers $H_1$ et conclure que les joueurs suédois sont plus
+          grands que les français. Si les deux équipes avaient la même taille moyenne, nous avions
+          18,9% de chances d'observer ce résultat &mdash; ou un résultat aussi extrême. Le seuil des
+          5% n'est pas atteint et $H_0$ ne peut ainsi pas être rejetée.
+        </p>
+        <h4>Quelques notes</h4>
+        <p>
+          Lorsqu'on applique le raisonnement ci-dessus, on dit qu'on <em>fait</em> un
+          <strong>test t de Student</strong>, ce qui revient à calculer la valeur de la
+          <em>statistique</em> t de Student à partir des données, puis d'évaluer l'aire sous la
+          densité associée entre la valeur calculée et + ∞.
+        </p>
+        <p>
+          Comme on l'a vu tout au long de notre voyage, il est
+          <u><strong>faux</strong></u> d'affirmer que, au vu des données et de la différence des
+          moyennes, il y a 18,9% de chances pour que les deux équipes mesurent réellement la même
+          taille.
+        </p>
+        <p>
+          Lors d'un test statistique effectué avec un logiciel spécialisé, la plupart des
+          scientifiques s'intéressent uniquement à la p-value ; mais les logiciels fournissent aussi
+          la valeur de la statistique de test. Il peut parfois être intéressant d'y prêter un peu
+          plus d'attention étant donné que c'est cette statistique qui condense les données et qui
+          permet de calculer la fameuse p-value.
+        </p>
+        <p>
+          Enfin, pour que le raisonnement soit rigoureusement juste et surtout pour que la variable
+          aléatoire $T$ suive réellement une loi de Student lorsque $H_0$ est vraie, il
+          <strong>faut</strong> que les distributions des deux groupes que l'on compare soient
+          approximativement <strong>normales</strong> et que leurs variances soient
+          <strong>homogènes</strong> (homoscédasticité), ce qui avait bien été vérifié de mon côté
+          avant d'appliquer le raisonnement, mais ceci est une autre histoire...
+        </p>
+        <h3>Le test t de Student pour échantillons appariés</h3>
       </div>
     </main>
 
