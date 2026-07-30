@@ -19,6 +19,8 @@
   <body>
     <site-header show-back is-subpage lang="fr"></site-header>
 
+    <script src="../js/katex-macros.js"></script>
+
     <main class="page-content">
       <div class="container">
         <p>
@@ -62,20 +64,18 @@
           variable aléatoire représentant la différence des tailles moyennes ?
         </p>
         <p>
-          Notons $\bar{x}_{{}_\text{\scriptsize &#x1F1F8;&#x1F1EA;}}$ la taille moyenne (en cm.) des
-          11 titulaires suédois qui ont commencé le match et $\bar{x}_{{}_\text{\scriptsize
-          &#x1F1EB;&#x1F1F7;}}$ la taille moyenne (en cm.) des 11 titulaires français qui ont débuté
-          le match. Dans notre expérience, puisque nous nous intéressons à la différence des
-          moyennes, on peut introduire la variable aléatoire $D \coloneqq
-          \bar{x}_{{}_\text{\scriptsize &#x1F1F8;&#x1F1EA;}} - \bar{x}_{{}_\text{\scriptsize
-          &#x1F1EB;&#x1F1F7;}}$. Si les moyennes étaient strictement identiques, on aurait $D = 0$.
-          Mais si on obtient $D = 0{,}3$, cela signifie que la différence des moyennes observée est
-          de 0,3 mm en faveur des suédois. Les joueurs suédois sont-ils alors vraiment plus grands
-          que les français ? À partir de quand peut-on conclure quelque chose ? Quelle est la
-          différence seuil qui nous permettrait de basculer de $H_0$ (les deux équipes mesurent la
-          même taille) vers $H_1$ (les joueurs suédois sont plus grands que les français) ? Une
-          différence de 0,2 mm est-elle suffisante pour déclarer les suédois plus grands ? Ou alors
-          faut-il au minimum 5 cm ?
+          Notons $\subse{\bar{x}}$ la taille moyenne (en cm.) des 11 titulaires suédois qui ont
+          commencé le match et $\subfr{\bar{x}}$ la taille moyenne (en cm.) des 11 titulaires
+          français qui ont débuté le match. Dans notre expérience, puisque nous nous intéressons à
+          la différence des moyennes, on peut introduire la variable aléatoire $D \coloneqq
+          \subse{\bar{x}} - \subfr{\bar{x}}$. Si les moyennes étaient strictement identiques, on
+          aurait $D = 0$. Mais si on obtient $D = 0{,}3$, cela signifie que la différence des
+          moyennes observée est de 0,3 mm en faveur des suédois. Les joueurs suédois sont-ils alors
+          vraiment plus grands que les français ? À partir de quand peut-on conclure quelque chose ?
+          Quelle est la différence seuil qui nous permettrait de basculer de $H_0$ (les deux équipes
+          mesurent la même taille) vers $H_1$ (les joueurs suédois sont plus grands que les
+          français) ? Une différence de 0,2 mm est-elle suffisante pour déclarer les suédois plus
+          grands ? Ou alors faut-il au minimum 5 cm ?
         </p>
         <p>
           Dans la réalité, le problème qu'on cherche à résoudre est de savoir si la valeur de $D$

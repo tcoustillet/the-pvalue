@@ -65,7 +65,7 @@ function buildPlayerTableHTML(players, teamLabel) {
   const stdDev = standardDeviation(heights);
 
   const rows = players.map((p) => `    <tr><td>${p.name}</td><td>${p.height}</td></tr>`).join('\n');
-  const flag = teamLabel === 'France' ? '&#x1F1EB;&#x1F1F7;' : '&#x1F1F8;&#x1F1EA;';
+  const flag = teamLabel === 'France' ? 'fr' : 'se';
   const title =
     teamLabel === 'France'
       ? "Tableau 1a : Taille moyenne des 11 titulaires de l'équipe de France lors du match du 30 juin 2026."
@@ -79,11 +79,11 @@ function buildPlayerTableHTML(players, teamLabel) {
   <tbody>
 ${rows}
     <tr class="summary-row">
-      <td>Moyenne ($\\bar{x}_{{}_\\text{\\scriptsize ${flag}}}$)</td>
+      <td>Moyenne ($\\sub${flag}{\\bar{x}}$)</td>
       <td>${avg.toFixed(1).replace('.', ',')}</td>
     </tr>
     <tr class="summary-row">
-      <td>Écart-type ($s_{{}_\\text{\\scriptsize ${flag}}}$)</td>
+      <td>Écart-type ($\\sub${flag}{s}$)</td>
       <td>${stdDev.toFixed(1).replace('.', ',')}</td>
     </tr>
   </tbody>
