@@ -1,31 +1,31 @@
 // Player heights - France vs Sweden, Round of 16, 2026 World Cup (June 30, New York)
 
 const franceHeights = [
-  { name: 'M. Maignan', height: 191 },
-  { name: 'J. Koundé', height: 180 },
-  { name: 'D. Upamecano', height: 185 },
-  { name: 'W. Saliba', height: 192 },
-  { name: 'L. Digne', height: 178 },
-  { name: 'A. Tchouaméni', height: 185 },
-  { name: 'A. Rabiot', height: 188 },
-  { name: 'O. Dembélé', height: 178 },
-  { name: 'M. Olise', height: 178 },
-  { name: 'B. Barcola', height: 182 },
-  { name: 'K. Mbappé', height: 178 },
+  { name: 'M. Maignan', height: 191, pos: 'GB' },
+  { name: 'J. Koundé', height: 180, pos: 'DD' },
+  { name: 'D. Upamecano', height: 185, pos: 'DC' },
+  { name: 'W. Saliba', height: 192, pos: 'DC' },
+  { name: 'L. Digne', height: 178, pos: 'DG' },
+  { name: 'A. Tchouaméni', height: 185, pos: 'MC' },
+  { name: 'A. Rabiot', height: 188, pos: 'MC' },
+  { name: 'O. Dembélé', height: 178, pos: 'AD' },
+  { name: 'M. Olise', height: 178, pos: 'AT' },
+  { name: 'B. Barcola', height: 182, pos: 'AG' },
+  { name: 'K. Mbappé', height: 178, pos: 'BU' },
 ];
 
 const swedenHeights = [
-  { name: 'J. Widell Zetterström', height: 197 },
-  { name: 'D. Svensson', height: 183 },
-  { name: 'G. Lagerbielke', height: 193 },
-  { name: 'V. Lindelöf', height: 187 },
-  { name: 'G. Gudmundsson', height: 181 },
-  { name: 'A. Elanga', height: 178 },
-  { name: 'L. Bergvall', height: 187 },
-  { name: 'Y. Ayari', height: 172 },
-  { name: 'E. Stroud', height: 185 },
-  { name: 'V. Gyökeres', height: 189 },
-  { name: 'A. Isak', height: 190 },
+  { name: 'J. Widell Zetterström', height: 197, pos: 'GB' },
+  { name: 'D. Svensson', height: 183, pos: 'DD' },
+  { name: 'G. Lagerbielke', height: 193, pos: 'DC' },
+  { name: 'V. Lindelöf', height: 187, pos: 'DC' },
+  { name: 'G. Gudmundsson', height: 181, pos: 'DG' },
+  { name: 'A. Elanga', height: 178, pos: 'AD' },
+  { name: 'L. Bergvall', height: 187, pos: 'MC' },
+  { name: 'Y. Ayari', height: 172, pos: 'MC' },
+  { name: 'E. Stroud', height: 185, pos: 'AG' },
+  { name: 'V. Gyökeres', height: 189, pos: 'BU' },
+  { name: 'A. Isak', height: 190, pos: 'AT' },
 ];
 
 /**
@@ -114,4 +114,128 @@ function renderPlayerTables(elementId) {
       ],
     });
   }
+}
+
+/* Position order in the rendered table */
+const posOrder = ['GB', 'DD', 'DC', 'DG', 'MC', 'AD', 'AG', 'AT', 'BU'];
+
+function sortByPosition(players) {
+  return [...players].sort((a, b) => {
+    return posOrder.indexOf(a.pos) - posOrder.indexOf(b.pos);
+  });
+}
+
+/**
+ * Builds the HTML for a table of players (position column first),
+ * with a final summary row showing mean and standard deviation of heights.
+ * @param {Array<{name: string, height: number, pos: string}>} players
+ * @param {string} teamLabel - e.g. "France"
+ * @returns {string} HTML markup for the table
+ */
+function buildPlayerTableWithPosHTML(players, teamLabel) {
+  const sortedPlayers = sortByPosition(players);
+  const heights = players.map((p) => p.height);
+  const avg = mean(heights);
+  const stdDev = standardDeviation(heights);
+
+  const rows = sortedPlayers
+    .map((p) => `    <tr><td>${p.pos}</td><td>${p.name}</td><td>${p.height}</td></tr>`)
+    .join('\n');
+  const flag = teamLabel === 'France' ? 'fr' : 'se';
+  const title =
+    teamLabel === 'France'
+      ? "Tableau 2a : Taille et poste des 11 titulaires de l'équipe de France lors du match du 30 juin 2026."
+      : "Tableau 2b : Taille et poste des 11 titulaires de l'équipe de Suède lors du match du 30 juin 2026.";
+
+  return `<table>
+  <caption>${title}</caption>
+  <thead>
+    <tr><th>Poste</th><th>${teamLabel}</th><th>Taille (cm)</th></tr>
+  </thead>
+  <tbody>
+${rows}
+    <tr class="summary-row">
+      <td colspan="2">Moyenne ($\\sub${flag}{\\bar{x}}$)</td>
+      <td>${avg.toFixed(1).replace('.', ',')}</td>
+    </tr>
+    <tr class="summary-row">
+      <td colspan="2">Écart-type ($\\sub${flag}{s}$)</td>
+      <td>${stdDev.toFixed(1).replace('.', ',')}</td>
+    </tr>
+  </tbody>
+</table>`;
+}
+
+/* Arrows to visually link the two tables (paired data) */
+const ARROW_SHAFT_WIDTH = 180;
+
+/**
+ * Draws 11 double arrows between the matching rows of the two tables
+ * (one arrow per player, aligned to that player's actual rendered row).
+ * @param {HTMLElement} container
+ */
+function addPositionArrows(container) {
+  container.querySelectorAll('.player-arrow').forEach((el) => el.remove());
+
+  const [table1, table2] = container.querySelectorAll('table');
+  if (!table1 || !table2) return;
+
+  const rows1 = table1.querySelectorAll('tbody tr:not(.summary-row)');
+  const rows2 = table2.querySelectorAll('tbody tr:not(.summary-row)');
+
+  const containerRect = container.getBoundingClientRect();
+  const rect1 = table1.getBoundingClientRect();
+  const rect2 = table2.getBoundingClientRect();
+
+  // if the tables wrap onto separate lines (narrow screen), skip drawing arrows
+  if (rect2.left <= rect1.right) return;
+
+  const arrowLeft = (rect1.right + rect2.left) / 2 - containerRect.left;
+
+  rows1.forEach((row1, i) => {
+    const row2 = rows2[i];
+    if (!row2) return;
+
+    const r1 = row1.getBoundingClientRect();
+    const r2 = row2.getBoundingClientRect();
+    const top = ((r1.top + r1.bottom) / 2 + (r2.top + r2.bottom) / 2) / 2 - containerRect.top;
+
+    const arrow = document.createElement('span');
+    arrow.className = 'player-arrow';
+    arrow.style.left = `${arrowLeft}px`;
+    arrow.style.top = `${top}px`;
+    arrow.style.transform = 'translate(-50%, -50%)';
+    arrow.innerHTML = `
+      <span class="head head-left"></span>
+      <span class="shaft" style="width: ${ARROW_SHAFT_WIDTH}px;"></span>
+      <span class="head head-right"></span>
+    `;
+    container.appendChild(arrow);
+  });
+}
+
+/**
+ * Renders both team tables (with position column first) into a container element.
+ * @param {string} elementId - id of the DOM element to render into
+ */
+function renderPlayerTablesWithPos(elementId) {
+  const container = document.getElementById(elementId);
+  if (!container) {
+    console.error(`Element #${elementId} not found`);
+    return;
+  }
+  container.innerHTML =
+    buildPlayerTableWithPosHTML(franceHeights, 'France') +
+    '\n' +
+    buildPlayerTableWithPosHTML(swedenHeights, 'Suède');
+
+  if (window.renderMathInElement) {
+    renderMathInElement(container, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    });
+  }
+  requestAnimationFrame(() => addPositionArrows(container));
 }

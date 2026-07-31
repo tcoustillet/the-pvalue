@@ -112,11 +112,7 @@
           de probabilité de la variable aléatoire représentative de la situation étudiée (différence
           des moyennes). Commençons par regarder les données de plus près&nbsp;:
         </p>
-        <div id="player-height-tables"></div>
-        <script src="../js/players.js"></script>
-        <script>
-          renderPlayerTables('player-height-tables');
-        </script>
+        <div id="player-height-tables" class="player-tables"></div>
 
         <p>
           L'équipe de France mesure en moyenne 183,2 cm, tandis que l'équipe de Suède mesure en
@@ -226,7 +222,9 @@
           preuves pour pouvoir basculer vers $H_1$ et conclure que les joueurs suédois sont plus
           grands que les français. Si les deux équipes avaient la même taille moyenne, nous avions
           18,9% de chances d'observer ce résultat &mdash; ou un résultat aussi extrême. Le seuil des
-          5% n'est pas atteint et $H_0$ ne peut ainsi pas être rejetée.
+          5% n'est pas atteint et $H_0$ ne peut ainsi pas être rejetée : la différence de 2,4 cm en
+          faveur de l'équipe de Suède <strong>n'est pas significative</strong>. Nous ne pouvons pas
+          affirmer que les Blågult sont plus grands que les Bleus.
         </p>
         <h4>Quelques notes</h4>
         <p>
@@ -257,10 +255,47 @@
           avant d'appliquer le raisonnement, mais ceci est une autre histoire...
         </p>
         <h3>Le test t de Student pour échantillons appariés</h3>
+        <p>
+          Dans l'exemple précédent, nous avons procédé à un test t de Student pour échantillons
+          <strong>indépendants</strong>, c'est-à-dire que l'on a comparé les deux moyennes sans
+          tenir compte des potentielles différences individuelles entre joueurs. Certains joueurs
+          français sont plus grands que certains suédois, et vice-versa, mais
+          <strong>globalement</strong> l'équipe de Suède est plus grande de 2,4 cm (même si cette
+          différence n'est pas significative). Mais imaginons maintenant un scénario différent : et
+          si <em>chaque</em> joueur suédois était exactement 2,4 cm plus grand que son homologue
+          français ? En moyenne, l'écart entre les deux équipes serait toujours de 2,4 cm... mais on
+          sent bien que ce 2,4 cm-là est beaucoup plus <strong>convaincant</strong> que le premier,
+          n'est-ce pas ? Dans ce cas, il n'y a potentiellement plus de hasard individuel qui
+          brouille les pistes : la différence est la même partout, tout le temps.
+        </p>
+        <p>
+          Lorsque l'on veut faire une comparaison individu par individu (observation par
+          observation) plutôt que globalement &mdash; comme dans notre scénario où chaque joueur
+          suédois est comparé à son homologue français &mdash; on peut procéder à une variante du
+          test t de Student appelée <strong>test t de Student pour échantillons appariés</strong>.
+          Pour cela, il faut deux conditions : avoir le même nombre d'observations dans chaque
+          groupe, et pouvoir former des paires qui <u>ont un sens</u> (par exemple, un joueur
+          suédois et un joueur français jouant au même poste, ou des mesures effectuées sur une même
+          personne avant et après un traitement).
+        </p>
+        <div id="player-height-tables-pos" class="player-tables"></div>
+        <p>
+          Le tableau 2 indique les paires créées entre les joueurs des deux équipes. Par soucis de
+          simplicité, nous avons supposé que les deux équipes avaient exactement la même composition
+          (4-2-3-1) de sorte à pouvoir relier deux joueurs partageant exactement le même poste.
+          Ainsi, chaque joueur français peut être apparié à son &laquo;&nbsp;homologue&nbsp;&raquo;
+          suédois.
+        </p>
       </div>
     </main>
 
     <site-footer></site-footer>
+
+    <script src="../js/players.js"></script>
+    <script>
+      renderPlayerTables('player-height-tables');
+      renderPlayerTablesWithPos('player-height-tables-pos');
+    </script>
 
     <script src="../../js/site-header.js"></script>
     <script src="../../js/site-footer.js"></script>
