@@ -15,38 +15,39 @@
 }
 
 .player-tables th,
-.player-tables td {
-  padding: 0.1rem 0.75rem;
-  text-align: left;
-  border-bottom: none;
-}
-
-.player-tables th,
-.player-tables td {
+.player-tables td,
+.difference-table-container th,
+.difference-table-container td {
   padding: 0.1rem 0.75rem;
   text-align: left;
   border-bottom: none;
 }
 
 .player-tables th:nth-last-child(1),
-.player-tables td:nth-last-child(1) {
+.player-tables td:nth-last-child(1),
+.difference-table-container th:nth-last-child(1),
+.difference-table-container td:nth-last-child(1) {
   text-align: right;
 }
 
-.player-tables th {
+.player-tables th,
+.difference-table-container th {
   border-bottom: 1px solid #333;
 }
 
-.player-tables .summary-row td {
+.player-tables .summary-row td,
+.difference-table-container .summary-row td {
   font-weight: bold;
   border-bottom: none;
 }
 
-.player-tables .summary-row + .summary-row td {
+.player-tables .summary-row + .summary-row td,
+.difference-table-container .summary-row + .summary-row td {
   border-top: none;
 }
 
-.player-tables tbody tr:not(.summary-row) + .summary-row td {
+.player-tables tbody tr:not(.summary-row) + .summary-row td,
+.difference-table-container tbody tr:not(.summary-row) + .summary-row td {
   border-top: 1px solid #333;
 }
 
@@ -78,6 +79,18 @@
 
 .player-arrow .head-right {
   border-left: 6px solid currentColor;
+}
+
+/* Table #3 : height difference */
+.difference-table-container {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.difference-table-container table {
+  width: 320px;
+  margin: 0;
+  border-collapse: collapse;
 }
 
 .katex-display {

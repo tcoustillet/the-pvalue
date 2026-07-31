@@ -283,8 +283,27 @@
           Le tableau 2 indique les paires créées entre les joueurs des deux équipes. Par soucis de
           simplicité, nous avons supposé que les deux équipes avaient exactement la même composition
           (4-2-3-1) de sorte à pouvoir relier deux joueurs partageant exactement le même poste.
-          Ainsi, chaque joueur français peut être apparié à son &laquo;&nbsp;homologue&nbsp;&raquo;
+          Ainsi, chaque joueur français peut être apparié à son &laquo;&nbsp;homologue;&nbsp;&raquo;
           suédois.
+        </p>
+        <p>
+          Lors d'un test t de Student pour <strong>échantillons appariés</strong>, il faudra
+          toujours s'intéresser à la <strong>différence</strong> des tailles (ou de n'importe quelle
+          autre mesure) pour chaque paire créée (Tableau 3). Maintenant, le jeu de données peut être
+          représenté à l'aide <u>d'une seule série de valeurs</u>. Contrairement au test t pour
+          échantillons indépendants de la partie précédente, ici nous avons calculé les différences
+          France - Suède (et non Suède - France), mais l'ordre de l'opération n'a aucune importance
+          : la loi de Student est symétrique par rapport à 0. Les calculs peuvent être faits dans
+          n'importe quel sens, les résultats seront identiques.
+        </p>
+        <div id="player-height-tables-diff" class="difference-table-container"></div>
+        <p>
+          En appariant les joueurs de cette façon, on trouve une différence moyenne de -2,4 cm en
+          faveur des joueurs français (en fait, n'importe quel appariement donnera cette moyenne).
+          Autrement dit, les français sont plus petits que les suédois de 2,4, cm en moyenne.
+          L'information est bien la même que celle que nous avions obtenue dans le test précédent en
+          calculant d'abord la moyenne des joueurs suédois ($\subse{\bar{x}}$), soustraite à celle
+          des français ($\subfr{\bar{x}}$).
         </p>
       </div>
     </main>
@@ -295,6 +314,7 @@
     <script>
       renderPlayerTables('player-height-tables');
       renderPlayerTablesWithPos('player-height-tables-pos');
+      renderDifferenceTable('player-height-tables-diff');
     </script>
 
     <script src="../../js/site-header.js"></script>

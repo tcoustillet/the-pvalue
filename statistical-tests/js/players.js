@@ -239,3 +239,69 @@ function renderPlayerTablesWithPos(elementId) {
   }
   requestAnimationFrame(() => addPositionArrows(container));
 }
+
+/**
+ * Builds the HTML for a table showing, for each position, the height
+ * difference (France - Sweden), plus mean and standard deviation of
+ * the differences (used for the paired-samples t-test).
+ * @returns {string} HTML markup for the table
+ */
+function buildDifferenceTableHTML() {
+  const franceSorted = sortByPosition(franceHeights);
+  const swedenSorted = sortByPosition(swedenHeights);
+
+  const differences = franceSorted.map((p, i) => p.height - swedenSorted[i].height);
+  const avgDiff = mean(differences);
+  const stdDevDiff = standardDeviation(differences);
+
+  const rows = franceSorted
+    .map((p, i) => {
+      const diff = differences[i];
+      const sign = diff > 0 ? '+' : '';
+      return `    <tr><td>${p.pos}</td><td>${sign}${diff}</td></tr>`;
+    })
+    .join('\n');
+
+  const title =
+    'Tableau 3 : Différence de taille (France − Suède) par poste, titulaires du match du 30 juin 2026.';
+
+  return `<table "class=difference-table">
+  <caption>${title}</caption>
+  <thead>
+    <tr><th>Poste</th><th>Différence (cm)</th></tr>
+  </thead>
+  <tbody>
+${rows}
+    <tr class="summary-row">
+      <td>Moyenne ($\\bar{d}$)</td>
+      <td>${(Math.trunc(avgDiff * 10) / 10).toFixed(1).replace('.', ',')}</td>
+    </tr>
+    <tr class="summary-row">
+      <td>Écart-type ($s_d$)</td>
+      <td>${stdDevDiff.toFixed(1).replace('.', ',')}</td>
+    </tr>
+  </tbody>
+</table>`;
+}
+
+/**
+ * Renders the difference table into a container element.
+ * @param {string} elementId - id of the DOM element to render into
+ */
+function renderDifferenceTable(elementId) {
+  const container = document.getElementById(elementId);
+  if (!container) {
+    console.error(`Element #${elementId} not found`);
+    return;
+  }
+  container.innerHTML = buildDifferenceTableHTML();
+
+  if (window.renderMathInElement) {
+    renderMathInElement(container, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+      ],
+    });
+  }
+}
