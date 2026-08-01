@@ -376,6 +376,63 @@
           \mathbb{P}(T \leq -1{,}02 \mid H_0 \text{ vraie}) = 0{,}166$. Cette égalité peut se
           vérifier mathématiquement mais surtout visuellement (Figure 4b).
         </p>
+        <h3>Une autre variante du test t de Student</h3>
+        <p>
+          Je ne pouvais pas terminer cette partie sans vous parler de la troisième et dernière
+          version du test t de Student. Rassurez-vous, c'est la plus simple : pour l'utiliser, il
+          nous suffit d'<em>un seul</em> échantillon... Je vous présente le
+          <strong>test t de Student à un échantillon</strong>.
+        </p>
+        <p>
+          Ce test sert à déterminer si la moyenne d'un échantillon donné est
+          &laquo;&nbsp;conforme&nbsp;&raquo; à une moyenne de <strong>référence</strong>. N'y allons
+          pas par quatre chemins : utilisons tout de suite ce test pour savoir si la taille moyenne
+          des 11 footballeurs français alignés face à la Suède le 30 juin 2026 (moyenne = 183,2 ±
+          5,4 cm) est &laquo;&nbsp;égale&nbsp;&raquo; à la taille moyenne de la population masculine
+          française, supposée être de 176 ± 7 cm. Nous allons donc tester si la taille moyenne des
+          footballeurs français est &laquo;&nbsp;conforme&nbsp;&raquo; à celle des hommes français
+          ($H_0$), ou si au contraire les footballeurs sont, en moyenne, plus grands ($H_1$).
+        </p>
+        <p>
+          La statistique de test est : $$T = \sqrt{\subfr{n}} \cdot \dfrac{\subfr{\bar{x}} -
+          \mu_0}{\subfr{s}}$$ où $\subfr{n}$ est le nombre de joueurs (d'observations) de
+          l'échantillon, $\subfr{\bar{x}}$ la moyenne de l'échantillon, $\mu_0$ la moyenne de
+          référence et $\subfr{s}$ l'écart-type de l'échantillon.
+        </p>
+        <p>
+          Comme les choses sont décidément bien faites, il se trouve que sous $H_0$ (lorsque $H_0$
+          est vraie, c'est-à-dire si les footballeurs et la population masculine française ont
+          vraiment la &laquo;&nbsp;même&nbsp;&raquo; taille moyenne), la variable aléatoire $T$
+          construite juste au dessus suit précisément une loi de... Student (quelle surprise!) à n -
+          1 degrés de liberté. Dans notre situation : 10 degrés de liberté.
+        </p>
+        <p>
+          Des calculs nous donnent : $$T_{observé} = \sqrt{11} \cdot \dfrac{183{,}2 - 176}{5{,}4} =
+          4{,}4$$
+        </p>
+        <p>
+          Pour savoir si la différence est <strong>statistiquement</strong> significative, il nous
+          suffit de calculer (je suis sûr que vous l'avez!) : $$\mathbb{P}(T \geq 4{,}4 \mid H_0
+          \text{ vraie})$$Ce qui revient à évaluer l'aire sous la courbe de densité d'une loi de
+          Student à 10 degrés de liberté, entre 4,4 et + ∞. Visuellement, on peut déjà sentir que
+          cette aire, et donc la p-value qui lui est associée, est très petite (Figure 5).
+        </p>
+        <figure>
+          <img src="figures/figure_5.png" alt="Probabilités Loi de Student (10 ddl) - 1 éch." />
+          <figcaption>
+            Figure 5 — (a) Densité de probabilité liée à la variable aléatoire T qui suit une loi de
+            Student à 10 degrés de liberté. La ligne verticale rose indique la valeur prise par la
+            variable aléatoire $T$ dans le cas de l'expérience. (b) Représentation visuelle de
+            $\mathbb{P}(T \geq 4{,}4)$.
+          </figcaption>
+        </figure>
+        <p>
+          Dans notre situation, on obtient $\mathbb{P}(T \geq 4{,}4 \mid H_0 \text{ vraie}) =
+          0{,}06\%$. Ainsi p = 0,0006 (Figure 5a, 5b). Le seuil de 5% (0,05) est largement atteint :
+          nous avons amassé suffisamment de preuves pour pouvoir basculer dans le monde de $H_1$ :
+          on peut raisonnablement conclure que les 11 footballeurs français sont, en moyenne, plus
+          grands que les hommes français.
+        </p>
       </div>
     </main>
 
