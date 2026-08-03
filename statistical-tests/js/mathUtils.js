@@ -9,15 +9,18 @@ function mean(values) {
 }
 
 /**
- * Computes the (sample) standard deviation of an array of numbers.
+ * Computes the (sample) variance of an array of numbers.
  * Uses n-1 in the denominator (Bessel's correction), the usual choice
  * when the data is treated as a sample rather than a full population.
  * @param {number[]} values
  * @returns {number}
  */
-function standardDeviation(values) {
+function variance(values) {
   const avg = mean(values);
   const squaredDiffs = values.map((v) => (v - avg) ** 2);
-  const variance = squaredDiffs.reduce((acc, d) => acc + d, 0) / (values.length - 1);
-  return Math.sqrt(variance);
+  return squaredDiffs.reduce((acc, d) => acc + d, 0) / (values.length - 1);
+}
+
+function standardDeviation(values) {
+  return Math.sqrt(variance(values));
 }
