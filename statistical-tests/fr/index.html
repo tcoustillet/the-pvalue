@@ -433,37 +433,152 @@
           on peut raisonnablement conclure que les 11 footballeurs français sont, en moyenne, plus
           grands que les hommes français.
         </p>
-        <h3>ANOVA : un test statistique pour comparer les moyennes de $n$ échantillons</h3>
+        <h3>ANOVA : un test statistique pour comparer les moyennes de $k$ échantillons</h3>
         <h4>ANOVA à un facteur : une seule condition qui différentie les échantillons</h4>
         <p>
-          Les différents tests de Student requièrent au moins un échantillon, et au plus deux, pour
-          pouvoir être mis en place et fonctionner. Comment pourrait-on procéder si nous voulons
-          comparer 4 échantillons, 4 moyennes à la fois ? Lorsque l'on a 4 échantillons (p. ex. 4
-          équipes de foot), on peut faire exactement 6 comparaisons (A <em>vs</em> B, A
-          <em>vs</em> C, A <em>vs</em> D, B <em>vs</em> C, B <em>vs</em> D et C <em>vs</em> D). On
-          pourrait alors être tenté de faire 6 tests de Student en comparant à chaque fois une paire
-          parmi les six possibles. En fait, procéder ainsi est une (très) mauvaise idée, car répeter
-          des tests de Student de cette façon augmente notre risque de trouver des résultats faux
-          positifs (c'est-à-dire de conclure à une différence qui n'éxiste pas) &mdash; mais ceci
-          est une autre histoire...
+          Les tests de Student (les fameux &laquo;&nbsp;t-tests&nbsp;&raquo;) requièrent
+          <u>au moins</u> un échantillon, et <u>au plus</u> deux, pour pouvoir être mis en place.
+          Ils sont parfaits pour comparer les moyennes de <strong>deux échantillons</strong> entre
+          elles (p.ex. tailles moyennes de deux équipes, effet de deux traitements) ou pour comparer
+          la moyenne d'<strong>un seul échantillon</strong> à une moyenne de référence connue (par
+          exemple, la taille moyenne d'une équipe par rapport à une norme établie). Mais que faire
+          quand on veut comparer les moyennes de trois groupes ou plus en même temps ?
         </p>
         <p>
-          <u>Ce qu'il faut retenir</u> : lorsque l'on compare les moyennes de 3 groupes ou plus, le
-          test de Student ne s'applique plus. Il faut utiliser un <strong>test ANOVA</strong>. La
-          procédure est exactement la même qu'avec n'importe quelle variante du test de Student : on
-          construit une statistique, de telle sorte qu'elle suive une certaine loi de probabilité
-          connue lorsque $H_0$ est vraie, puis on calcule la p-value comme étant la probabilité
-          d'obtenir une valeur au moins aussi extrême que celle observée, lorsque $H_0$ est vraie.
+          Prenons justement le cas de quatre groupes (appelons-les A, B, C et D) : il existe
+          exactement 6 comparaisons possibles deux à deux : A-B, A-C, A-D, B-C, B-D et C-D. On
+          pourrait alors être tenté de faire six tests de Student à la suite, un pour comparer les
+          deux moyennes de chaque paire. En fait, procéder ainsi est une (très) mauvaise idée. Le
+          problème, c'est que chaque test statistique comporte un petit risque de se tromper :
+          conclure qu'il existe une différence réelle entre deux groupes... alors qu'en réalité, il
+          n'y en a pas. C'est ce qu'on appelle un <strong>faux positif</strong> (voir section
+          &laquo;&nbsp;Introduction à la p-value&nbsp;&raquo; ; paragraphe
+          <em>Le risque de première espèce</em>). Ce risque est généralement fixé à 5 % par test (le
+          fameux seuil 0,05). Et si on fait des tests de Student en série, ce risque de 5 %
+          s'accumule à chaque nouveau test qu'on réalise. Un peu comme au loto : plus on achète de
+          tickets, plus on a de chances qu'au moins l'un d'entre eux soit gagnant... même si chaque
+          ticket, pris individuellement, a très peu de chances de l'être. C'est la même chose avec
+          les tests t en série : le risque global de se tromper augmente au fur et à mesure qu'on
+          réalise et augmente le nombre de tests &mdash; mais ceci est une autre histoire...
+        </p>
+        <p>
+          <u>Ce qu'il faut retenir</u> : lorsque l'on compare les moyennes de
+          <strong>3 groupes ou plus</strong>, le test de Student ne s'applique plus. Il faut
+          utiliser un <strong>test ANOVA</strong>. La procédure est exactement la même qu'avec
+          n'importe quelle variante du test de Student : on construit une statistique de test (une
+          variable aléatoire), de telle sorte qu'elle suive une certaine loi de probabilité
+          <strong>connue</strong> lorsque $H_0$ est vraie, puis on calcule la p-value comme étant la
+          probabilité d'obtenir une valeur au moins aussi extrême que celle observée, sous
+          l'hypothèse que $H_0$ est vraie.
         </p>
         <p>
           Rentrons dans le vif du sujet et restons branchés foot (oui j'écris cet article pendant la
           coupe du monde). Considérons toujours l'équipe de France et l'équipe de Suède, et
           ajoutons-y la Norvège et l'équipe du Cap-Vert. La question à laquelle un test ANOVA permet
-          de répondre est : parmi ces 4 équipes, y en a t-il <em>au moins</em> une qui se démarque
-          des autres par sa taille moyenne ?
+          de répondre est : parmi ces 4 équipes, y en a-t-il <em>au moins</em> une qui se démarque
+          des autres par sa taille moyenne ? Formellement, on pose les deux hypothèses suivantes :
         </p>
-        <p>Voici à quoi ressemblent les données de ces 4 équipes :</p>
+        <div style="text-align: center">
+          <div class="bloc-latex-like">
+            <p>$H_0 : \subfr{\bar{x}} = \subse{\bar{x}} = \subno{\bar{x}} = \subcv{\bar{x}}$</p>
+            <p>$H_1 : $ au moins une équipe a une taille moyenne différente des autres</p>
+          </div>
+        </div>
+        <p>
+          Notez bien que $H_1$ ne dit pas <em>laquelle</em> des quatre équipes se démarque, ni même
+          s'il n'y en a qu'une seule &mdash; elle dit juste qu'on ne peut pas les considérer
+          <em>toutes</em> comme identiques. C'est là toute la limite (et la force) de l'ANOVA : elle
+          détecte qu'il y a un problème, sans nous dire d'où il vient. Pour ça, il faudra une étape
+          supplémentaire, qu'on abordera plus loin.
+        </p>
+        <p>
+          Dans notre situation, nous avons 4 échantillons représantant les 4 équipes (ainsi $k = 4$)
+          et 44 observations au total (11 joueurs par équipe ; $N \coloneqq \subfr{n} + \subse{n} +
+          \subno{n} + \subcv{n} = 44$). Voici à quoi ressemblent les données de nos 4 équipes :
+        </p>
         <div id="player-height-by-nation" class="nations-table"></div>
+        <p>
+          La variable aléatoire (statistique de test) que nous devons construire pour représenter la
+          situation (comparaison des moyennes de 4 échantillons) est un peu plus compliquée que
+          celle d'un test de Student.
+        </p>
+        <p>
+          Commençons par calculer la moyenne générale (la moyenne des moyennes) : $$ \begin{aligned}
+          \bar{x} &= \dfrac{\subfr{\bar{x}} + \subse{\bar{x}} + \subno{\bar{x}} +
+          \subcv{\bar{x}}}{4} \\[1em] &= \dfrac{183{,}2 + 185{,}6 + 188{,}1 + 180{,}5}{4} \\[1em] &=
+          184{,}4 \end{aligned}$$
+        </p>
+        <p>
+          Nous avons également besoin de calculer la
+          <strong>somme des carrés inter-groupes</strong>, notée $SCE_{inter}$. Derrière ce terme un
+          peu barbare, se cache en fait une simple addition. Concrètement, pour chaque équipe, on
+          calcule l'écart entre sa moyenne et la moyenne générale, on met cet écart au carré, puis
+          on le pondère par le nombre d'observations de l'équipe (pour donner plus de poids aux
+          équipes où l'on a mesuré plus de joueurs). On additionne ensuite ces quatre valeurs pour
+          obtenir la <em>somme des carrés inter-groupes</em>, qui représente à quel point les 4
+          moyennes sont proches ou éloignées les unes des autres. Si les 4 moyennes étaient
+          identiques, cette quantité vaudrait $0$ : $$ \begin{aligned} SCE_{inter} &= \subfr{n}
+          \cdot (\subfr{\bar{x}} - \bar{x})^2 + \subse{n} \cdot (\subse{\bar{x}} - \bar{x})^2 +
+          \subno{n} \cdot (\subno{\bar{x}} - \bar{x})^2 +\subcv{n} \cdot (\subcv{\bar{x}} -
+          \bar{x})^2 \\[1em] &= 11 \cdot (183{,}2 - 184{,}4)^2 + 11 \cdot (185{,}6 - 184{,}4)^2 + 11
+          \cdot (188{,}1 - 184{,}4)^2 + 11 \cdot (180{,}5 - 184{,}4)^2 \\[1em] &= 11 \cdot
+          (-1{,}2)^2 + 11 \cdot (1{,}2)^2 + 11 \cdot (3{,}7)^2 + 11 \cdot (-3{,}9)^2 \\[1em] &=
+          349{,}6 \end{aligned}$$ Dans les livres de statistiques ou sur des articles internet, vous
+          pourriez rencontrer la forme condensée : $$SCE_{inter} = \sum_{i=1}^{k} n_i (\bar{x}_i -
+          \bar{x})^2$$
+        </p>
+        <p>
+          Nous devons aussi calculer la somme des variances de tous les échantillons, pondérée par
+          le nombre d'observations dans chaque groupe (auquel on retranche 1). On appelle cette
+          quantité <strong>somme des carrés intra-groupes</strong>, notée $SCE_{intra}$, qui
+          représente à quel point les observations de chaque groupe sont dispersées autour de sa
+          propre moyenne. Si, à l'intérieur de chacun des groupes, toutes les valeurs de
+          l'échantillon étaient égales entre elles, cette quantité vaudrait $0$ : $$ \begin{aligned}
+          SCR &= (\subfr{n} -1) \cdot \subfr{s}^2 + (\subse{n} -1) \cdot \subse{s}^2 + (\subno{n}
+          -1) \cdot \subno{s}^2 + (\subcv{n} -1) \cdot \subcv{s}^2\\[1em] &= (11 - 1) \cdot 28{,}8 +
+          (11 - 1) \cdot 49{,}1 + (11 - 1) \cdot 58{,}5 + (11 - 1) \cdot 21{,}3 \\[1em] &= 10 \cdot
+          28{,}8 + 10 \cdot 49{,}1 + 10 \cdot 58{,}5 + 10 \cdot 21{,}3 \\[1em] &= 288 + 491 + 585 +
+          213 \\[1em] &= 1577 \end{aligned}$$ Dans les livres de statistiques ou sur des articles
+          internet, vous pourriez rencontrer la forme condensée : $$SCE_{intra} = \sum_{i=1}^{k}
+          (n_i - 1)\, s_i^2$$ ou de façon équivalente : $$\sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} -
+          \bar{x}_i)^2$$
+        </p>
+        <p>
+          En divisant la <strong>somme des carrés inter-groupes</strong> ($SCE_{inter}$) par le
+          nombre de groupes moins 1 (soit $k - 1$), on obtient le
+          <strong>carré moyen inter-groupes</strong> ($CM_{inter}$). En divisant la
+          <strong>somme des carrés intra-groupes</strong> ($SCE_{intra}$) par le nombre total
+          d'observations moins le nombre de groupes (soit $N - k$), on obtient le
+          <strong>carré moyen intra-groupes</strong> ($CM_{intra}$). En faisant le rapport de ces
+          deux carrés moyens, on obtient une variable aléatoire $F$ s'écrivant : $$F =
+          \dfrac{SCE_{inter} / (k -1)}{SCE_{intra} / (N -k)} = \dfrac{CM_{inter}}{CM_{intra}}$$ et
+          qui suit une loi de Fisher de paramètres $(k - 1,\ N - k)$. Les deux paramètres sont
+          appelés degrés de liberté. Dans notre cas, $F$ s'écrit $$F = \dfrac{SCE_{inter} /
+          3}{SCE_{intra} / 40} = \dfrac{CM_{inter}}{CM_{intra}}$$ et suit une loi de Fisher à 3 et
+          40 degrés de liberté, lorsque $H_0$ est vraie. Ainsi, quand $H_0$ est vraie, on peut
+          facilement calculer (aire sous la courbe de densité associée) la probabilité que $F$
+          prenne une valeur supérieure à celle qu'on aura observée, qui est précisément la
+          définition de la p-value (ouf, c'est gagné !).
+        </p>
+        <figure>
+          <img src="figures/figure_6.png" alt="Fisher (3, 40)" />
+          <figcaption>
+            Figure 6 — (a) Densité de probabilité liée à la variable aléatoire F, telle qu'utilisée
+            dans le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté. (b)
+            Représentation de l'univers de $F$ : $F$ a 100% de chances de se trouver dans
+            l'intervalle $[0 \; ; +\infty[$.
+          </figcaption>
+        </figure>
+        <p>
+          La figure 6 décrit la densité de probabilité liée à la variable aléatoire $F$ lorsque
+          $H_0$ est vraie &mdash; autrement dit, elle nous donne, pour n'importe quel intervalle de
+          [0, + ∞[, la probabilité que $F$ s'y trouve lorsque $H_0$ est vraie, c'est-à-dire lorsque
+          les 4 moyennes sont &laquo;&nbsp;identiques&nbsp;&raquo; (les différences ne sont pas
+          statistiquement significatives). Fait intéressant : la distribution n'est pas symétrique
+          et n'est jamais négative à cause (ou grâce) aux carrés des formules ; les quantités
+          $CM_{inter}$ et $CM_{intra}$ sont donc toujours positives, et $F$, qui n'est autre que le
+          rapport des deux, hérite aussi de cette propriété.
+        </p>
       </div>
     </main>
 
