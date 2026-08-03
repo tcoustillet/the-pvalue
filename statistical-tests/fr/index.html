@@ -433,6 +433,37 @@
           on peut raisonnablement conclure que les 11 footballeurs français sont, en moyenne, plus
           grands que les hommes français.
         </p>
+        <h3>ANOVA : un test statistique pour comparer les moyennes de $n$ échantillons</h3>
+        <h4>ANOVA à un facteur : une seule condition qui différentie les échantillons</h4>
+        <p>
+          Les différents tests de Student requièrent au moins un échantillon, et au plus deux, pour
+          pouvoir être mis en place et fonctionner. Comment pourrait-on procéder si nous voulons
+          comparer 4 échantillons, 4 moyennes à la fois ? Lorsque l'on a 4 échantillons (p. ex. 4
+          équipes de foot), on peut faire exactement 6 comparaisons (A <em>vs</em> B, A
+          <em>vs</em> C, A <em>vs</em> D, B <em>vs</em> C, B <em>vs</em> D et C <em>vs</em> D). On
+          pourrait alors être tenté de faire 6 tests de Student en comparant à chaque fois une paire
+          parmi les six possibles. En fait, procéder ainsi est une (très) mauvaise idée, car répeter
+          des tests de Student de cette façon augmente notre risque de trouver des résultats faux
+          positifs (c'est-à-dire de conclure à une différence qui n'éxiste pas) &mdash; mais ceci
+          est une autre histoire...
+        </p>
+        <p>
+          <u>Ce qu'il faut retenir</u> : lorsque l'on compare les moyennes de 3 groupes ou plus, le
+          test de Student ne s'applique plus. Il faut utiliser un <strong>test ANOVA</strong>. La
+          procédure est exactement la même qu'avec n'importe quelle variante du test de Student : on
+          construit une statistique, de telle sorte qu'elle suive une certaine loi de probabilité
+          connue lorsque $H_0$ est vraie, puis on calcule la p-value comme étant la probabilité
+          d'obtenir une valeur au moins aussi extrême que celle observée, lorsque $H_0$ est vraie.
+        </p>
+        <p>
+          Rentrons dans le vif du sujet et restons branchés foot (oui j'écris cet article pendant la
+          coupe du monde). Considérons toujours l'équipe de France et l'équipe de Suède, et
+          ajoutons-y la Norvège et l'équipe du Cap-Vert. La question à laquelle un test ANOVA permet
+          de répondre est : parmi ces 4 équipes, y en a t-il <em>au moins</em> une qui se démarque
+          des autres par sa taille moyenne ?
+        </p>
+        <p>Voici à quoi ressemblent les données de ces 4 équipes :</p>
+        <div id="player-height-by-nation" class="nations-table"></div>
       </div>
     </main>
 
@@ -441,10 +472,12 @@
     <script src="../js/players.js"></script>
     <script src="../js/mathUtils.js"></script>
     <script src="../js/student-tables.js"></script>
+    <script src="../js/anova-tables.js"></script>
     <script>
       renderPlayerTables('player-height-tables');
       renderPlayerTablesWithPos('player-height-tables-pos');
       renderDifferenceTable('player-height-tables-diff');
+      renderNationsTable('player-height-by-nation');
     </script>
 
     <script src="../../js/site-header.js"></script>

@@ -93,6 +93,43 @@
   border-collapse: collapse;
 }
 
+/* Layout for the nations comparison table (France / Suède / Norvège / Espagne) */
+.nations-table {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.nations-table table {
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.nations-table th,
+.nations-table td {
+  padding: 0.1rem 2rem;
+  text-align: right;
+  min-width: 110px;
+  border-bottom: none;
+}
+
+.nations-table th {
+  border-bottom: 1px solid #333;
+}
+
+.nations-table .summary-row td {
+  font-weight: bold;
+}
+
+.nations-table tbody tr:not(.summary-row) + .summary-row td {
+  border-top: 1px solid #333;
+}
+
+.nations-table th:first-child,
+.nations-table td:first-child {
+  text-align: left;
+}
+
 .katex-display {
   overflow-x: auto;
   overflow-y: visible;
