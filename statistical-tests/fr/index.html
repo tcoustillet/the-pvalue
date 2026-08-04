@@ -494,7 +494,8 @@
         <p>
           Dans notre situation, nous avons 4 échantillons représantant les 4 équipes (ainsi $k = 4$)
           et 44 observations au total (11 joueurs par équipe ; $N \coloneqq \subfr{n} + \subse{n} +
-          \subno{n} + \subcv{n} = 44$). Voici à quoi ressemblent les données de nos 4 équipes :
+          \subno{n} + \subcv{n} = 44$ observations). Voici à quoi ressemblent les données de nos 4
+          équipes :
         </p>
         <div id="player-height-by-nation" class="nations-table"></div>
         <p>
@@ -510,52 +511,53 @@
         </p>
         <p>
           Nous avons également besoin de calculer la
-          <strong>somme des carrés inter-groupes</strong>, notée $SCE_{inter}$. Derrière ce terme un
-          peu barbare, se cache en fait une simple addition. Concrètement, pour chaque équipe, on
-          calcule l'écart entre sa moyenne et la moyenne générale, on met cet écart au carré, puis
-          on le pondère par le nombre d'observations de l'équipe (pour donner plus de poids aux
-          équipes où l'on a mesuré plus de joueurs). On additionne ensuite ces quatre valeurs pour
-          obtenir la <em>somme des carrés inter-groupes</em>, qui représente à quel point les 4
-          moyennes sont proches ou éloignées les unes des autres. Si les 4 moyennes étaient
-          identiques, cette quantité vaudrait $0$ : $$ \begin{aligned} SCE_{inter} &= \subfr{n}
-          \cdot (\subfr{\bar{x}} - \bar{x})^2 + \subse{n} \cdot (\subse{\bar{x}} - \bar{x})^2 +
-          \subno{n} \cdot (\subno{\bar{x}} - \bar{x})^2 +\subcv{n} \cdot (\subcv{\bar{x}} -
-          \bar{x})^2 \\[1em] &= 11 \cdot (183{,}2 - 184{,}4)^2 + 11 \cdot (185{,}6 - 184{,}4)^2 + 11
-          \cdot (188{,}1 - 184{,}4)^2 + 11 \cdot (180{,}5 - 184{,}4)^2 \\[1em] &= 11 \cdot
-          (-1{,}2)^2 + 11 \cdot (1{,}2)^2 + 11 \cdot (3{,}7)^2 + 11 \cdot (-3{,}9)^2 \\[1em] &=
-          349{,}6 \end{aligned}$$ Dans les livres de statistiques ou sur des articles internet, vous
-          pourriez rencontrer la forme condensée : $$SCE_{inter} = \sum_{i=1}^{k} n_i (\bar{x}_i -
-          \bar{x})^2$$
+          <strong>somme des carrés inter-groupes</strong>, notée $\subsub{SCE}{inter}$. Derrière ce
+          terme un peu barbare, se cache en fait une simple addition. Concrètement, pour chaque
+          équipe, on calcule l'écart entre sa moyenne et la moyenne générale, on met cet écart au
+          carré, puis on le pondère par le nombre d'observations de l'équipe (pour donner plus de
+          poids aux équipes où l'on a mesuré plus de joueurs). On additionne ensuite ces quatre
+          valeurs pour obtenir la <strong>somme des carrés inter-groupes</strong>, qui représente à
+          quel point les 4 moyennes sont proches ou éloignées les unes des autres. Si les 4 moyennes
+          étaient identiques, cette quantité vaudrait $0$ : $$ \begin{aligned} \subsub{SCE}{inter}
+          &= \subfr{n} \cdot (\subfr{\bar{x}} - \bar{x})^2 + \subse{n} \cdot (\subse{\bar{x}} -
+          \bar{x})^2 + \subno{n} \cdot (\subno{\bar{x}} - \bar{x})^2 +\subcv{n} \cdot
+          (\subcv{\bar{x}} - \bar{x})^2 \\[1em] &= 11 \cdot (183{,}2 - 184{,}4)^2 + 11 \cdot
+          (185{,}6 - 184{,}4)^2 + 11 \cdot (188{,}1 - 184{,}4)^2 + 11 \cdot (180{,}5 - 184{,}4)^2
+          \\[1em] &= 11 \cdot (-1{,}2)^2 + 11 \cdot (1{,}2)^2 + 11 \cdot (3{,}7)^2 + 11 \cdot
+          (-3{,}9)^2 \\[1em] &= 349{,}6 \end{aligned}$$ Dans les livres de statistiques ou sur des
+          articles internet, vous pourriez rencontrer la forme condensée : $$\subsub{SCE}{inter} =
+          \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2$$
         </p>
         <p>
           Nous devons aussi calculer la somme des variances de tous les échantillons, pondérée par
           le nombre d'observations dans chaque groupe (auquel on retranche 1). On appelle cette
-          quantité <strong>somme des carrés intra-groupes</strong>, notée $SCE_{intra}$, qui
-          représente à quel point les observations de chaque groupe sont dispersées autour de sa
-          propre moyenne. Si, à l'intérieur de chacun des groupes, toutes les valeurs de
-          l'échantillon étaient égales entre elles, cette quantité vaudrait $0$ : $$ \begin{aligned}
-          SCR &= (\subfr{n} -1) \cdot \subfr{s}^2 + (\subse{n} -1) \cdot \subse{s}^2 + (\subno{n}
-          -1) \cdot \subno{s}^2 + (\subcv{n} -1) \cdot \subcv{s}^2\\[1em] &= (11 - 1) \cdot 28{,}8 +
-          (11 - 1) \cdot 49{,}1 + (11 - 1) \cdot 58{,}5 + (11 - 1) \cdot 21{,}3 \\[1em] &= 10 \cdot
-          28{,}8 + 10 \cdot 49{,}1 + 10 \cdot 58{,}5 + 10 \cdot 21{,}3 \\[1em] &= 288 + 491 + 585 +
-          213 \\[1em] &= 1577 \end{aligned}$$ Dans les livres de statistiques ou sur des articles
-          internet, vous pourriez rencontrer la forme condensée : $$SCE_{intra} = \sum_{i=1}^{k}
-          (n_i - 1)\, s_i^2$$ ou de façon équivalente : $$\sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} -
-          \bar{x}_i)^2$$
+          quantité <strong>somme des carrés intra-groupes</strong>, notée $\subsub{SCE}{intra}$, qui
+          représente à quel point les observations de chaque groupe sont dispersées autour de la
+          moyenne du groupe. Si, à l'intérieur de chacun des groupes, toutes les observations
+          étaient égales entre elles, cette quantité vaudrait $0$ : $$ \begin{aligned}
+          \subsub{SCE}{intra} &= (\subfr{n} -1) \cdot \subfr{s}^2 + (\subse{n} -1) \cdot \subse{s}^2
+          + (\subno{n} -1) \cdot \subno{s}^2 + (\subcv{n} -1) \cdot \subcv{s}^2\\[1em] &= (11 - 1)
+          \cdot 28{,}8 + (11 - 1) \cdot 49{,}1 + (11 - 1) \cdot 58{,}5 + (11 - 1) \cdot 21{,}3
+          \\[1em] &= 10 \cdot 28{,}8 + 10 \cdot 49{,}1 + 10 \cdot 58{,}5 + 10 \cdot 21{,}3 \\[1em]
+          &= 288 + 491 + 585 + 213 \\[1em] &= 1577 \end{aligned}$$ Dans les livres de statistiques
+          ou sur des articles internet, vous pourriez rencontrer la forme condensée :
+          $$\subsub{SCE}{intra} = \sum_{i=1}^{k} (n_i - 1)\, s_i^2$$ ou de façon équivalente :
+          $$\subsub{SCE}{intra} = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2$$
         </p>
         <p>
-          En divisant la <strong>somme des carrés inter-groupes</strong> ($SCE_{inter}$) par le
-          nombre de groupes moins 1 (soit $k - 1$), on obtient le
-          <strong>carré moyen inter-groupes</strong> ($CM_{inter}$). En divisant la
-          <strong>somme des carrés intra-groupes</strong> ($SCE_{intra}$) par le nombre total
-          d'observations moins le nombre de groupes (soit $N - k$), on obtient le
-          <strong>carré moyen intra-groupes</strong> ($CM_{intra}$). En faisant le rapport de ces
-          deux carrés moyens, on obtient une variable aléatoire $F$ s'écrivant : $$F =
-          \dfrac{SCE_{inter} / (k -1)}{SCE_{intra} / (N -k)} = \dfrac{CM_{inter}}{CM_{intra}}$$ et
-          qui suit une loi de Fisher de paramètres $(k - 1,\ N - k)$. Les deux paramètres sont
-          appelés degrés de liberté. Dans notre cas, $F$ s'écrit $$F = \dfrac{SCE_{inter} /
-          3}{SCE_{intra} / 40} = \dfrac{CM_{inter}}{CM_{intra}}$$ et suit une loi de Fisher à 3 et
-          40 degrés de liberté, lorsque $H_0$ est vraie. Ainsi, quand $H_0$ est vraie, on peut
+          En divisant la <strong>somme des carrés inter-groupes</strong> ($\subsub{SCE}{inter}$) par
+          le nombre de groupes moins 1 (soit $k - 1$), on obtient le
+          <strong>carré moyen inter-groupes</strong> ($\subsub{CM}{inter}$). En divisant la
+          <strong>somme des carrés intra-groupes</strong> ($\subsub{SCE}{intra}$) par le nombre
+          total d'observations moins le nombre de groupes (soit $N - k$), on obtient le
+          <strong>carré moyen intra-groupes</strong> ($\subsub{CM}{intra}$). En faisant le rapport
+          de ces deux carrés moyens, on obtient une variable aléatoire $F$ s'écrivant : $$F =
+          \dfrac{\subsub{SCE}{inter} / (k -1)}{\subsub{SCE}{intra} / (N -k)} =
+          \dfrac{\subsub{CM}{inter}}{\subsub{CM}{intra}}$$ et qui suit une loi de Fisher de
+          paramètres $(k - 1,\ N - k)$. Les deux paramètres sont appelés degrés de liberté. Dans
+          notre cas, $F$ s'écrit $$F = \dfrac{\subsub{SCE}{inter} / 3}{\subsub{SCE}{intra} / 40} =
+          \dfrac{\subsub{CM}{inter}}{\subsub{CM}{intra}}$$ et suit une loi de Fisher à 3 et 40
+          degrés de liberté, lorsque $H_0$ est vraie. Ainsi, quand $H_0$ est vraie, on peut
           facilement calculer (aire sous la courbe de densité associée) la probabilité que $F$
           prenne une valeur supérieure à celle qu'on aura observée, qui est précisément la
           définition de la p-value (ouf, c'est gagné !).
@@ -576,8 +578,51 @@
           les 4 moyennes sont &laquo;&nbsp;identiques&nbsp;&raquo; (les différences ne sont pas
           statistiquement significatives). Fait intéressant : la distribution n'est pas symétrique
           et n'est jamais négative à cause (ou grâce) aux carrés des formules ; les quantités
-          $CM_{inter}$ et $CM_{intra}$ sont donc toujours positives, et $F$, qui n'est autre que le
-          rapport des deux, hérite aussi de cette propriété.
+          $\subsub{CM}{inter}$ et $\subsub{CM}{intra}$ sont donc toujours positives, et $F$, qui
+          n'est autre que le rapport des deux, hérite aussi de cette propriété.
+        </p>
+        <p>
+          Dans notre expérience, on obtient : $$F_{\text{observée}} = \dfrac{349{,}6 / 3}{1577 / 40}
+          = \dfrac{116{,}5}{39{,}4} = 2{,}96$$
+        </p>
+        <p>
+          2,96 est donc <u><em>le</em></u> nombre qui caractérise tout notre jeu de données : il
+          condense à lui tout seul les 44 observations en une seule quantité, qui obéit à des règles
+          clairement définies. Pour savoir si au moins une équipe diffère significativement des
+          autres en matière de taille moyenne des joueurs qui la composent, il ne nous reste plus
+          qu'à calculer (je suis sûr que vous l'avez deviné!)&nbsp;: $$\mathbb{P}(F \geq 2{,}96 \mid
+          H_0 \text{ vraie})$$
+        </p>
+        <figure>
+          <img src="figures/figure_7.png" alt="Fisher (3, 40) p-value" />
+          <figcaption>
+            Figure 7 — Densité de probabilité liée à la variable aléatoire F, telle qu'utilisée dans
+            le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté. (a)
+            Représentation visuelle de $\mathbb{P}(F \leq 2{,}84 \mid H_0 \text{ vraie})$. (b)
+            Représentation visuelle de $\mathbb{P}(F \geq 2{,}96 \mid H_0 \text{ vraie})$
+          </figcaption>
+        </figure>
+        <p>
+          Si les 4 équipes de foot ont des tailles moyennes égales (c'est-à-dire qu'aucune n'est
+          significativement plus grande ou plus petite que les autres), il y a 95% de chances que
+          notre variable aléatoire $F$ soit comprise entre 0 et 2,84 (Figure 7a).
+        </p>
+        <p>
+          Or, d'après la figure 7b, on obtient $\mathbb{P}(F \geq 2{,}96 \mid H_0 \text{ vraie}) =
+          4{,}44 \%$. Ainsi, pour cette expérience avec ces conditions particulières, p = 0,044 <
+          0,05 (4,44% < 5%). Cela signifie que, s'il n'y avait pas de différence entre les moyennes
+          des 4 équipes, on avait 4,4% de chances d'observer ce résultat ($F = 2{,}96$), ou un aussi
+          extrême. Puisque notre
+          <strong>p-value</strong> passe sous le seuil des 5%, le niveau de preuves est considéré
+          comme suffisant et on choisit de sortir du monde de $H_0$ pour basculer dans le monde de
+          $H_1$ : on conclut qu'<strong>au moins</strong> une des 4 équipes a une taille moyenne
+          significativement différente des autres.
+        </p>
+        <p>
+          Mais laquelle ? L'ANOVA, à elle seule, ne le dit pas &mdash; elle nous informe seulement
+          qu'il existe une différence quelque part parmi les 4 équipes. Pour savoir précisément
+          quelle(s) équipe(s) se démarque(nt) des autres, il faudrait pousser l'analyse avec des
+          tests complémentaires, appelés <strong>tests post-hoc</strong>...
         </p>
       </div>
     </main>
