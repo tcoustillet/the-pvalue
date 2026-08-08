@@ -447,14 +447,14 @@
         <p>
           Prenons justement le cas de quatre groupes (appelons-les A, B, C et D) : il existe
           exactement 6 comparaisons possibles deux à deux : A-B, A-C, A-D, B-C, B-D et C-D. On
-          pourrait alors être tenté de faire six tests de Student à la suite, un pour comparer les
-          deux moyennes de chaque paire. En fait, procéder ainsi est une (très) mauvaise idée. Le
-          problème, c'est que chaque test statistique comporte un petit risque de se tromper :
-          conclure qu'il existe une différence réelle entre deux groupes... alors qu'en réalité, il
-          n'y en a pas. C'est ce qu'on appelle un <strong>faux positif</strong> (voir section
-          &laquo;&nbsp;Introduction à la p-value&nbsp;&raquo; ; paragraphe
+          pourrait alors être tenté de faire <strong>six tests de Student à la suite</strong>, un
+          pour comparer les deux moyennes de chaque paire. En fait, procéder ainsi est une (très)
+          mauvaise idée. Le problème, c'est que chaque test statistique comporte un petit risque de
+          se tromper : conclure qu'il existe une différence réelle entre deux groupes... alors qu'en
+          réalité, il n'y en a pas. C'est ce qu'on appelle un <strong>faux positif</strong> (voir
+          section &laquo;&nbsp;Introduction à la p-value&nbsp;&raquo; ; paragraphe
           <em>Le risque de première espèce</em>). Ce risque est généralement fixé à 5 % par test (le
-          fameux seuil 0,05). Et si on fait des tests de Student en série, ce risque de 5 %
+          fameux seuil 0,05). Et, si on fait des tests de Student en série, ce risque de 5 %
           s'accumule à chaque nouveau test qu'on réalise. Un peu comme au loto : plus on achète de
           tickets, plus on a de chances qu'au moins l'un d'entre eux soit gagnant... même si chaque
           ticket, pris individuellement, a très peu de chances de l'être. C'est la même chose avec
@@ -475,21 +475,27 @@
           Rentrons dans le vif du sujet et restons branchés foot (oui j'écris cet article pendant la
           coupe du monde). Considérons toujours l'équipe de France et l'équipe de Suède, et
           ajoutons-y la Norvège et l'équipe du Cap-Vert. La question à laquelle un test ANOVA permet
-          de répondre est : parmi ces 4 équipes, y en a-t-il <em>au moins</em> une qui se démarque
-          des autres par sa taille moyenne ? Formellement, on pose les deux hypothèses suivantes :
+          de répondre est : parmi ces 4 équipes, y a-t-il <em>au moins</em> deux d'entre elles dont
+          les tailles moyennes diffèrent entre elles-deux ? Attention : ça ne veut pas forcément
+          dire qu'une équipe se démarque des 3 autres. Par exemple, il se peut que seules les
+          équipes A et C aient des tailles moyennes différentes
+          <strong>entre elles-deux seulement</strong>, sans que C diffère des deux autres équipes (B
+          et D), ni que A diffère d'elles non plus. Autrement dit, l'ANOVA conclut à une différence
+          significative dès qu'au moins une comparaison parmi les 6 possibles aboutit à des moyennes
+          significativement différentes. Formellement, on pose les deux hypothèses suivantes :
         </p>
         <div style="text-align: center">
           <div class="bloc-latex-like">
             <p>$H_0 : \subfr{\bar{x}} = \subse{\bar{x}} = \subno{\bar{x}} = \subcv{\bar{x}}$</p>
-            <p>$H_1 : $ au moins une équipe a une taille moyenne différente des autres</p>
+            <p>$H_1 : $ au moins deux moyennes diffèrent entre elles</p>
           </div>
         </div>
         <p>
-          Notez bien que $H_1$ ne dit pas <em>laquelle</em> des quatre équipes se démarque, ni même
-          s'il n'y en a qu'une seule &mdash; elle dit juste qu'on ne peut pas les considérer
-          <em>toutes</em> comme identiques. C'est là toute la limite (et la force) de l'ANOVA : elle
-          détecte qu'il y a un problème, sans nous dire d'où il vient. Pour ça, il faudra une étape
-          supplémentaire, qu'on abordera plus loin.
+          Notez bien que $H_1$ ne dit pas <em>quelle</em> paire d'équipes diffère, ni même combien
+          de paires sont concernées &mdash; elle dit juste qu'on ne peut pas considérer les moyennes
+          des équipes comme étant <em>toutes</em> identiques entre elles. C'est là toute la limite
+          de l'ANOVA : elle détecte qu'il y a un problème, sans nous dire d'où il vient. Pour ça, il
+          faudra une étape supplémentaire, qu'on abordera plus loin.
         </p>
         <p>
           Dans notre situation, nous avons 4 échantillons représantant les 4 équipes (ainsi $k = 4$)
@@ -557,9 +563,9 @@
           paramètres $(k - 1,\ N - k)$. Les deux paramètres sont appelés degrés de liberté. Dans
           notre cas, $F$ s'écrit $$F = \dfrac{\subsub{SCE}{inter} / 3}{\subsub{SCE}{intra} / 40} =
           \dfrac{\subsub{CM}{inter}}{\subsub{CM}{intra}}$$ et suit une loi de Fisher à 3 et 40
-          degrés de liberté, lorsque $H_0$ est vraie. Ainsi, quand $H_0$ est vraie, on peut
-          facilement calculer (aire sous la courbe de densité associée) la probabilité que $F$
-          prenne une valeur supérieure à celle qu'on aura observée, qui est précisément la
+          degrés de liberté, lorsque $H_0$ est vraie. Ainsi, si on se place dans le monde de $H_0$,
+          on peut facilement calculer (aire sous la courbe de densité associée) la probabilité que
+          $F$ prenne une valeur supérieure à celle qu'on aura observée, ce qui est précisément la
           définition de la p-value (ouf, c'est gagné !).
         </p>
         <figure>
@@ -588,10 +594,10 @@
         <p>
           2,96 est donc <u><em>le</em></u> nombre qui caractérise tout notre jeu de données : il
           condense à lui tout seul les 44 observations en une seule quantité, qui obéit à des règles
-          clairement définies. Pour savoir si au moins une équipe diffère significativement des
-          autres en matière de taille moyenne des joueurs qui la composent, il ne nous reste plus
-          qu'à calculer (je suis sûr que vous l'avez deviné!)&nbsp;: $$\mathbb{P}(F \geq 2{,}96 \mid
-          H_0 \text{ vraie})$$
+          clairement définies. Pour savoir si <em>au moins</em> deux équipes diffèrent
+          significativement l'une de l'autre en matière de taille moyenne des joueurs qui les
+          composent, il ne nous reste plus qu'à calculer (je suis sûr que vous l'avez
+          deviné!)&nbsp;: $$\mathbb{P}(F \geq 2{,}96 \mid H_0 \text{ vraie})$$
         </p>
         <figure>
           <img src="figures/figure_7.png" alt="Fisher (3, 40) p-value" />
@@ -603,9 +609,9 @@
           </figcaption>
         </figure>
         <p>
-          Si les 4 équipes de foot ont des tailles moyennes égales (c'est-à-dire qu'aucune n'est
-          significativement plus grande ou plus petite que les autres), il y a 95% de chances que
-          notre variable aléatoire $F$ soit comprise entre 0 et 2,84 (Figure 7a).
+          Si les 4 équipes de foot ont des tailles moyennes égales ($\subfr{\bar{x}} =
+          \subse{\bar{x}} = \subno{\bar{x}} = \subcv{\bar{x}}$), il y a 95% de chances que notre
+          variable aléatoire $F$ soit comprise entre 0 et 2,84 (Figure 7a).
         </p>
         <p>
           Or, d'après la figure 7b, on obtient $\mathbb{P}(F \geq 2{,}96 \mid H_0 \text{ vraie}) =
@@ -615,14 +621,191 @@
           extrême. Puisque notre
           <strong>p-value</strong> passe sous le seuil des 5%, le niveau de preuves est considéré
           comme suffisant et on choisit de sortir du monde de $H_0$ pour basculer dans le monde de
-          $H_1$ : on conclut qu'<strong>au moins</strong> une des 4 équipes a une taille moyenne
-          significativement différente des autres.
+          $H_1$ : on conclut qu'il existe <strong>au moins deux équipes</strong> dont les tailles
+          moyennes sont significativement différentes l'une de l'autre &mdash; autrement dit, qu'au
+          moins une paire parmi les 6 comparaisons possibles révèle une différence significative.
         </p>
         <p>
-          Mais laquelle ? L'ANOVA, à elle seule, ne le dit pas &mdash; elle nous informe seulement
-          qu'il existe une différence quelque part parmi les 4 équipes. Pour savoir précisément
-          quelle(s) équipe(s) se démarque(nt) des autres, il faudrait pousser l'analyse avec des
-          tests complémentaires, appelés <strong>tests post-hoc</strong>...
+          Mais laquelle (ou lesquelles) ? L'ANOVA, à elle seule, ne le dit pas &mdash; elle nous
+          informe seulement qu'il existe une différence quelque part parmi les 6 comparaisons
+          possibles. Avec ce seul résultat, impossible de savoir qui est plus grand que qui. Les
+          Norvégiens sont-ils plus grands que les Français ? Les Norvégiens sont-ils plus grands que
+          les Français et les Suédois ? Les Norvégiens sont-ils seulement plus grands que les
+          Cap-Verdiens ? Et on pourrait continuer encore longtemps : chaque équipe peut être
+          comparée à une autre, à deux autres, ou même aux trois autres à la fois. Pour savoir
+          précisément entre quelles équipes se situent la ou les différences, il faudrait pousser
+          l'analyse avec des tests complémentaires, appelés <strong>tests post-hoc</strong>...
+        </p>
+        <h4>Les tests post-hoc</h4>
+        <p>
+          Lorsqu'un test ANOVA conduit à une p-value inférieure à 5%, seule une partie du chemin a
+          été effectuée : dans notre cas, on sait juste qu'on
+          <strong>ne peut plus prétendre</strong> que les 4 équipes jouent toutes dans la même
+          &laquo;&nbsp;catégorie de taille&nbsp;&raquo;. Reste à savoir quelles équipes, une fois
+          comparées deux à deux, sont à l'origine du rejet de $H_0$ &mdash; autrement dit,
+          déterminer qui est <em>significativement</em> plus grand que qui. Introduisons donc les
+          tests post-hoc.
+        </p>
+        <p>
+          Le principal test post-hoc utilisé est celui de <strong>Tukey</strong> (procédure HSD). La
+          force de ce type de test est qu'il est capable d'identifier où se situent les différences
+          parmi les 6 paires d'équipes qu'il est possible de former, tout en contrôlant le risque
+          d'erreur global. C'est un peu comme si on procédait à des tests t de Student en série,
+          mais sans l'inconvénient de voir son risque de se tromper (faux positif) augmenter au fur
+          et à mesure des tests.
+        </p>
+        <p>
+          Parmi les 6 comparaisons possibles, pour déterminer quelles différences sont
+          significatives, vous commencez à connaître la chanson : il nous suffit de
+          <strong>construire la bonne statistique de test</strong>, de telle sorte qu'elle suive une
+          certaine loi de probabilité <strong>connue</strong> et représentative de la situation, de
+          <strong>calculer</strong> la valeur de la statistique pour une comparaison donnée, puis de
+          calculer la probabilité d'observer une telle valeur, ou une valeur encore plus extrême
+          lorsque qu'on considère $H_0$ vraie, ceci via un calcul d'<strong
+            >aire sous la courbe</strong
+          >.
+        </p>
+        <p>
+          Soit alors, pour chaque comparaison possible (équipe $i$ <em>vs</em> équipe $j$), la
+          variable aléatoire : $$Q = \sqrt{n} \cdot \dfrac{\lvert \bar{x}_i - \bar{x}_j
+          \rvert}{\sqrt{\subsub{CM}{intra}}}$$ où $n$ est le nombre moyen d'observations dans la
+          paire comparée, $\subsub{CM}{intra}$ le carré moyen intra-groupes calculé lors du test
+          ANOVA à l'étape précédente, $\bar{x}_i$ la taille moyenne de l'équipe $i$ et $\bar{x}_j$
+          la taille moyenne de l'équipe $j$.
+        </p>
+        <p>
+          Il se trouve alors que, sous $H_0$, c'est-à-dire si les moyennes des 4 équipes sont
+          vraiment identiques, la variable aléatoire $Q$ suit une loi de l'<strong
+            >étendue studentisée</strong
+          >
+          de paramètre $k$ (nombre de groupes), $N-k$ (nombre d'observations moins nombre de
+          groupes) et $\alpha$ (frontière entre $H_0$ et $H_1$). Dans notre cas, $k$ = 4, $N - k$ =
+          40 et on choisit le seuil conventionnel de 0,05 pour passer du monde de $H_0$ à celui de
+          $H_1$.
+        </p>
+        <p>
+          À la différence de la loi de Student, la loi de l'étendue studentisée &mdash; qui dépend
+          notamment du nombre de groupes $k$ et du risque d'erreur $\alpha$ &mdash; permet de
+          <strong>contrôler le risque d'erreur global</strong>. Concrètement, plus on multiplie les
+          comparaisons (ici, 6 en tout), plus le risque de tomber sur un faux positif augmente si
+          l'on utilisait des tests t classiques les uns après les autres. La loi de l'étendue
+          studentisée intègre directement ce nombre de comparaisons dans son calcul : elle rend le
+          seuil de significativité un peu plus <strong>exigeant</strong> à mesure que le nombre de
+          groupes augmente, ce qui compense exactement cette accumulation de risque. C'est ce qui
+          permet à la procédure de Tukey de garder le risque global d'erreur à 5%, même en testant
+          plusieurs paires d'équipes à la fois. Ainsi, $Q$ suit une loi de l'étendue studentisée de
+          paramètres (4, 40, 0.05) <strong>quand $H_0$ est vraie</strong> (Figure 8).
+        </p>
+        <figure>
+          <img src="figures/figure_8.png" alt="Étendue studentisée (4, 40, 0.05)" />
+          <figcaption>
+            Figure 8 — (a) Densité de probabilité liée à la variable aléatoire Q, telle qu'utilisée
+            pour le test de Tukey, suivant une loi de l'étendue studentisée de paramètres k = 4, υ =
+            40 et α = 0.05. (b) Représentation visuelle de l'univers de $Q$ : $\mathbb{P}(Q \geq 0
+            \mid H_0 \text{ vraie}) = 1.$
+          </figcaption>
+        </figure>
+        <p>
+          Et les p-values associées à chaque comparaison se déduisent de la formule habituelle :
+          $$\mathbb{P}(Q \geq q_{\text{observé}} \mid H_0 \text{ vraie})$$
+        </p>
+        <p>
+          La procédure se base aussi sur une <strong>différence critique</strong> ($\text{HSD}$),
+          calculée à partir du carré moyen intra-groupes ($\subsub{CM}{intra}$), d'un paramètre
+          $q_{\text{critique}}$ ainsi que du nombre moyen d'observations dans les deux échantillons
+          de la paire comparée ($n$). Rien de plus simple ensuite : pour chaque comparaison possible
+          (6 dans notre cas), si la différence des moyennes <strong>dépasse</strong> ce seuil
+          $\text{HSD}$, elle est considérée comme statistiquement significative (la p-value associée
+          sera donc <strong>forcément</strong> inférieure à 0,05).
+        </p>
+        <p>
+          La valeur seuil $\text{HSD}$ est définie comme : $$\text{HSD} = q_{\text{critique}} \cdot
+          \sqrt{\dfrac{\subsub{CM}{intra}}{n}}$$ où $q_{\text{critique}}$ est la valeur qui sépare
+          l'aire totale de la densité de l'étendue studentisée en deux parties asymétriques : 95%
+          d'un côté et 5% de l'autre (voir vignette &laquo;&nbsp;Introduction à la
+          p-value&nbsp;&raquo; ; paragraphe
+          <em>Zone de rejet</em>). Si $q_{\text{observé}} \gt q_{\text{critique}}$ alors p < 0,05.
+          Dans notre expérience, $q_{\text{critique}} = 3{,}79$ (Figure 9).
+        </p>
+        <figure>
+          <img src="figures/figure_9.png" alt="Étendue studentisée (4, 40, 0.05) p-value" />
+          <figcaption>
+            Figure 9 — Détermination de $q_{\text{critique}}$ liée à la variable aléatoire $Q$ qui
+            suit, sous $H_0$, une loi de l'étendue de Student de paramètres k = 4, υ = 40 et α =
+            0.05. (a) Représentation visuelle de $\mathbb{P}(Q \leq q_{\text{critique}} \mid H_0
+            \text{ vraie})$. (b) Représentation visuelle de $\mathbb{P}(Q \geq q_{\text{critique}}
+            \mid H_0 \text{ vraie})$.
+          </figcaption>
+        </figure>
+        <p>
+          La valeur de $q_{\text{critique}}$ conduit finalement à : $$\text{HSD} = 3{,}79 \cdot
+          \sqrt{\dfrac{39{,}4}{11}} = 7{,}17$$ Cela signifie simplement que, parmi les 6
+          comparaisons possibles, toutes celles dont l'<strong
+            >écart entre les deux moyennes</strong
+          >
+          (en valeur absolue) est <strong>supérieur</strong> à 7,17 seront jugées comme étant
+          statistiquement significatives. Dans ce cas, leur $q_{\text{observé}}$ sera forcément
+          supérieur au $q_{\text{critique}}$ et la p-value calculée sera inférieure à 0,05.
+        </p>
+        <p>
+          Pour résumer : $q_{\text{critique}}$ sert à calculer $\text{HSD}$, qui sert à définir le
+          seuil à partir duquel les différences brutes des moyennes entre deux équipes sont
+          significatives, et ceci sans passer par le calcul de la p-value &mdash; c'est la méthode
+          rapide. $q_{\text{critique}}$ et $q_{\text{observé}}$ permettent tous les deux d'aboutir à
+          la même conclusion, mais ne disent pas la même chose : attention à ne pas les confondre.
+        </p>
+        <p>
+          Pour conclure qu'une différence de moyennes entre deux équipes est
+          <strong>statistiquement significative</strong>, il faut donc que, pour une comparaison
+          donnée, $q_{\text{observé}}$ soit supérieur à $q_{\text{critique}}$ ou de façon
+          équivalente, que la différence des moyennes ($\lvert \bar{x}_i - \bar{x}_j \rvert$) soit
+          supérieure à $\text{HSD}$. Dans tous les cas, pour trouver la p-value associée à la
+          comparaison (qu'elle soit significative ou non), on utilise la formule habituelle :
+          p-value = $\mathbb{P}(Q \geq q_{\text{observé}} \mid H_0 \text{ vraie})$. Comme
+          d'habitude, les p-values peuvent être associées à des aires sous la densité de probabilité
+          de la loi de l'étendue studentisée de paramètres k = 4, υ = 40 et α = 0.05 (figure 10).
+        </p>
+        <figure>
+          <img
+            src="figures/figure_10.png"
+            alt="Loi de l'étendue studentisée (4, 40, 0.05) p-values"
+          />
+          <figcaption>
+            Figure 10 — p-values associées aux 6 comparaisons de la procédure HSD de Tukey. Pour
+            chaque comparaison, la statistique calculée ($q_{\text{observé}}$) est représentée et
+            les p-values associées se déduisent de la probabilité d'observer une valeur de $Q$
+            (variable aléatoire suivant une loi de l'étendue studentisée de paramètres k = 4, υ = 40
+            et α = 0.05) au moins aussi extrême que $q_{\text{observé}}$. Ces probabilités sont les
+            pourcentages des aires sous chacune des courbes à droite de $q_{\text{observé}}$ par
+            rapport à l'aire totale de la densité (100%). (a) France &mdash; Suède. (b) France
+            &mdash; Norvège. (c) France &mdash; Cap-Vert. (d) Suède &mdash; Norvège. (e) Suède
+            &mdash; Cap-Vert. (f) Norvège &mdash; Cap-Vert.
+          </figcaption>
+        </figure>
+        <p>
+          Sur la figure 10, une seule p-value est inférieure à 5% : celle de la comparaison Norvège
+          &mdash; Cap-Vert (p = 0,034 ; figure 10f). Nous avons tout ce qu'il nous faut pour clore
+          cette histoire. Voici les données des six comparaisons de la procédure HSD :
+        </p>
+        <div id="hsd-table" class="nations-table"></div>
+        <p>
+          Ainsi, seulement la comparaison <strong>Norvège &mdash; Cap-Vert</strong> a une différence
+          brute au dessus du seuil $\text{HSD}$ défini (7,6 > 7,17) et donc un $q_{\text{observé}}$
+          supérieur au $q_{\text{critique}}$ (4,02 > 3,79). La p-value associée est 0,034 : on peut
+          affirmer que l'équipe de Norvège est <strong>statistiquement</strong> plus grande que
+          l'équipe du Cap-Vert. C'est la seule conclusion que nous pouvons tirer du jeu de données.
+        </p>
+        <p>
+          Le terme <strong>p-value ajustée</strong> signifie que cette p-value intègre la correction
+          pour comparaisons multiples &mdash; contrairement à un simple test t, où l'on comparerait
+          directement $T_{\text{observé}}$ à une loi de Student classique, sans tenir compte du
+          nombre de comparaisons effectuées. Ici, c'est précisément parce que la loi de l'étendue
+          studentisée dépend de $k$ (le nombre de groupes) qu'elle &laquo;&nbsp;absorbe&nbsp;&raquo;
+          le risque d'inflation des faux positifs qu'on aurait obtenu en répétant des tests t
+          indépendamment les uns des autres, de façon naïve. Autrement dit, la p-value ajustée ne
+          répond pas seulement à la question classique &laquo;&nbsp;cet écart est-il significatif
+          ?&nbsp;&raquo;, mais aussi à la question &laquo;&nbsp;cet écart est-il significatif,
+          sachant que j'ai fait 6 comparaisons et pas une seule ?&nbsp;&raquo;
         </p>
       </div>
     </main>
@@ -638,6 +821,7 @@
       renderPlayerTablesWithPos('player-height-tables-pos');
       renderDifferenceTable('player-height-tables-diff');
       renderNationsTable('player-height-by-nation');
+      renderHSDTable('hsd-table');
     </script>
 
     <script src="../../js/site-header.js"></script>

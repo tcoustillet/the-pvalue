@@ -142,3 +142,7 @@ caption {
   margin-bottom: 4px;
   text-align: left;
 }
+
+.sig-row {
+  font-weight: bold;
+}
