@@ -24,3 +24,24 @@ function variance(values) {
 function standardDeviation(values) {
   return Math.sqrt(variance(values));
 }
+
+/**
+ * Formats a number with a dot as decimal separator (standard JS behavior).
+ * @param {number} value
+ * @param {number} [decimals=1] decimals - number of decimal places
+ * @returns {string}
+ */
+function formatNumberDot(value, decimals = 1) {
+  return value.toFixed(decimals);
+}
+
+/**
+ * Formats a number with a comma as decimal separator (for French language).
+ * Reuses formatNumberDot and swaps the separator.
+ * @param {number} value
+ * @param {number} decimals - number of decimal places
+ * @returns {string}
+ */
+function formatNumberComma(value, decimals) {
+  return formatNumberDot(value, decimals).replace('.', ',');
+}

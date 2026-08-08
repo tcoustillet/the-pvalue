@@ -36,10 +36,10 @@ function buildNationsTableHTML(teams, caption) {
   });
 
   const meanRow = stats
-    .map((s) => `<td>$\\sub${s.flag}{\\bar{x}}$ = ${s.avg.toFixed(1).replace('.', ',')}</td>`)
+    .map((s) => `<td>$\\sub${s.flag}{\\bar{x}}$ = ${LANG.formatNumber(s.avg)}</td>`)
     .join('');
   const varRow = stats
-    .map((s) => `<td>$\\sub${s.flag}{s}^2$ = ${s.var.toFixed(1).replace('.', ',')}</td>`)
+    .map((s) => `<td>$\\sub${s.flag}{s}^2$ = ${LANG.formatNumber(s.var)}</td>`)
     .join('');
 
   return `<table>
@@ -50,10 +50,10 @@ function buildNationsTableHTML(teams, caption) {
   <tbody>
     ${bodyRows}    
     <tr class="summary-row">
-      <td>Moyenne</td>${meanRow}
+      <td>${LANG.mean}</td>${meanRow}
     </tr>
     <tr class="summary-row">
-      <td>Variance</td>${varRow}
+      <td>${LANG.var}</td>${varRow}
     </tr>
   </tbody>
 </table>`;
@@ -74,15 +74,12 @@ function renderNationsTable(elementId) {
 
   const teams = [
     { label: 'France', flag: 'fr', players: franceHeights },
-    { label: 'Suède', flag: 'se', players: swedenHeights },
-    { label: 'Norvège', flag: 'no', players: norwayHeights },
-    { label: 'Cap-Vert', flag: 'cv', players: CapeVerdeHeights },
+    { label: LANG.sweden, flag: 'se', players: swedenHeights },
+    { label: LANG.norway, flag: 'no', players: norwayHeights },
+    { label: LANG.capeverde, flag: 'cv', players: CapeVerdeHeights },
   ];
 
-  container.innerHTML = buildNationsTableHTML(
-    teams,
-    'Tableau 4 : Taille des 11 principaux titulaires par équipe (phase finale mondial 2026)'
-  );
+  container.innerHTML = buildNationsTableHTML(teams, LANG.anova.title_4);
 
   // Re-render KaTeX since this content was injected after the initial page load
   if (window.renderMathInElement) {
@@ -100,37 +97,37 @@ function renderNationsTable(elementId) {
  */
 const hsdResults = [
   {
-    comparaison: 'France \u{1F1EB}\u{1F1F7} – Suède \u{1F1F8}\u{1F1EA}',
+    comparaison: `France \u{1F1EB}\u{1F1F7} – ${LANG.sweden} \u{1F1F8}\u{1F1EA}`,
     difference: 2.4,
     qObs: 1.27,
     pValAdj: 0.806,
   },
   {
-    comparaison: 'France \u{1F1EB}\u{1F1F7} – Norvège \u{1F1F3}\u{1F1F4}',
+    comparaison: `France \u{1F1EB}\u{1F1F7} – ${LANG.norway} \u{1F1F3}\u{1F1F4}`,
     difference: 4.9,
     qObs: 2.59,
     pValAdj: 0.274,
   },
   {
-    comparaison: 'France \u{1F1EB}\u{1F1F7} – Cap-Vert \u{1F1E8}\u{1F1FB}',
+    comparaison: `France \u{1F1EB}\u{1F1F7} – ${LANG.capeverde} \u{1F1E8}\u{1F1FB}`,
     difference: 2.7,
     qObs: 1.43,
     pValAdj: 0.744,
   },
   {
-    comparaison: 'Suède \u{1F1F8}\u{1F1EA} – Norvège \u{1F1F3}\u{1F1F4}',
+    comparaison: `${LANG.sweden} \u{1F1F8}\u{1F1EA} – ${LANG.norway} \u{1F1F3}\u{1F1F4}`,
     difference: 2.5,
     qObs: 1.32,
     pValAdj: 0.787,
   },
   {
-    comparaison: 'Suède \u{1F1F8}\u{1F1EA} – Cap-Vert \u{1F1E8}\u{1F1FB}',
+    comparaison: `${LANG.sweden} \u{1F1F8}\u{1F1EA} – ${LANG.capeverde} \u{1F1E8}\u{1F1FB}`,
     difference: 5.1,
     qObs: 2.69,
     pValAdj: 0.243,
   },
   {
-    comparaison: 'Norvège \u{1F1F3}\u{1F1F4} – Cap-Vert \u{1F1E8}\u{1F1FB}',
+    comparaison: `${LANG.norway} \u{1F1F3}\u{1F1F4} – ${LANG.capeverde} \u{1F1E8}\u{1F1FB}`,
     difference: 7.6,
     qObs: 4.02,
     pValAdj: 0.034,
@@ -152,20 +149,16 @@ const SIGNIFICANCE_THRESHOLD = 0.05;
 function buildHSDTableHTML(results, caption) {
   const bodyRows = results
     .map((r) => {
-      const diffFmt = r.difference.toFixed(1).replace('.', ',');
-      const qFmt = r.qObs.toFixed(2).replace('.', ',');
-      const pFmt = r.pValAdj.toFixed(3).replace('.', ',');
-
       const isSignificant = r.pValAdj < SIGNIFICANCE_THRESHOLD;
-      const sigLabel = isSignificant ? 'Oui 😏' : 'Non';
+      const sigLabel = isSignificant ? `${LANG.anova.yes} 😏` : LANG.anova.no;
       const sigClass = isSignificant ? 'sig-yes' : 'sig-no';
       const rowClass = isSignificant ? ' class="sig-row"' : '';
 
       return `    <tr${rowClass}>
       <td>${r.comparaison}</td>
-      <td>${diffFmt}</td>
-      <td>${qFmt}</td>
-      <td>${pFmt}</td>
+      <td>${LANG.formatNumber(r.difference)}</td>
+      <td>${LANG.formatNumber(r.qObs, 2)}</td>
+      <td>${LANG.formatNumber(r.pValAdj, 3)}</td>
       <td class="${sigClass}">${sigLabel}</td>
     </tr>`;
     })
@@ -175,11 +168,11 @@ function buildHSDTableHTML(results, caption) {
   <caption>${caption}</caption>
   <thead>
     <tr>
-      <th>Comparaison</th>
-      <th>Différence brute (cm)</th>
-      <th>$q_{\\text{observé}}$</th>
-      <th>p ajustée</th>
-      <th>Significatif ?</th>
+      <th>${LANG.anova.comp}</th>
+      <th>${LANG.anova.diff}</th>
+      <th>${LANG.anova.qobs}</th>
+      <th>${LANG.anova.padj}</th>
+      <th>${LANG.anova.sig}</th>
     </tr>
   </thead>
   <tbody>
@@ -200,10 +193,7 @@ function renderHSDTable(elementId) {
     return;
   }
 
-  container.innerHTML = buildHSDTableHTML(
-    hsdResults,
-    'Tableau 5 : Récapitulatif de la procédure HSD de Tukey'
-  );
+  container.innerHTML = buildHSDTableHTML(hsdResults, LANG.anova.title_5);
 
   if (window.renderMathInElement) {
     renderMathInElement(container, {
