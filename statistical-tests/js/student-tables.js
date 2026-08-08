@@ -12,25 +12,22 @@ function buildPlayerTableHTML(players, teamLabel) {
 
   const rows = players.map((p) => `    <tr><td>${p.name}</td><td>${p.height}</td></tr>`).join('\n');
   const flag = teamLabel === 'France' ? 'fr' : 'se';
-  const title =
-    teamLabel === 'France'
-      ? "Tableau 1a : Taille moyenne des 11 titulaires de l'équipe de France lors du match du 30 juin 2026."
-      : "Tableau 1b : Taille moyenne des 11 titulaires de l'équipe de Suède lors du match du 30 juin 2026.";
+  const title = teamLabel === 'France' ? LANG.student.title_1a : LANG.student.title_1b;
 
   return `<table>
   <caption>${title}</caption>
   <thead>
-    <tr><th>${teamLabel}</th><th>Taille (cm)</th></tr>
+    <tr><th>${teamLabel}</th><th>${LANG.student.height}</th></tr>
   </thead>
   <tbody>
 ${rows}
     <tr class="summary-row">
-      <td>Moyenne ($\\sub${flag}{\\bar{x}}$)</td>
-      <td>${avg.toFixed(1).replace('.', ',')}</td>
+      <td>${LANG.mean} ($\\sub${flag}{\\bar{x}}$)</td>
+      <td>${LANG.formatNumber(avg)}</td>
     </tr>
     <tr class="summary-row">
-      <td>Écart-type ($\\sub${flag}{s}$)</td>
-      <td>${stdDev.toFixed(1).replace('.', ',')}</td>
+      <td>${LANG.std} ($\\sub${flag}{s}$)</td>
+      <td>${LANG.formatNumber(stdDev)}</td>
     </tr>
   </tbody>
 </table>`;
@@ -49,7 +46,7 @@ function renderPlayerTables(elementId) {
   container.innerHTML =
     buildPlayerTableHTML(franceHeights, 'France') +
     '\n' +
-    buildPlayerTableHTML(swedenHeights, 'Suède');
+    buildPlayerTableHTML(swedenHeights, LANG.sweden);
 
   // Re-render KaTeX since this content was injected after the initial page load
   if (window.renderMathInElement) {
@@ -88,25 +85,22 @@ function buildPlayerTableWithPosHTML(players, teamLabel) {
     .map((p) => `    <tr><td>${p.pos}</td><td>${p.name}</td><td>${p.height}</td></tr>`)
     .join('\n');
   const flag = teamLabel === 'France' ? 'fr' : 'se';
-  const title =
-    teamLabel === 'France'
-      ? "Tableau 2a : Taille et poste des 11 titulaires de l'équipe de France lors du match du 30 juin 2026."
-      : "Tableau 2b : Taille et poste des 11 titulaires de l'équipe de Suède lors du match du 30 juin 2026.";
+  const title = teamLabel === 'France' ? LANG.student.title_2a : LANG.student.title_2b;
 
   return `<table>
   <caption>${title}</caption>
   <thead>
-    <tr><th>Poste</th><th>${teamLabel}</th><th>Taille (cm)</th></tr>
+    <tr><th>${LANG.student.pos}</th><th>${teamLabel}</th><th>${LANG.student.height}</th></tr>
   </thead>
   <tbody>
 ${rows}
     <tr class="summary-row">
-      <td colspan="2">Moyenne ($\\sub${flag}{\\bar{x}}$)</td>
-      <td>${avg.toFixed(1).replace('.', ',')}</td>
+      <td colspan="2">${LANG.mean} ($\\sub${flag}{\\bar{x}}$)</td>
+      <td>${LANG.formatNumber(avg)}</td>
     </tr>
     <tr class="summary-row">
-      <td colspan="2">Écart-type ($\\sub${flag}{s}$)</td>
-      <td>${stdDev.toFixed(1).replace('.', ',')}</td>
+      <td colspan="2">${LANG.std} ($\\sub${flag}{s}$)</td>
+      <td>${LANG.formatNumber(stdDev)}</td>
     </tr>
   </tbody>
 </table>`;
@@ -173,7 +167,7 @@ function renderPlayerTablesWithPos(elementId) {
   container.innerHTML =
     buildPlayerTableWithPosHTML(franceHeights, 'France') +
     '\n' +
-    buildPlayerTableWithPosHTML(swedenHeights, 'Suède');
+    buildPlayerTableWithPosHTML(swedenHeights, LANG.sweden);
 
   if (window.renderMathInElement) {
     renderMathInElement(container, {
@@ -208,23 +202,22 @@ function buildDifferenceTableHTML() {
     })
     .join('\n');
 
-  const title =
-    'Tableau 3 : Différence de taille (France − Suède) par poste, titulaires du match du 30 juin 2026.';
+  const title = LANG.student.title_3;
 
   return `<table "class=difference-table">
   <caption>${title}</caption>
   <thead>
-    <tr><th>Poste</th><th>Différence (cm)</th></tr>
+    <tr><th>${LANG.student.pos}</th><th>${LANG.student.diff}</th></tr>
   </thead>
   <tbody>
 ${rows}
     <tr class="summary-row">
-      <td>Moyenne ($\\bar{d}$)</td>
-      <td>${(Math.trunc(avgDiff * 10) / 10).toFixed(1).replace('.', ',')}</td>
+      <td>${LANG.mean} ($\\bar{d}$)</td>
+      <td>${LANG.formatNumber(Math.trunc(avgDiff * 10) / 10)}</td>
     </tr>
     <tr class="summary-row">
-      <td>Écart-type ($s_d$)</td>
-      <td>${stdDevDiff.toFixed(1).replace('.', ',')}</td>
+      <td>${LANG.std} ($s_d$)</td>
+      <td>${LANG.formatNumber(stdDevDiff)}</td>
     </tr>
   </tbody>
 </table>`;
