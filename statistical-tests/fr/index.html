@@ -57,11 +57,11 @@
           moyennes sont identiques). Facile non ?
         </p>
         <p>
-          Un problème se pose alors&nbsp;: comment traduire mathématiquement «&nbsp;H0 vraie&nbsp;»,
-          autrement dit comment retranscrire le fait que les deux équipes aient la même taille
-          moyenne&nbsp;? À quoi devons-nous nous attendre si les deux équipes ont vraiment la même
-          taille moyenne&nbsp;? Et surtout : quelle est la distribution de probabilité de la
-          variable aléatoire représentant la différence des tailles moyennes ?
+          Un problème se pose alors&nbsp;: comment traduire mathématiquement «&nbsp;$H_0$
+          vraie&nbsp;», autrement dit comment retranscrire le fait que les deux équipes aient la
+          même taille moyenne&nbsp;? À quoi devons-nous nous attendre si les deux équipes ont
+          vraiment la même taille moyenne&nbsp;? Et surtout : quelle est la distribution de
+          probabilité de la variable aléatoire représentant la différence des tailles moyennes ?
         </p>
         <p>
           Notons $\subse{\bar{x}}$ la taille moyenne (en cm.) des 11 titulaires suédois qui ont
@@ -70,17 +70,18 @@
           la différence des moyennes, on peut introduire la variable aléatoire $D \coloneqq
           \subse{\bar{x}} - \subfr{\bar{x}}$. Si les moyennes étaient strictement identiques, on
           aurait $D = 0$. Mais si on obtient $D = 0{,}3$, cela signifie que la différence des
-          moyennes observée est de 0,3 mm en faveur des suédois. Les joueurs suédois sont-ils alors
+          moyennes observée est de 0,3 cm en faveur des suédois. Les joueurs suédois sont-ils alors
           vraiment plus grands que les français ? À partir de quand peut-on conclure quelque chose ?
           Quelle est la différence seuil qui nous permettrait de basculer de $H_0$ (les deux équipes
           mesurent la même taille) vers $H_1$ (les joueurs suédois sont plus grands que les
-          français) ? Une différence de 0,2 mm est-elle suffisante pour déclarer les suédois plus
+          français) ? Une différence de 0,2 cm est-elle suffisante pour déclarer les suédois plus
           grands ? Ou alors faut-il au minimum 5 cm ?
         </p>
         <p>
           Dans la réalité, le problème qu'on cherche à résoudre est de savoir si la valeur de $D$
-          observée ($D_{observée}$) a un sens concret : si cette différence observée est pertinente
-          ou bien négligeable ? En statistiques, on dit qu'on cherche à savoir si la différence est
+          observée ($D_{\text{observée}}$) a un sens concret : si cette différence observée est
+          pertinente ou bien négligeable ? En statistiques, on dit qu'on cherche à savoir si la
+          différence est
           <em>significative</em>, c'est-à-dire si elle est suffisamment grande pour ne pas être due
           au simple hasard.
         </p>
@@ -113,7 +114,6 @@
           des moyennes). Commençons par regarder les données de plus près&nbsp;:
         </p>
         <div id="player-height-tables" class="player-tables"></div>
-
         <p>
           L'équipe de France mesure en moyenne 183,2 cm, tandis que l'équipe de Suède mesure en
           moyenne 185,6 cm. Les joueurs suédois sont donc plus grands que les joueurs français. La
@@ -123,20 +123,21 @@
         </p>
         <p>
           Reprenons notre variable aléatoire $D \coloneqq \subse{\bar{x}} - \subfr{\bar{x}}$. Ici,
-          on a donc $D_{observé} = 185{,}6 - 183{,}2 = 2{,}4$. Si on prend comme point de bascule de
-          $H_0$ vers $H_1$ le seuil 2 cm, la différence est significative car 2,4 > 2 mais si on
-          prend comme seuil le rayon du ballon, la différence n'est plus significative puisque 2,4 <
-          11. Soyons plus rigoureux et utilisons les méthodes conventionnelles.
+          on a donc $D_{\text{observée}} = 185{,}6 - 183{,}2 = 2{,}4$. Si on prend comme point de
+          bascule de $H_0$ vers $H_1$ le seuil 2 cm, la différence est significative car 2,4 > 2
+          mais si on prend comme seuil le rayon du ballon, la différence n'est plus significative
+          puisque 2,4 < 11. Soyons plus rigoureux et utilisons les méthodes conventionnelles.
         </p>
         <p>
           Pour tester si cette différence est significative en utilisant la théorie de la p-value,
-          il nous faut créer une <strong>variable aléatoire</strong> $X$ qui représente la situation
-          (la différence moyenne des tailles) <strong>et</strong> dont la distribution de
-          probabilité est <strong>connue</strong>. Puis, il nous suffit de regarder quelle est la
-          probabilité d'observer une telle différence &mdash; ou une différence encore plus grande
-          &mdash; si les tailles des deux équipes étaient réellement identiques ($H_0$ vraie). Cela
-          revient à calculer : $\mathbb{P}(X \geq X_{observé} \mid H_0 \text{ vraie})$, ce qui est
-          la définition de la p-value.
+          il nous faut créer une <strong>variable aléatoire</strong> $X$ qui représente correctement
+          la situation étudiée (la différence moyenne des tailles) <strong>et</strong> dont la
+          distribution de probabilité est <strong>connue</strong>. Puis, il nous suffit de regarder
+          quelle valeur prend $X$ dans notre expérience avec nos données et enfin de calculer la
+          probabilité d'observer une telle valeur &mdash; ou une valeur encore plus grande &mdash;
+          si les tailles des deux équipes étaient réellement identiques (si $H_0$ est vraie). Cela
+          revient à calculer : $\mathbb{P}(X \geq X_{\text{observée}} \mid H_0 \text{ vraie})$, ce
+          qui est la définition de la p-value.
         </p>
         <h3>Le test t de Student</h3>
         <p>
@@ -177,10 +178,10 @@
         <figure>
           <img src="figures/figure_1.png" alt="Loi de Student (20 ddl)" />
           <figcaption>
-            Figure 1 — (a) Densité de probabilité liée à la variable aléatoire T qui suit une loi de
-            Student à 20 degrés de liberté. (b) Représentation de l'univers de T = représentation de
-            $\mathbb{P}(-\infty \lt T \lt +\infty)$. $T$ a 100% de chances de se trouver dans
-            l'intervalle $]-\infty \; ; +\infty[$.
+            Figure 1 — (a) Densité de probabilité liée à la variable aléatoire $T$ qui suit une loi
+            de Student à 20 degrés de liberté. (b) Représentation de l'univers de $T$ =
+            représentation de $\mathbb{P}(-\infty \lt T \lt +\infty)$. $T$ a 100% de chances de se
+            trouver dans l'intervalle $]-\infty \; ; +\infty[$.
           </figcaption>
         </figure>
         <p>
@@ -205,9 +206,9 @@
           par chance, un écart comme celui-ci.
         </p>
         <p>
-          Dans notre exemple avec les joueurs français et suédois, on obtient : $$T_{observé} =
-          \dfrac{185{,}6 - 183{,}2}{\sqrt{\dfrac{(11 -1) \cdot 7^2 + (11 -1) \cdot 5{,}4^2}{11 + 11
-          - 2}} \cdot \sqrt{\dfrac{1}{11} + \dfrac{1}{11}}} = 0{,}9$$
+          Dans notre exemple avec les joueurs français et suédois, on obtient :
+          $$T_{\text{observée}} = \dfrac{185{,}6 - 183{,}2}{\sqrt{\dfrac{(11 -1) \cdot 7^2 + (11 -1)
+          \cdot 5{,}4^2}{11 + 11 - 2}} \cdot \sqrt{\dfrac{1}{11} + \dfrac{1}{11}}} = 0{,}9$$
         </p>
         <p>
           Pour calculer la p-value et conclure si la différence de 2,4 cm entre les deux équipes est
@@ -309,12 +310,12 @@
           Une fois les paires créées, le reste du raisonnement est identique à un test t pour
           échantillons indépendants, à la différence de la statistique de test. Pour un
           <strong>test t de Student pour échantillons appariés</strong>, la variable aléatoire
-          utilisée est : $$T = \sqrt{n} \cdot \dfrac{\bar{d}}{s_d}$$ où $\sqrt{n}$ est le nombre de
-          paires créées, $\bar{d}$ la moyenne des différences et $s_d$ l'écart-type des différences.
+          utilisée est : $$T = \sqrt{n} \cdot \dfrac{\bar{d}}{s_d}$$ où $n$ est le nombre de paires
+          créées, $\bar{d}$ la moyenne des différences et $s_d$ l'écart-type des différences.
         </p>
         <p>
           Encore une fois, il se trouve que cette variable aléatoire possède un avantage précieux :
-          lorsque $H_0$ est vraie, $T$ soit une loi de Student à $n-1$ degrés de liberté. Cela
+          lorsque $H_0$ est vraie, $T$ suit une loi de Student à $n-1$ degrés de liberté. Cela
           signifie que l'on sait à quoi s'attendre si $H_0$ est vraie, et on pourra ainsi décider si
           un résultat observé est ordinaire ou bien extraordinaire. Dans notre exemple, étant donné
           que nous avons 11 paires de joueurs, $T$ suit alors une loi de Student à 10 degrés de
@@ -323,15 +324,15 @@
         <figure>
           <img src="figures/figure_3.png" alt="Loi de Student (10 ddl)" />
           <figcaption>
-            Figure 3 — (a) Densité de probabilité liée à la variable aléatoire T qui suit une loi de
-            Student à 10 degrés de liberté. (b) Représentation de l'univers de T = représentation de
-            $\mathbb{P}(-\infty \lt T \lt +\infty)$. $T$ a 100% de chances de se trouver dans
-            l'intervalle $]-\infty \; ; +\infty[$.
+            Figure 3 — (a) Densité de probabilité liée à la variable aléatoire $T$ qui suit une loi
+            de Student à 10 degrés de liberté. (b) Représentation de l'univers de $T$ =
+            représentation de $\mathbb{P}(-\infty \lt T \lt +\infty)$. $T$ a 100% de chances de se
+            trouver dans l'intervalle $]-\infty \; ; +\infty[$.
           </figcaption>
         </figure>
         <p>
           Dans notre exemple avec les joueurs français et suédois <strong>appariés</strong>, on
-          obtient : $$T_{observé} = \sqrt{11} \cdot \dfrac{-2{,}4}{7{,}8} = -1{,}02$$
+          obtient : $$T_{\text{observée}} = \sqrt{11} \cdot \dfrac{-2{,}4}{7{,}8} = -1{,}02$$
         </p>
         <p>
           Pour calculer la p-value et conclure si la différence de 2,4 cm entre les deux équipes
@@ -340,10 +341,10 @@
           $T$ suit une loi de Student à 10 degrés de liberté sous $H_0$​ (c'est-à-dire lorsque $H_0$
           est vraie), on peut aisément calculer cette probabilité en évaluant directement l'aire
           sous la courbe de densité associée, entre les bornes - ∞ et -1,02. Dans cet exemple, la
-          statistique de test observée ($T_{observé}$) est négative (T = - 1,02). Obtenir
+          statistique de test observée ($T_{\text{observée}}$) est négative (T = - 1,02). Obtenir
           &laquo;&nbsp;une valeur au moins aussi extrême&nbsp;&raquo; revient donc à regarde du côté
-          gauche de la courbe : en effet, les valeurs au moins aussi extrêmes que -1,02 celles qui
-          sont encore plus petites (donc encore plus négatives).
+          gauche de la courbe : en effet, les valeurs au moins aussi extrêmes que -1,02 sont celles
+          qui sont encore plus petites (donc encore plus négatives).
         </p>
         <figure>
           <img src="figures/figure_4.png" alt="Probabilités Loi de Student (10 ddl)" />
@@ -407,8 +408,8 @@
           1 degrés de liberté. Dans notre situation : 10 degrés de liberté.
         </p>
         <p>
-          Des calculs nous donnent : $$T_{observé} = \sqrt{11} \cdot \dfrac{183{,}2 - 176}{5{,}4} =
-          4{,}4$$
+          Des calculs nous donnent : $$T_{\text{observée}} = \sqrt{11} \cdot \dfrac{183{,}2 -
+          176}{5{,}4} = 4{,}4$$
         </p>
         <p>
           Pour savoir si la différence est <strong>statistiquement</strong> significative, il nous
@@ -420,9 +421,9 @@
         <figure>
           <img src="figures/figure_5.png" alt="Probabilités Loi de Student (10 ddl) - 1 éch." />
           <figcaption>
-            Figure 5 — (a) Densité de probabilité liée à la variable aléatoire T qui suit une loi de
-            Student à 10 degrés de liberté. La ligne verticale rose indique la valeur prise par la
-            variable aléatoire $T$ dans le cas de l'expérience. (b) Représentation visuelle de
+            Figure 5 — (a) Densité de probabilité liée à la variable aléatoire $T$ qui suit une loi
+            de Student à 10 degrés de liberté. La ligne verticale rose indique la valeur prise par
+            la variable aléatoire $T$ dans le cas de l'expérience. (b) Représentation visuelle de
             $\mathbb{P}(T \geq 4{,}4)$.
           </figcaption>
         </figure>
@@ -571,9 +572,9 @@
         <figure>
           <img src="figures/figure_6.png" alt="Fisher (3, 40)" />
           <figcaption>
-            Figure 6 — (a) Densité de probabilité liée à la variable aléatoire F, telle qu'utilisée
-            dans le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté. (b)
-            Représentation de l'univers de $F$ : $F$ a 100% de chances de se trouver dans
+            Figure 6 — (a) Densité de probabilité liée à la variable aléatoire $F$, telle
+            qu'utilisée dans le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté.
+            (b) Représentation de l'univers de $F$ : $F$ a 100% de chances de se trouver dans
             l'intervalle $[0 \; ; +\infty[$.
           </figcaption>
         </figure>
@@ -602,8 +603,8 @@
         <figure>
           <img src="figures/figure_7.png" alt="Fisher (3, 40) p-value" />
           <figcaption>
-            Figure 7 — Densité de probabilité liée à la variable aléatoire F, telle qu'utilisée dans
-            le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté. (a)
+            Figure 7 — Densité de probabilité liée à la variable aléatoire $F$, telle qu'utilisée
+            dans le test ANOVA, qui suit une loi de Fisher à 3 et 40 degrés de liberté. (a)
             Représentation visuelle de $\mathbb{P}(F \leq 2{,}84 \mid H_0 \text{ vraie})$. (b)
             Représentation visuelle de $\mathbb{P}(F \geq 2{,}96 \mid H_0 \text{ vraie})$
           </figcaption>
@@ -699,22 +700,22 @@
         <figure>
           <img src="figures/figure_8.png" alt="Étendue studentisée (4, 40, 0.05)" />
           <figcaption>
-            Figure 8 — (a) Densité de probabilité liée à la variable aléatoire Q, telle qu'utilisée
-            pour le test de Tukey, suivant une loi de l'étendue studentisée de paramètres k = 4, υ =
-            40 et α = 0.05. (b) Représentation visuelle de l'univers de $Q$ : $\mathbb{P}(Q \geq 0
-            \mid H_0 \text{ vraie}) = 1.$
+            Figure 8 — (a) Densité de probabilité liée à la variable aléatoire $Q$, telle
+            qu'utilisée pour le test de Tukey, suivant une loi de l'étendue studentisée de
+            paramètres k = 4, υ = 40 et α = 0.05. (b) Représentation visuelle de l'univers de $Q$ :
+            $\mathbb{P}(Q \geq 0 \mid H_0 \text{ vraie}) = 1.$
           </figcaption>
         </figure>
         <p>
           Et les p-values associées à chaque comparaison se déduisent de la formule habituelle :
-          $$\mathbb{P}(Q \geq q_{\text{observé}} \mid H_0 \text{ vraie})$$
+          $$\mathbb{P}(Q \geq q_{\text{observée}} \mid H_0 \text{ vraie})$$
         </p>
         <p>
           La procédure se base aussi sur une <strong>différence critique</strong> ($\text{HSD}$),
           calculée à partir du carré moyen intra-groupes ($\subsub{CM}{intra}$), d'un paramètre
           $q_{\text{critique}}$ ainsi que du nombre moyen d'observations dans les deux échantillons
           de la paire comparée ($n$). Rien de plus simple ensuite : pour chaque comparaison possible
-          (6 dans notre cas), si la différence des moyennes <strong>dépasse</strong> ce seuil
+          (6 dans notre cas), si la différence brute des moyennes <strong>dépasse</strong> ce seuil
           $\text{HSD}$, elle est considérée comme statistiquement significative (la p-value associée
           sera donc <strong>forcément</strong> inférieure à 0,05).
         </p>
@@ -724,7 +725,7 @@
           l'aire totale de la densité de l'étendue studentisée en deux parties asymétriques : 95%
           d'un côté et 5% de l'autre (voir vignette &laquo;&nbsp;Introduction à la
           p-value&nbsp;&raquo; ; paragraphe
-          <em>Zone de rejet</em>). Si $q_{\text{observé}} \gt q_{\text{critique}}$ alors p < 0,05.
+          <em>Zone de rejet</em>). Si $q_{\text{observée}} \gt q_{\text{critique}}$ alors p < 0,05.
           Dans notre expérience, $q_{\text{critique}} = 3{,}79$ (Figure 9).
         </p>
         <figure>
@@ -741,27 +742,27 @@
           La valeur de $q_{\text{critique}}$ conduit finalement à : $$\text{HSD} = 3{,}79 \cdot
           \sqrt{\dfrac{39{,}4}{11}} = 7{,}17$$ Cela signifie simplement que, parmi les 6
           comparaisons possibles, toutes celles dont l'<strong
-            >écart entre les deux moyennes</strong
+            >écart <u>brut</u> entre les deux moyennes</strong
           >
           (en valeur absolue) est <strong>supérieur</strong> à 7,17 seront jugées comme étant
-          statistiquement significatives. Dans ce cas, leur $q_{\text{observé}}$ sera forcément
+          statistiquement significatives. Dans ce cas, leur $q_{\text{observée}}$ sera forcément
           supérieur au $q_{\text{critique}}$ et la p-value calculée sera inférieure à 0,05.
         </p>
         <p>
           Pour résumer : $q_{\text{critique}}$ sert à calculer $\text{HSD}$, qui sert à définir le
           seuil à partir duquel les différences brutes des moyennes entre deux équipes sont
           significatives, et ceci sans passer par le calcul de la p-value &mdash; c'est la méthode
-          rapide. $q_{\text{critique}}$ et $q_{\text{observé}}$ permettent tous les deux d'aboutir à
-          la même conclusion, mais ne disent pas la même chose : attention à ne pas les confondre.
+          rapide. $q_{\text{critique}}$ et $q_{\text{observée}}$ permettent tous les deux d'aboutir
+          à la même conclusion, mais ne disent pas la même chose : attention à ne pas les confondre.
         </p>
         <p>
           Pour conclure qu'une différence de moyennes entre deux équipes est
           <strong>statistiquement significative</strong>, il faut donc que, pour une comparaison
-          donnée, $q_{\text{observé}}$ soit supérieur à $q_{\text{critique}}$ ou de façon
+          donnée, $q_{\text{observée}}$ soit supérieur à $q_{\text{critique}}$ ou de façon
           équivalente, que la différence des moyennes ($\lvert \bar{x}_i - \bar{x}_j \rvert$) soit
           supérieure à $\text{HSD}$. Dans tous les cas, pour trouver la p-value associée à la
           comparaison (qu'elle soit significative ou non), on utilise la formule habituelle :
-          p-value = $\mathbb{P}(Q \geq q_{\text{observé}} \mid H_0 \text{ vraie})$. Comme
+          p-value = $\mathbb{P}(Q \geq q_{\text{observée}} \mid H_0 \text{ vraie})$. Comme
           d'habitude, les p-values peuvent être associées à des aires sous la densité de probabilité
           de la loi de l'étendue studentisée de paramètres k = 4, υ = 40 et α = 0.05 (figure 10).
         </p>
@@ -772,11 +773,11 @@
           />
           <figcaption>
             Figure 10 — p-values associées aux 6 comparaisons de la procédure HSD de Tukey. Pour
-            chaque comparaison, la statistique calculée ($q_{\text{observé}}$) est représentée et
+            chaque comparaison, la statistique calculée $(q_{\text{observée}})$ est représentée et
             les p-values associées se déduisent de la probabilité d'observer une valeur de $Q$
             (variable aléatoire suivant une loi de l'étendue studentisée de paramètres k = 4, υ = 40
-            et α = 0.05) au moins aussi extrême que $q_{\text{observé}}$. Ces probabilités sont les
-            pourcentages des aires sous chacune des courbes à droite de $q_{\text{observé}}$ par
+            et α = 0.05) au moins aussi extrême que $q_{\text{observée}}$. Ces probabilités sont les
+            pourcentages des aires sous chacune des courbes à droite de $q_{\text{observée}}$, par
             rapport à l'aire totale de la densité (100%). (a) France &mdash; Suède. (b) France
             &mdash; Norvège. (c) France &mdash; Cap-Vert. (d) Suède &mdash; Norvège. (e) Suède
             &mdash; Cap-Vert. (f) Norvège &mdash; Cap-Vert.
@@ -790,15 +791,16 @@
         <div id="hsd-table" class="nations-table"></div>
         <p>
           Ainsi, seulement la comparaison <strong>Norvège &mdash; Cap-Vert</strong> a une différence
-          brute au dessus du seuil $\text{HSD}$ défini (7,6 > 7,17) et donc un $q_{\text{observé}}$
-          supérieur au $q_{\text{critique}}$ (4,02 > 3,79). La p-value associée est 0,034 : on peut
-          affirmer que l'équipe de Norvège est <strong>statistiquement</strong> plus grande que
-          l'équipe du Cap-Vert. C'est la seule conclusion que nous pouvons tirer du jeu de données.
+          brute au dessus du seuil $\text{HSD}$ défini (7,6 > 7,17) et donc un $q_{\text{observée}}$
+          supérieur au $q_{\text{critique}}$ (4,02 > 3,79). La p-value associée est 0,034 < 0.05 :
+          on peut affirmer que l'équipe de Norvège est <strong>statistiquement</strong> plus grande
+          que l'équipe du Cap-Vert. C'est la seule conclusion que nous pouvons tirer du jeu de
+          données.
         </p>
         <p>
           Le terme <strong>p-value ajustée</strong> signifie que cette p-value intègre la correction
           pour comparaisons multiples &mdash; contrairement à un simple test t, où l'on comparerait
-          directement $T_{\text{observé}}$ à une loi de Student classique, sans tenir compte du
+          directement $T_{\text{observée}}$ à une loi de Student classique, sans tenir compte du
           nombre de comparaisons effectuées. Ici, c'est précisément parce que la loi de l'étendue
           studentisée dépend de $k$ (le nombre de groupes) qu'elle &laquo;&nbsp;absorbe&nbsp;&raquo;
           le risque d'inflation des faux positifs qu'on aurait obtenu en répétant des tests t
