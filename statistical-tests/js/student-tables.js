@@ -177,6 +177,14 @@ function renderPlayerTablesWithPos(elementId) {
       ],
     });
   }
+
+  if (!container._arrowObserver) {
+    container._arrowObserver = new ResizeObserver(() => {
+      addPositionArrows(container);
+    });
+    container._arrowObserver.observe(container);
+  }
+
   requestAnimationFrame(() => addPositionArrows(container));
 }
 
