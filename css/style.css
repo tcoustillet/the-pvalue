@@ -295,3 +295,15 @@ figcaption {
   height: 20px;
   vertical-align: -0.25em;
 }
+
+.footer-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.footer-github-link img {
+  display: block;
+  transform: translateY(2.5px);
+}
